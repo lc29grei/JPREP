@@ -21,7 +21,7 @@
 		<p class="header-name">
 				Welcome, John
 				
-				<a href="#">Logout</a>
+				<a href="./login.php">Logout</a>
 		</p>
 	</h1>
 	

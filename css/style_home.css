@@ -1,11 +1,11 @@
 body {
-	background: gray;
+	background: #0ca3d2;
     padding:50px 80px;
-    font-family:"Lucida Grande","bitstream vera sans","trebuchet ms",sans-serif,verdana;
+    font: 13px/20px 'Lucida Grande', Tahoma, Verdana, sans-serif;
 }
 
 h1.header {
-	font-size: 80%;
+	font-size: 100%;
 }
 
 .header-name {
@@ -108,5 +108,5 @@ ul.tabs a.xl.current { background-position: 0 -62px; }
     border-top:0;
     height:300px;
     font-size:14px;
-    background-color:gray;
+    background-color:white;
 }
