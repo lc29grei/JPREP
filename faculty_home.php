@@ -1,21 +1,91 @@
-
-<!DOCTYPE html>
-<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]> <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]> <html class="lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--><html lang="en"> <!--<![endif]-->
-
+<!DOCTYPE HTML>
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>JPREP Login</title>
-  <link rel="stylesheet" href="css/style1.css">
-  <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+	<title>Welcome to JPREP</title>
+	<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+	<script language="javascript" src="list.js"></script>
+	<link href="./style.css" rel="stylesheet" type="text/css">
+	
 </head>
+
 <body>
-  <section class="container">
-    <h1>Youve logged on to JPREP as faculty!</h1>
-  </section>
+	
+	<h1 class="header">
+		<img src="./jprep_logo.jpg" width="200" height="75"/>
+		You are currently logged in as a FACULTY		
+		<select>
+			<option>Faculty</option>
+			<option>Course Coordinator</option>
+		</select>
+		<p class="header-name">
+				Welcome, John
+				
+				<a href="#">Logout</a>
+		</p>
+	</h1>
+	
+	</div>
+	<ul class="tabs">
+		<li><a href="#">Courses</a></li>
+		<li><a href="#">Gradebook</a></li>
+		<li><a href="#">Profile</a></li>
+	</ul>
+
+	<div class="panes">
+		<div>
+			<p><b><u>Current Courses</u></b></p>
+			<b><a ID="xproducts" href="javascript:Toggle('products');">[+]</a>Products</b><br>
+   			<div ID="products" style="display:none; margin-left:2em;">
+   				<a href="">Product List</a><br>
+  				<a href="">Order Form</a><br>
+   				<a ID="xspecs" href="">Specifications<br></a>
+   			<div ID="specs" style="display:none; margin-left:2em">
+      			<a href="">Old Products</a><br>
+      			<a href="">New Products</a><br>
+   			</div>
+   				<a href="">Price List</a><br>
+   			</div>
+<b><a ID="xsupport" href="javascript:Toggle('support');">[+]</a>
+   Support</b><br>
+   <div ID="support" style="display:none; margin-left:2em;">
+   <a href="tech.html">Technical Support</a><br>
+   <a href="sforum.html">Support Forum</a><br>
+   <a href="sforum.html">Contact Support</a><br>
+</div>
+<b><a ID="xcontact" href="javascript:Toggle('contact');">[+]</a>
+   Contact Us</b>
+<div ID="contact" style="display:none; margin-left:2em;">
+   <a href="contact1.html">Sales Department</a><br>
+   <a href="contact2.html">Service Department</a><br>
+   <a href="contact3.html">Marketing Department</a><br>
+</div>
+		</div>
+		<div>
+			<p>Select a course to view your grade</p>
+			<ul>
+				<li><u>Course 1</u></li>
+				<li><u>Course 2</u></li>
+				<li><u>Course 3</u></li>
+				<li><u>Course 4</u></li>
+			</ul>
+		</div>
+		<div>Third tab content</div>
+	</div>
+	
+	<script>
+		$(function() {
+			$("ul.tabs").tabs("div.panes > div");
+		});
+	</script>
+	
+	<div class="footer">
+		<p>Created by Delta Tech</p>
+		<a href="http://oraserv.cs.siena.edu/~perm_deltatech/#/home"><img src="./DeltaTech-Logo.png" width="50" height="30"/></a>
+		<br/>
+		<p>Copyright &copy; 2013 Delta Tech. All Rights Reserved</p>
+	</div>
+	
 </body>
+
 </html>
