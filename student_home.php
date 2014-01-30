@@ -13,7 +13,7 @@
 	
 	<h1 class="header">
 		<img src="./jprep_logo.jpg" width="200" height="75"/>
-		You are currently logged in as a Course Coordinator		
+		You are currently logged in as a STUDENT		
 		<p class="header-name">
 				Welcome, John
 				
