@@ -5,7 +5,7 @@
 	<title>Welcome to JPREP</title>
 	<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
 	<script language="javascript" src="list.js"></script>
-	<link href="./style.css" rel="stylesheet" type="text/css">
+	<link href="./css/style_home.css" rel="stylesheet" type="text/css">
 	
 </head>
 
@@ -70,7 +70,16 @@
 				<li><u>Course 4</u></li>
 			</ul>
 		</div>
-		<div>Third tab content</div>
+		<div>
+			<ul>
+				<li>First Name: <span id="firstname">fname</span></li>
+				<li>Last Name: <span id="lastname">lname</span></li>
+				<li>Email Address: <span id="email">email</span></li>
+				<li>Password: <span id="password">password</span></li>
+				<li>Security Question: <span id="securityq">security q</span></li>
+				<li>Security Answer: <span id="securitya">security a</span></li>
+			</ul>
+		</div>
 	</div>
 	
 	<script>

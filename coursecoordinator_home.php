@@ -5,7 +5,7 @@
 	<title>Welcome to JPREP</title>
 	<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
 	<script language="javascript" src="list.js"></script>
-	<link href="./style.css" rel="stylesheet" type="text/css">
+	<link href="./css/style_home.css" rel="stylesheet" type="text/css">
 	
 </head>
 
