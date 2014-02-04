@@ -12,13 +12,15 @@
 <body>
 	
 	<h1 class="header">
-		<img src="./jprep_logo.jpg" width="200" height="75"/>
-		You are currently logged in as a STUDENT		
+		<img src="./jprep_logo.png" width="200" height="75"/>
 		<p class="header-name">
 				Welcome, John
 				
-				<a href="#">Logout</a>
+				<a href="./login.php">Logout</a>
 		</p>
+		</br>
+		<span>You are currently logged in as a STUDENT</span>
+		
 	</h1>
 	
 	</div>

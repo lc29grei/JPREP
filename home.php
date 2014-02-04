@@ -12,14 +12,13 @@
 <body>
 	
 	<h1 class="header">
-		<img src="./jprep_logo.png" width="200" height="75"/>
+		<img src="./jprep_logo.jpg" width="200" height="75"/>
+		You are currently logged in as a Course Coordinator		
 		<p class="header-name">
 				Welcome, John
 				
-				<a href="./login.php">Logout</a>
+				<a href="#">Logout</a>
 		</p>
-		</br>
-		<span>You are currently logged in as a ADMIN</span>		
 	</h1>
 	
 	</div>
@@ -67,16 +66,7 @@
 				<li><u>Course 4</u></li>
 			</ul>
 		</div>
-		<div>
-		<ul>
-			<li>First Name: <span id="firstname">fname</span></li>
-			<li>Last Name: <span id="lastname">lname</span></li>
-			<li>Email Address: <span id="email">email</span></li>
-			<li>Password: <span id="password">password</span></li>
-			<li>Security Question: <span id="securityq">security q</span></li>
-			<li>Security Answer: <span id="securitya">security a</span></li>
-		</ul>
-		</div>
+		<div>Third tab content</div>
 	</div>
 	
 	<script>
