@@ -12,20 +12,17 @@
 <body>
 	
 	<h1 class="header">
-		<img src="./jprep_logo.png" width="200" height="75"/>
+		<img src="./jprep_logo.jpg" width="200" height="75"/>
+		You are currently logged in as a FACULTY		
+		<select>
+			<option>Faculty</option>
+			<option>Course Coordinator</option>
+		</select>
 		<p class="header-name">
 				Welcome, John
 				
 				<a href="./login.php">Logout</a>
 		</p>
-		</br>
-		<span>You are currently logged in as a FACULTY
-		<select>
-			<option>Faculty</option>
-			<option>Course Coordinator</option>
-		</select>
-		</span>
-		
 	</h1>
 	
 	</div>

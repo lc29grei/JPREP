@@ -22,7 +22,9 @@
   if($_SESSION['is_logged_in']==1) {
 	$_SESSION['testvar']=$accounttype;
 	if($accounttype=="student") header("location:student_home.php");
-	else header("location:faculty_home.php");
+	else if ($accounttype=="faculty") header("location:faculty_home.php");
+	else if ($accounttype=="coursecoordinator") header("location:coursecoordinator_home.php");
+	else header("location:admin_home.php");
   } else {
     header("location:login.php");
 	session_destroy();

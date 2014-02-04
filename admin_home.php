@@ -12,70 +12,92 @@
 <body>
 	
 	<h1 class="header">
-		<img src="./jprep_logo.png" width="200" height="75"/>
+		<img src="./jprep_logo.jpg" width="200" height="75"/>
+		You are currently logged in as a ADMINISTRATOR		
 		<p class="header-name">
 				Welcome, John
 				
 				<a href="./login.php">Logout</a>
 		</p>
-		</br>
-		<span>You are currently logged in as a ADMIN</span>		
 	</h1>
 	
 	</div>
 	<ul class="tabs">
 		<li><a href="#">Courses</a></li>
-		<li><a href="#">Gradebook</a></li>
+		<li><a href="#">Manage Accounts</a></li>
+		<li><a href="#">Question Pool</a></li>
 		<li><a href="#">Profile</a></li>
 	</ul>
 
 	<div class="panes">
+		<!-- Courses tab -->
 		<div>
+			<a href=""><u>Add Course</u></a>
+			<a href="" style="padding-left:15px;"><u>Delete Course</u></a><br>
 			<p><b><u>Current Courses</u></b></p>
-			<b><a ID="xproducts" href="javascript:Toggle('products');">[+]</a>Products</b><br>
-   			<div ID="products" style="display:none; margin-left:2em;">
-   				<a href="">Product List</a><br>
-  				<a href="">Order Form</a><br>
-   				<a ID="xspecs" href="">Specifications<br></a>
-   			<div ID="specs" style="display:none; margin-left:2em">
-      			<a href="">Old Products</a><br>
-      			<a href="">New Products</a><br>
+			<b><a ID="xcourse1" href="javascript:Toggle('course1');">[+]</a> Course 1</b><br>
+   			<div ID="course1" style="display:none; margin-left:2em;">
+   				<a href="">Edit Course</a><br>
+   				<a href="">Create New Problem</a><br>
+  				<a href="">View Question Pool</a>
    			</div>
-   				<a href="">Price List</a><br>
+			<b><a ID="xcourse2" href="javascript:Toggle('course2');">[+]</a> Course 2</b><br>
+   			<div ID="course2" style="display:none; margin-left:2em;">
+   				<a href="">Edit Course</a><br>
+   				<a href="">Create New Problem</a><br>
+  				<a href="">View Question Pool</a>
+			</div>
+			<b><a ID="xcourse3" href="javascript:Toggle('course3');">[+]</a> Course 3</b><br>
+			<div ID="course3" style="display:none; margin-left:2em;">
+   				<a href="">Edit Course</a><br>
+   				<a href="">Create New Problem</a><br>
+  				<a href="">View Question Pool</a>
+			</div>
+			<p><b><u>Previous Courses</u></b></p>
+			<b><a ID="xcourse4" href="javascript:Toggle('course4');">[+]</a> Course 4</b><br>
+   			<div ID="course4" style="display:none; margin-left:2em;">
+   				<a href="">Edit Course</a><br>
+   				<a href="">Create New Problem</a><br>
+  				<a href="">View Question Pool</a>
    			</div>
-<b><a ID="xsupport" href="javascript:Toggle('support');">[+]</a>
-   Support</b><br>
-   <div ID="support" style="display:none; margin-left:2em;">
-   <a href="tech.html">Technical Support</a><br>
-   <a href="sforum.html">Support Forum</a><br>
-   <a href="sforum.html">Contact Support</a><br>
-</div>
-<b><a ID="xcontact" href="javascript:Toggle('contact');">[+]</a>
-   Contact Us</b>
-<div ID="contact" style="display:none; margin-left:2em;">
-   <a href="contact1.html">Sales Department</a><br>
-   <a href="contact2.html">Service Department</a><br>
-   <a href="contact3.html">Marketing Department</a><br>
-</div>
+			<b><a ID="xcourse5" href="javascript:Toggle('course5');">[+]</a> Course 5</b><br>
+   			<div ID="course5" style="display:none; margin-left:2em;">
+   				<a href="">Edit Course</a><br>
+   				<a href="">Create New Problem</a><br>
+  				<a href="">View Question Pool</a>
+			</div>
 		</div>
+		<!-- Manage Accounts -->
 		<div>
-			<p>Select a course to view your grade</p>
 			<ul>
-				<li><u>Course 1</u></li>
-				<li><u>Course 2</u></li>
-				<li><u>Course 3</u></li>
-				<li><u>Course 4</u></li>
+				<a href=""><li><u>Manage Students</u></li></a>
+				<a href=""><li><u>Manage Faculty</u></li></a>
+				<a href=""><li><u>Manage Course Coordinators</u></li></a>
 			</ul>
 		</div>
-		<div>
-		<ul>
-			<li>First Name: <span id="firstname">fname</span></li>
-			<li>Last Name: <span id="lastname">lname</span></li>
-			<li>Email Address: <span id="email">email</span></li>
-			<li>Password: <span id="password">password</span></li>
-			<li>Security Question: <span id="securityq">security q</span></li>
-			<li>Security Answer: <span id="securitya">security a</span></li>
-		</ul>
+		<!-- Question Pool tab -->
+		<div class="qpool">
+			<p>Click a link to view that question pool</p>
+			<p><b><u>Current Courses</u></b></p>
+			<a href=""><u>Course 1</u></a><br>
+			<a href=""><u>Course 2</u></a><br>
+			<a href=""><u>Course 3</u></a><br>
+			<p><b><u>Previous Courses</u></b></p>
+			<a href=""><u>Course 4</u></a><br>
+			<a href=""><u>Course 5</u></a><br>
+		</div>
+		<!-- Profile tab -->
+		<div class="profile">
+			<a href=""><u>Edit Profile</u></a>
+			<a href="" style="padding-left:15px;"><u>Change Password</u></a><br>
+				<ul>
+				<li>First Name: <span id="firstname">fname</span></li>
+				<li>Last Name: <span id="lastname">lname</span></li>
+				<li>Email Address: <span id="email">email</span></li>
+				<li>Password: <span id="password">password</span></li>
+				<li>Security Question: <span id="securityq">security q</span></li>
+				<li>Security Answer: <span id="securitya">security a</span></li>
+				</ul>
 		</div>
 	</div>
 	
