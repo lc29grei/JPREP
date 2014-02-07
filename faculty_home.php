@@ -12,7 +12,7 @@
 <body>
 	
 	<h1 class="header">
-		<img src="./jprep_logo.jpg" width="200" height="75"/>
+		<img src="./jprep_logo.png" width="200" height="75"/>
 		You are currently logged in as a FACULTY		
 		<select>
 			<option>Faculty</option>

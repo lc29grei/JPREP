@@ -20,9 +20,15 @@
 			</br>';
 			if($accounttype=="faculty") {
 				echo '<span>You are currently logged in as a FACULTY
-					  <select>
-						  <option>Faculty</option>
-						  <option>Course Coordinator</option>
+					  <select onChange="changeRole()">
+						  <option value="faculty">Faculty</option>
+						  <option value="coursecoordinator">Course Coordinator</option>
+					  </select>';}
+			else if($accounttype=="coursecoordinator") {
+				echo '<span>You are currently logged in as a COURSE COORDINATOR
+					  <select onChange="changeRole()">
+						  <option value="coursecoordinator">Course Coordinator</option>
+						  <option value="faculty">Faculty</option>
 					  </select>';}
 			else if($accounttype=="student"){
 				echo'<span>You are currently logged in as a STUDENT';}
@@ -34,12 +40,17 @@
 		</h1>		
 		</div>
 		<ul class="tabs">
-			<li><a href="#">Courses</a></li> ';				
+			<li><a href="#">Courses</a></li> ';	
+			
+			if($accounttype=="admin"){ echo '<li><a href="#">Manage Accounts</a></li>';}
+			else echo '<li style="visibility: hidden; display:none;"><a href="#">Manage Accounts</a></li> ';
+						
 			if($accounttype=="student"){ echo '<li style="visibility: hidden; display:none;"><a href="#">Question Pool</a></li> ';}
 			else echo '<li><a href="#">Question Pool</a></li>';
+
+			if($accounttype=="admin" or $accounttype=="coursecoordinator"){ echo '<li style="visibility: hidden; display:none;"><a href="#">Gradebook</a></li> ';}
+			else echo '<li><a href="#">Gradebook</a></li>';
 	?>
-	
-		<li><a href="#">Gradebook</a></li>
 		<li><a href="#">Profile</a></li>
 	</ul>
 
@@ -50,8 +61,12 @@
 		#<!-- Courses tab -->
 		
 			include 'display_courses.php';
-			displayCourses();
-					
+			displayCourses($accounttype);
+			
+		#<!-- Manage Accounts tab -->
+			include 'display_manage_accounts.php';
+			displayManageAccounts();
+											
 		#<!-- Question Pool tab -->
 		
 			include 'display_question_pool.php';
@@ -65,7 +80,7 @@
 		#<!-- Profile tab -->
 		
 			include 'display_profile.php';
-			displayProfile();
+			displayProfile($accounttype);
 		?>
 	</div>
 	
