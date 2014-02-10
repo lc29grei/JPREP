@@ -7,7 +7,8 @@
 		<title>Welcome to JPREP</title>
 		<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
 		<script language="javascript" src="list.js"></script>
-		<link href="./css/style_home.css" rel="stylesheet" type="text/css">		
+		<script language="javascript" src="addRow.js"></script>
+		<link href="./css/style_home.css" rel="stylesheet" type="text/css">	
 	</head>
 	<body>		
 		<h1 class="header">
@@ -56,10 +57,9 @@
 	
 	<div class="panes">
 	
-		<?php
 		
-		#<!-- Courses tab -->
-		echo '
+		<!-- Courses tab -->
+		
 			<div>
 			<p style="font-size:18px;"><u>Create New Problem</u></p>
 			
@@ -68,18 +68,127 @@
 			Category   <select><option value="">Select Category</option></select><br><br>
 			Question/Description<br><input type="text" name="description" style="height: 75px; width: 100%;"><br><br>
 			
-			Parameter Name   <input type="text" name="name1">
-			   <input type="text" name="name2">   <input type="text" name="name3">   <input type="text" name="name4"><br>
-			   
-			Parameter Type   <select><option value="">Type</option></select>   <select><option value="">Type</option></select>
-			   <select><option value="">Type</option></select>   <select><option value="">Type</option></select><br>
-			   
-			Result Type   <select><option value="">Type</option></select><br>
-			<a href="" style="font-size:11px;">Add Parameter</a>
-			
-			<p style="font-size:11px;padding-left:650px;">Hidden</p>
-			Test Case 1   <input type="text" name="">   <input type="text" name="">   <input type="text" name="">   <input type="text" name="">   <input type="checkbox" name=""><br>
-			<a href="" style="font-size:11px;">Add Test Case</a><br><br>
+			<table border="0" id="paramTable">
+				<tbody>
+					<tr>
+						<td class="col1">Parameter Name</td>
+						<td class="col2"><input type="text" id="param1name" name="param1name"></td>
+						<td class="col3"><input type="text" id="param2name" name="param2name"></td>
+						<td class="col4"><input type="text" id="param3name" name="param3name"></td>
+						<td class="col5"><input type="text" id="param4name" name="param4name"></td>
+						<td class="col6"><input type="text" id="param5name" name="param5name"></td>
+						<td class="col7">&nbsp;</td>
+						<td class="col8">&nbsp;</td>
+					</tr>
+					<tr>
+						<td class="col1">Parameter Type</td>
+						<td class="col2"><select><option value="int">int</option>
+												 <option value="char">char</option>
+												 <option value="boolean">boolean</option>
+												 <option value="string">String</option>
+												 <option value="float">float</option>
+												 <option value="intArray">int[]</option>
+												 <option value="charArray">char[]</option>
+												 <option value="booleanArray">boolean[]</option>
+												 <option value="stringArray">String[]</option>
+												 <option value="floatArray">float[]</option></select></td>
+						<td class="col3"><select><option value="int">int</option>
+												 <option value="char">char</option>
+												 <option value="boolean">boolean</option>
+												 <option value="string">String</option>
+												 <option value="float">float</option>
+												 <option value="intArray">int[]</option>
+												 <option value="charArray">char[]</option>
+												 <option value="booleanArray">boolean[]</option>
+												 <option value="stringArray">String[]</option>
+												 <option value="floatArray">float[]</option></select></td>
+						<td class="col4"><select><option value="int">int</option>
+												 <option value="char">char</option>
+												 <option value="boolean">boolean</option>
+												 <option value="string">String</option>
+												 <option value="float">float</option>
+												 <option value="intArray">int[]</option>
+												 <option value="charArray">char[]</option>
+												 <option value="booleanArray">boolean[]</option>
+												 <option value="stringArray">String[]</option>
+												 <option value="floatArray">float[]</option></select></td>
+						<td class="col5"><select><option value="int">int</option>
+												 <option value="char">char</option>
+												 <option value="boolean">boolean</option>
+												 <option value="string">String</option>
+												 <option value="float">float</option>
+												 <option value="intArray">int[]</option>
+												 <option value="charArray">char[]</option>
+												 <option value="booleanArray">boolean[]</option>
+												 <option value="stringArray">String[]</option>
+												 <option value="floatArray">float[]</option></select></td>
+						<td class="col6"><select><option value="int">int</option>
+												 <option value="char">char</option>
+												 <option value="boolean">boolean</option>
+												 <option value="string">String</option>
+												 <option value="float">float</option>
+												 <option value="intArray">int[]</option>
+												 <option value="charArray">char[]</option>
+												 <option value="booleanArray">boolean[]</option>
+												 <option value="stringArray">String[]</option>
+												 <option value="floatArray">float[]</option></select></td>
+						<td class="col7">&nbsp;</td>
+						<td class="col8">&nbsp;</td>
+					</tr>
+					<tr>
+						<td class="col1">Result Type</td>
+						<td class="col2">&nbsp;</td>
+						<td class="col3">&nbsp;</td>
+						<td class="col4">&nbsp;</td>
+						<td class="col5">&nbsp;</td>
+						<td class="col6">&nbsp;</td>
+						<td class="col7"><select><option value="int">int</option>
+												 <option value="char">char</option>
+												 <option value="boolean">boolean</option>
+												 <option value="string">String</option>
+												 <option value="float">float</option>
+												 <option value="intArray">int[]</option>
+												 <option value="charArray">char[]</option>
+												 <option value="booleanArray">boolean[]</option>
+												 <option value="stringArray">String[]</option>
+												 <option value="floatArray">float[]</option></select></td>
+						<td class="col8">&nbsp;</td>
+					</tr>
+					<tr></tr>
+					<tr>
+						<td class="col1"><a href="" style="font-size:11px;">Add Parameter</a></td>
+						<td class="col2">&nbsp;</td>
+						<td class="col3">&nbsp;</td>
+						<td class="col4">&nbsp;</td>
+						<td class="col5">&nbsp;</td>
+						<td class="col6">&nbsp;</td>
+						<td class="col7">&nbsp;</td>
+						<td class="col8">&nbsp;</td>
+					</tr>
+					<tr>
+						<td class="col1">&nbsp;</td>
+						<td class="col2">&nbsp;</td>
+						<td class="col3">&nbsp;</td>
+						<td class="col4">&nbsp;</td>
+						<td class="col5">&nbsp;</td>
+						<td class="col6">&nbsp;</td>
+						<td class="col7">&nbsp;</td>
+						<td class="col8" style="font-size:11px;">Hidden</td>
+					</tr>
+					<tr>
+						<td class="col1">Test Case 1</td>
+						<td class="col2"><input type="text" id="case1param1" name="case1param1"></td>
+						<td class="col3"><input type="text" id="case1param2" name="case1param2"></td>
+						<td class="col4"><input type="text" id="case1param3" name="case1param3"></td>
+						<td class="col5"><input type="text" id="case1param4" name="case1param4"></td>
+						<td class="col6"><input type="text" id="case1param5" name="case1param5"></td>
+						<td class="col7"><input type="text" id="case1result" name="case1result"></td>
+						<td class="col8"><input type="checkbox" id="case1hidden"></td>
+					</tr>
+				</tbody>
+			</table>
+			<input type="button" value="Add Test Case" onClick="addRow('paramTable')">
+			<input type="button" value="Remove Test Case" onClick="deleteRow('paramTable')"><br><br>
 			
 			Solution Code<br><input type="text" name="description" style="height: 100px; width: 100%;">
 			<br><br>
@@ -88,7 +197,7 @@
 			<input type="button" value="Cancel" style="float:right;">
 		
 			</div>
-		';
+<?php	
 			
 		#<!-- Manage Accounts tab -->
 			include 'display_manage_accounts.php';
