@@ -11,7 +11,7 @@ function displayPage()
 		</head>
 		<body>
 			<h1 class="header">
-				<img src="./jprep_logo.jpg" width="200" height="75"/>
+				<img src="./jprep_logo.png" width="200" height="75"/>
 				You are currently logged in as a STUDENT		
 				<p class="header-name">
 					Welcome, John
@@ -26,8 +26,23 @@ function displayPage()
 			</ul>
 			
 			<div class="panes">
-				<p> Hello, World! </p>
+				<div>
+					<h1>Source Code Input</h1>
+					<form method="post" action="codeinput.php">
+					<textarea name="source" rows="10" cols="70" style="resize:none;">public int sum(int a, int b) {
+    
+}</textarea>
+				</br>
+				<input type="submit" />
+				</form>
+				</div>
 			</div>
+			
+			<script>
+				$(function() {
+				$("ul.tabs").tabs("div.panes > div");
+				});
+			</script>
 			
 			<div class="footer">
 				<p>Created by Delta Tech</p>
@@ -38,6 +53,11 @@ function displayPage()
 		</body>
 	</html>';
 }
-
+/*
+ * To automate this with a database have a function that makes calls to a database
+ * and populates an array with the necessary information needed to construct the
+ * answer question page. Then pass those variables into display page for it to be
+ * constructed dynamically.	
+ */
 displayPage();
 ?>
