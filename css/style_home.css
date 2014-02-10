@@ -20,6 +20,11 @@ h1.header {
 .profile a{
 	padding-left: 20px;
 }
+
+.buttons {
+	float: right;
+}
+
 .footer {
 	text-align: center;
 	margin-left: auto;
