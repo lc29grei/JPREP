@@ -1,7 +1,12 @@
 <?php
+session_start();
+if (!isset($_SESSION['answer'])) $_SESSION['answer'] = "N,N,N";
+$cmdOutput = split(",", $_SESSION['answer']);
+
 // Create the page template
 function displayPage()
 {
+	global $cmdOutput;
 	echo'<!DOCTYPE html>
 		<head>
 			<title> Answer Question </title>
@@ -35,6 +40,29 @@ function displayPage()
 				</br>
 				<input type="submit" />
 				</form>
+				
+				<table border="1" style="width:300px">
+					<tr>
+						<td> Input </td>
+						<td> Output </td>
+						<td> Expect </td>
+					</tr>
+					<tr>
+						<td> 5 + 4 </td>
+						<td> ' . $cmdOutput[0] . '</td>
+						<td> 9 </td>
+					</tr>
+					<tr>
+						<td> 1 + 1 </td>
+						<td> ' . $cmdOutput[1] . '</td>
+						<td> 2 </td>
+					</tr>
+					<tr>
+						<td> 2 + 8 </td>
+						<td> ' . $cmdOutput[2] . '</td>
+						<td> 10 </td>
+					</tr>
+				</table>
 				</div>
 			</div>
 			
