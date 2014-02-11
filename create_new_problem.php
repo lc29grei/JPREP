@@ -7,7 +7,6 @@
 		<title>Welcome to JPREP</title>
 		<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
 		<script language="javascript" src="list.js"></script>
-		<script language="javascript" src="addRow.js"></script>
 		<link href="./css/style_home.css" rel="stylesheet" type="text/css">	
 	</head>
 	<body>		
@@ -65,7 +64,12 @@
 			
 			Title   <input type="text" name="title">
 			Method Name   <input type="text" name="methodname">
-			Category   <select><option value="">Select Category</option></select><br><br>
+			Category   <select><option value="">Select Category</option></select>
+			Course   <select><option value="">Course 1</option>
+							 <option value="">Course 2</option>
+							 <option value="">Course 3</option>
+							 <option value="">Course 4</option>
+							 <option value="">Course 5</option></select><br><br>
 			Question/Description<br><input type="text" name="description" style="height: 75px; width: 100%;"><br><br>
 			
 			<table border="0" id="paramTable">
@@ -73,16 +77,16 @@
 					<tr>
 						<td class="col1">Parameter Name</td>
 						<td class="col2"><input type="text" id="param1name" name="param1name"></td>
-						<td class="col3"><input type="text" id="param2name" name="param2name"></td>
-						<td class="col4"><input type="text" id="param3name" name="param3name"></td>
-						<td class="col5"><input type="text" id="param4name" name="param4name"></td>
-						<td class="col6"><input type="text" id="param5name" name="param5name"></td>
+						<td class="col3"><input type="text" id="param2name" name="param2name" disabled="disabled"></td>
+						<td class="col4"><input type="text" id="param3name" name="param3name" disabled="disabled"></td>
+						<td class="col5"><input type="text" id="param4name" name="param4name" disabled="disabled"></td>
+						<td class="col6"><input type="text" id="param5name" name="param5name" disabled="disabled"></td>
 						<td class="col7">&nbsp;</td>
 						<td class="col8">&nbsp;</td>
 					</tr>
 					<tr>
 						<td class="col1">Parameter Type</td>
-						<td class="col2"><select><option value="int">int</option>
+						<td class="col2"><select id="param1type"><option value="int">int</option>
 												 <option value="char">char</option>
 												 <option value="boolean">boolean</option>
 												 <option value="string">String</option>
@@ -92,7 +96,7 @@
 												 <option value="booleanArray">boolean[]</option>
 												 <option value="stringArray">String[]</option>
 												 <option value="floatArray">float[]</option></select></td>
-						<td class="col3"><select><option value="int">int</option>
+						<td class="col3"><select id="param2type" disabled="disabled"><option value="int">int</option>
 												 <option value="char">char</option>
 												 <option value="boolean">boolean</option>
 												 <option value="string">String</option>
@@ -102,7 +106,7 @@
 												 <option value="booleanArray">boolean[]</option>
 												 <option value="stringArray">String[]</option>
 												 <option value="floatArray">float[]</option></select></td>
-						<td class="col4"><select><option value="int">int</option>
+						<td class="col4"><select id="param3type" disabled="disabled"><option value="int">int</option>
 												 <option value="char">char</option>
 												 <option value="boolean">boolean</option>
 												 <option value="string">String</option>
@@ -112,7 +116,7 @@
 												 <option value="booleanArray">boolean[]</option>
 												 <option value="stringArray">String[]</option>
 												 <option value="floatArray">float[]</option></select></td>
-						<td class="col5"><select><option value="int">int</option>
+						<td class="col5"><select id="param4type" disabled="disabled"><option value="int">int</option>
 												 <option value="char">char</option>
 												 <option value="boolean">boolean</option>
 												 <option value="string">String</option>
@@ -122,7 +126,7 @@
 												 <option value="booleanArray">boolean[]</option>
 												 <option value="stringArray">String[]</option>
 												 <option value="floatArray">float[]</option></select></td>
-						<td class="col6"><select><option value="int">int</option>
+						<td class="col6"><select id="param5type" disabled="disabled"><option value="int">int</option>
 												 <option value="char">char</option>
 												 <option value="boolean">boolean</option>
 												 <option value="string">String</option>
@@ -156,8 +160,8 @@
 					</tr>
 					<tr></tr>
 					<tr>
-						<td class="col1"><a href="" style="font-size:11px;">Add Parameter</a></td>
-						<td class="col2">&nbsp;</td>
+						<td class="col1"><input type="button" value="Add Parameter" onClick="addParam()"></td>
+						<td class="col2"><input type="button" value="Remove Parameter" onClick="removeParam('paramTable')"></td>
 						<td class="col3">&nbsp;</td>
 						<td class="col4">&nbsp;</td>
 						<td class="col5">&nbsp;</td>
@@ -178,24 +182,34 @@
 					<tr>
 						<td class="col1">Test Case 1</td>
 						<td class="col2"><input type="text" id="case1param1" name="case1param1"></td>
-						<td class="col3"><input type="text" id="case1param2" name="case1param2"></td>
-						<td class="col4"><input type="text" id="case1param3" name="case1param3"></td>
-						<td class="col5"><input type="text" id="case1param4" name="case1param4"></td>
-						<td class="col6"><input type="text" id="case1param5" name="case1param5"></td>
+						<td class="col3"><input type="text" id="case1param2" name="case1param2" disabled="disabled"></td>
+						<td class="col4"><input type="text" id="case1param3" name="case1param3" disabled="disabled"></td>
+						<td class="col5"><input type="text" id="case1param4" name="case1param4" disabled="disabled"></td>
+						<td class="col6"><input type="text" id="case1param5" name="case1param5" disabled="disabled"></td>
 						<td class="col7"><input type="text" id="case1result" name="case1result"></td>
 						<td class="col8"><input type="checkbox" id="case1hidden"></td>
 					</tr>
+					<tr>
+						<td class="col1"><input type="button" value="Add Test Case" onClick="addRow('paramTable')"></td>
+						<td class="col2"><input type="button" value="Remove Test Case" onClick="deleteRow('paramTable')"></td>
+						<td class="col3">&nbsp;</td>
+						<td class="col4">&nbsp;</td>
+						<td class="col5">&nbsp;</td>
+						<td class="col6">&nbsp;</td>
+						<td class="col7">&nbsp;</td>
+						<td class="col8">&nbsp;</td>
+					</tr>
 				</tbody>
 			</table>
-			<input type="button" value="Add Test Case" onClick="addRow('paramTable')">
-			<input type="button" value="Remove Test Case" onClick="deleteRow('paramTable')"><br><br>
 			
-			Solution Code<br><input type="text" name="description" style="height: 100px; width: 100%;">
+			<br><br>
+			
+			Solution Code<br><input type="text" name="description" style="height: 200px; width: 100%;">
 			<br><br>
 			<input type="button" value="Submit" style="float:right;">
 			<input type="button" value="Save" style="float:right;">
 			<input type="button" value="Cancel" style="float:right;">
-		
+			
 			</div>
 <?php	
 			
