@@ -14,6 +14,7 @@
 </head>
 <body>
   <section class="container">
+    <img class="logo-center" src="./jprep_logo.png" width="200" height="75"/>
     <div class="login">
       <h1>Login to JPREP</h1>
       <form method="POST" action="check.php">
