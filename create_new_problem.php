@@ -75,6 +75,16 @@
 			<table border="0" id="paramTable">
 				<tbody>
 					<tr>
+						<th>&nbsp;</th>
+						<th>Param 1</th>
+						<th>Param 2</th>
+						<th>Param 3</th>
+						<th>Param 4</th>
+						<th>Param 5</th>
+						<th>Result Type</th>
+						<th>&nbsp;</th>
+					</tr>
+					<tr>
 						<td class="col1">Parameter Name</td>
 						<td class="col2"><input type="text" id="param1name" name="param1name"></td>
 						<td class="col3"><input type="text" id="param2name" name="param2name" disabled="disabled"></td>
@@ -136,16 +146,6 @@
 												 <option value="booleanArray">boolean[]</option>
 												 <option value="stringArray">String[]</option>
 												 <option value="floatArray">float[]</option></select></td>
-						<td class="col7">&nbsp;</td>
-						<td class="col8">&nbsp;</td>
-					</tr>
-					<tr>
-						<td class="col1">Result Type</td>
-						<td class="col2">&nbsp;</td>
-						<td class="col3">&nbsp;</td>
-						<td class="col4">&nbsp;</td>
-						<td class="col5">&nbsp;</td>
-						<td class="col6">&nbsp;</td>
 						<td class="col7"><select><option value="int">int</option>
 												 <option value="char">char</option>
 												 <option value="boolean">boolean</option>

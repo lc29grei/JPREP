@@ -34,20 +34,64 @@ function addRow(tableID) {
  
             var rowCount = table.rows.length;
             
-            if ((rowCount-6) <= 10) {
+            if ((rowCount-6) <= 25) {
             	var row = table.insertRow(rowCount-1);
             
             	var cell1 = row.insertCell(0);
             	cell1.innerHTML = 'Test Case ' + (rowCount - 6);
             	
-            	for (var i=1;i<7;i++) {
+            	var x = false;
+            	for (var i=1;i<6;i++) {
             		var cell2 = row.insertCell(i);
-            		var element1 = document.createElement("input");
-            		element1.type = "text";
-            		element1.name = "txtbox[]";
-            	
-            		cell2.appendChild(element1);
+            		if (x === false) {
+            			if ((document.getElementById('param2name').disabled) && (i == 2)) {
+            				var element1 = document.createElement("input");
+            				element1.type = "text";
+            				element1.name = "txtbox[]";
+            				element1.disabled = true;
+            				cell2.appendChild(element1);
+            				x = true;
+            			} else if ((document.getElementById('param3name').disabled) && (i == 3)) {
+            				var element1 = document.createElement("input");
+            				element1.type = "text";
+            				element1.name = "txtbox[]";
+            				element1.disabled = true;
+            				cell2.appendChild(element1);
+            				x = true;
+            			} else if ((document.getElementById('param4name').disabled) && (i == 4)) {
+            				var element1 = document.createElement("input");
+            				element1.type = "text";
+            				element1.name = "txtbox[]";
+            				element1.disabled = true;
+            				cell2.appendChild(element1);
+            				x = true;
+            			} else if ((document.getElementById('param5name').disabled) && (i == 5)) {
+            				var element1 = document.createElement("input");
+            				element1.type = "text";
+            				element1.name = "txtbox[]";
+            				element1.disabled = true;
+            				cell2.appendChild(element1);
+            				x = true;
+            			} else {
+            				var element1 = document.createElement("input");
+            				element1.type = "text";
+            				element1.name = "txtbox[]";
+            				cell2.appendChild(element1);
+            			}
+            		} else {
+            			var element1 = document.createElement("input");
+            			element1.type = "text";
+            			element1.name = "txtbox[]";
+            			element1.disabled = true;
+            			cell2.appendChild(element1);
+            		}
             	}
+            	
+            	var cell3 = row.insertCell(6);
+            	var element2 = document.createElement("input");
+            	element2.type = "text";
+            	element2.name = "txtbox[]";
+            	cell3.appendChild(element2);
             
             	var cell8 = row.insertCell(7);
             	var element7 = document.createElement("input");
@@ -56,7 +100,7 @@ function addRow(tableID) {
             	cell8.appendChild(element7);
             	
             } else {
-            	alert('Sorry, you can only have up to 10 test cases');
+            	alert('Sorry, you can only have up to 25 test cases');
             }
  
 }
@@ -77,7 +121,6 @@ function deleteRow(tableID) {
 }
 
 function addParam() {
-	
 	
 	if (document.getElementById('param2name').disabled) {
 		document.getElementById('param2name').disabled=false;
