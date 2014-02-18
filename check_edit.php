@@ -27,11 +27,7 @@
 	}
 	else $new_username = $_SESSION['username'].'';
 	
-	//if($_POST['password']!=null)
-	//{
-	//	$new_password = mysql_real_escape_string($_POST['password']);
-	//}
-	//else $new_password = $_SESSION['password'].'';
+ 	$new_password = $_SESSION['password'].'';
 	
 	if($_POST['secQ']!=null)
 	{

@@ -2,6 +2,7 @@
 <?php
 	session_start();  
 	$accounttype=$_SESSION['account_type'];
+	$firstname=$_SESSION['first_name'];
    	echo'
 	<head>
 		<title>Welcome to JPREP</title>
@@ -13,7 +14,7 @@
 		<h1 class="header">
 			<img src="./jprep_logo.png" width="200" height="75"/>
 			<p class="header-name">
-					Welcome, John
+					Welcome, '.$firstname.'
 					
 					<a href="./logout.php">Logout</a>
 			</p>
@@ -68,10 +69,12 @@
 			displayManageAccounts();
 											
 		
-	?>	
-		<!-- Question Pool tab -->
-			
+		
+		#<!-- Question Pool tab -->
+		if ($accounttype=="faculty") {
+		echo'	
 			<div class="CSSTableGenerator" >
+			
 			<h3>Course Pool</h3>
 						<table>
 							<tr>
@@ -163,10 +166,107 @@
 						<form method="" action="home.php">							
 							<p class="submit" style="text-align: center"><input type="submit" value="Back"></p>
 						</form>
-					</div>
+					</div>';
+				} else {
+					echo'	
+			<div class="CSSTableGenerator" >
+			
+			<h3>Course Pool</h3>
+						<table>
+							<tr>
+								<td>
+									Name
+								</td>
+								<td >
+									Category
+								</td>
+								<td>
+									Course
+								</td>
+								<td>
+									
+								</td>
+								<td>
+									
+								</td>
+							</tr>
+							<tr>
+								<td >
+									<a href="">Problem 1</a>
+								</td>
+								<td>
+									String
+								</td>
+								<td>
+									CSIS-225
+								</td>
+								<td>
+									<a href="">Edit</a>
+								</td>
+								<td>
+									<a href="">Remove</a>
+								</td>
+							</tr>
+							<tr>
+								<td >
+									<a href="">Problem 2</a>
+								</td>
+								<td>
+									Recursion
+								</td>
+								<td>
+									CSIS-225
+								</td>
+								<td >
+									<a href="">Edit</a>
+								</td>
+								<td >
+									<a href="">Remove</a>
+								</td>
+							</tr>
+							<tr>
+								<td >
+									<a href="">Problem 3</a>
+								</td>
+								<td>
+									Array
+								</td>
+								<td>
+									CSIS-225
+								</td>
+								<td>
+									<a href="">Edit</a>
+								</td>
+								<td>
+									<a href="">Remove</a>
+								</td>
+							</tr>
+							<tr>
+								<td >
+									<a href="">Problem 4</a>
+								</td>
+								<td>
+									Logic
+								</td>
+								<td>
+									CSIS-225
+								</td>
+								<td>
+									<a href="">Edit</a>
+								</td>
+								<td>
+									<a href="">Remove</a>
+								</td>
+							</tr>
+						</table>
+						<form method="" action="home.php">							
+							<p class="submit" style="text-align: center"><input type="submit" value="Back"></p>
+						</form>
+					</div>';
+				}
 				
 			
-	<?php	
+		
 		#<!-- Gradebook tab -->
 		
 			include 'display_grades.php';

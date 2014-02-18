@@ -229,3 +229,6 @@ ul.tabs a.xl.current { background-position: 0 -62px; }
 .CSSTableGenerator tr:first-child td:last-child{
 	border-width:0px 0px 1px 1px;
 }
+.CSSTableGenerator h3 {
+	display: inline;
+}

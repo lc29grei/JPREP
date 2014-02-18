@@ -6,22 +6,14 @@ function displayGrades($accountType)
 		echo 
 		'
 		<div>
-			<p><b><u>Current Courses</u></b></p>
-			<b><a ID="xcourse1grade" href="javascript:Toggle(\'course1grade\');">[+]</a> Course 1</b><br>
-			<div ID="course1grade" style="display:none; margin-left:2em;">
-				<a href="">View Students</a><br>
-				<a href="">View Assignments</a>
-			</div>
-			<b><a ID="xcourse2grade" href="javascript:Toggle(\'course2grade\');">[+]</a> Course 2</b><br>
-			<div ID="course2grade" style="display:none; margin-left:2em;">
-				<a href="">View Students</a><br>
-				<a href="">View Assignments</a>
-			</div>
-			<b><a ID="xcourse3grade" href="javascript:Toggle(\'course3grade\');">[+]</a> Course 3</b><br>
-			<div ID="course3grade" style="display:none; margin-left:2em;">
-				<a href="">View Students</a><br>
-				<a href="">View Assignments</a>
-			</div>	
+			<p>Select a course to view your grade</p>
+				<p><b><u>Current Courses</u></b></p>
+				<a href="./course_gradebook.php"><u>Course 1</u></a><br>
+				<a href="./course_gradebook.php"><u>Course 2</u></a><br>
+				<a href="./course_gradebook.php"><u>Course 3</u></a><br>
+				<p><b><u>Previous Courses</u></b></p>
+				<a href="./course_gradebook.php"><u>Course 4</u></a><br>
+				<a href="./course_gradebook.php"><u>Course 5</u></a><br>
 		</div>
 		';
 	}

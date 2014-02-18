@@ -2,6 +2,7 @@
 <?php
 	session_start();  
 	$accounttype=$_SESSION['account_type'];
+	$firstname=$_SESSION['first_name'];
    	echo'
 	<head>
 		<title>Welcome to JPREP</title>
@@ -13,7 +14,7 @@
 		<h1 class="header">
 			<img src="./jprep_logo.png" width="200" height="75"/>
 			<p class="header-name">
-					Welcome, John
+					Welcome, '.$firstname.'
 					
 					<a href="./logout.php">Logout</a>
 			</p>
@@ -220,7 +221,7 @@
 		#<!-- Question Pool tab -->
 		
 			include 'display_question_pool.php';
-			displayQuestionPool();
+			displayQuestionPool($accounttype);
 			
 		#<!-- Gradebook tab -->
 		
