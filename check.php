@@ -37,7 +37,7 @@
 	if($accounttype=="student") header("location:home.php");
 	else header("location:home.php");
   } else {
-    header("location:login.php");
+    header("location:invalid_credentials.php");
 	session_destroy();
 	$_SESSION = array();
   }

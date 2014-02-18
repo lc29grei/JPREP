@@ -20,7 +20,7 @@ function displayPage()
 				You are currently logged in as a STUDENT		
 				<p class="header-name">
 					Welcome, John
-					<a href="#">Logout</a>
+					<a href="./logout.php">Logout</a>
 				</p>
 			</h1>
 			

@@ -15,7 +15,7 @@
 			<p class="header-name">
 					Welcome, John
 					
-					<a href="./login.php">Logout</a>
+					<a href="./logout.php">Logout</a>
 			</p>
 			</br>';
 			if($accounttype=="faculty") {
@@ -73,7 +73,7 @@
 			
 			<div class="CSSTableGenerator" >
 			<h3>Course Pool</h3>
-						<table >
+						<table>
 							<tr>
 								<td>
 									Name
@@ -102,10 +102,10 @@
 									CSIS-225
 								</td>
 								<td>
-									<a href="">Edit</a>
+									<a href="">Add to Private Pool</a>
 								</td>
 								<td>
-									<a href="">Add</a>
+									<a href="">Edit</a>
 								</td>
 							</tr>
 							<tr>
@@ -119,10 +119,10 @@
 									CSIS-225
 								</td>
 								<td >
-									<a href="">Edit</a>
+									<a href="">Add to Private Pool</a>
 								</td>
 								<td >
-									<a href="">Add</a>
+									<a href="">Edit</a>
 								</td>
 							</tr>
 							<tr>
@@ -136,10 +136,10 @@
 									CSIS-225
 								</td>
 								<td>
-									<a href="">Edit</a>
+									<a href="">Add to Private Pool</a>
 								</td>
 								<td>
-									<a href="">Add</a>
+									<a href="">Edit</a>
 								</td>
 							</tr>
 							<tr>
@@ -153,10 +153,10 @@
 									CSIS-225
 								</td>
 								<td>
-									<a href="">Edit</a>
+									<a href="">Add to Private Pool</a>
 								</td>
 								<td>
-									<a href="">Add</a>
+									<a href="">Edit</a>
 								</td>
 							</tr>
 						</table>

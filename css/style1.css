@@ -273,3 +273,9 @@ img.logo-center {
     margin-right: auto;
 	padding-bottom:10px;
 }
+
+p.invalid {
+	text-align: center;
+	font-size: 18px;
+	color: red;
+}

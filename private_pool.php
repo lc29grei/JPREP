@@ -15,7 +15,7 @@
 			<p class="header-name">
 					Welcome, John
 					
-					<a href="./login.php">Logout</a>
+					<a href="./logout.php">Logout</a>
 			</p>
 			</br>';
 			if($accounttype=="faculty") {

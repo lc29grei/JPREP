@@ -15,7 +15,7 @@
 			<p class="header-name">
 					Welcome, John
 					
-					<a href="./login.php">Logout</a>
+					<a href="./logout.php">Logout</a>
 			</p>
 			</br>';
 			if($accounttype=="faculty") {
@@ -70,7 +70,7 @@
 		#<!-- Question Pool tab -->
 		
 			include 'display_question_pool.php';
-			displayQuestionPool();
+			displayQuestionPool($accounttype);
 			
 		#<!-- Gradebook tab -->
 		
