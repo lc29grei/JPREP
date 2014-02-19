@@ -1,6 +1,9 @@
 <!DOCTYPE HTML>
 <?php
-	session_start();  
+	session_start(); 
+	if (!(isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']!='')) {
+		header ("Location: login.php");
+	}
 	$accounttype=$_SESSION['account_type'];
 	$firstname=$_SESSION['first_name'];
    	echo'
@@ -8,6 +11,7 @@
 		<title>Welcome to JPREP</title>
 		<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
 		<script language="javascript" src="list.js"></script>
+		<script language="javascript" src="script.js"></script>
 		<link href="./css/style_home.css" rel="stylesheet" type="text/css">		
 	</head>
 	<body>		

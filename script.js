@@ -1,4 +1,4 @@
-$(function () {
+function () {
     var items = $('#v-nav>ul>li').each(function () {
         $(this).click(function () {
             //remove previous class and add it to clicked tab
@@ -30,4 +30,4 @@ $(function () {
 
     // Trigger the event hashchange on page load, using jquery-hashchange-plugin
     $(window).hashchange();
-});
+};

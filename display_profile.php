@@ -42,6 +42,7 @@ if(isset($_GET['action']) && $_GET['action'] == 'editProfile'){
 }
 	
 function editProfile($accounttype) {
+		
 		if ($accounttype=="student") {
 			
 			echo'
