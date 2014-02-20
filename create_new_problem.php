@@ -87,6 +87,7 @@
 						<th>Param 5</th>
 						<th>Result Type</th>
 						<th>&nbsp;</th>
+						<th>&nbsp;</th>
 					</tr>
 					<tr>
 						<td class="col1">Parameter Name</td>
@@ -97,6 +98,7 @@
 						<td class="col6"><input type="text" id="param5name" name="param5name" disabled="disabled"></td>
 						<td class="col7">&nbsp;</td>
 						<td class="col8">&nbsp;</td>
+						<td class="col9">&nbsp;</td>
 					</tr>
 					<tr>
 						<td class="col1">Parameter Type</td>
@@ -161,6 +163,7 @@
 												 <option value="stringArray">String[]</option>
 												 <option value="floatArray">float[]</option></select></td>
 						<td class="col8">&nbsp;</td>
+						<td class="col9">&nbsp;</td>
 					</tr>
 					<tr></tr>
 					<tr>
@@ -172,6 +175,7 @@
 						<td class="col6">&nbsp;</td>
 						<td class="col7">&nbsp;</td>
 						<td class="col8">&nbsp;</td>
+						<td class="col9">&nbsp;</td>
 					</tr>
 					<tr>
 						<td class="col1">&nbsp;</td>
@@ -182,6 +186,7 @@
 						<td class="col6">&nbsp;</td>
 						<td class="col7">&nbsp;</td>
 						<td class="col8" style="font-size:11px;">Hidden</td>
+						<td class="col9" style="font-size:11px;">Remove</td>
 					</tr>
 					<tr>
 						<td class="col1">Test Case 1</td>
@@ -192,10 +197,11 @@
 						<td class="col6"><input type="text" id="case1param5" name="case1param5" disabled="disabled"></td>
 						<td class="col7"><input type="text" id="case1result" name="case1result"></td>
 						<td class="col8"><input type="checkbox" id="case1hidden"></td>
+						<td class="col9"><input type="checkbox" id="case1remove"></td>
 					</tr>
 					<tr>
 						<td class="col1"><input type="button" value="Add Test Case" onClick="addRow('paramTable')"></td>
-						<td class="col2"><input type="button" value="Remove Test Case" onClick="deleteRow('paramTable')"></td>
+						<td class="col2"><input type="button" value="Remove Test Case(s)" onClick="deleteRow('paramTable')"></td>
 						<td class="col3">&nbsp;</td>
 						<td class="col4">&nbsp;</td>
 						<td class="col5">&nbsp;</td>
@@ -210,9 +216,16 @@
 			
 			Solution Code<br><input type="text" name="description" style="height: 200px; width: 100%;">
 			<br><br>
-			<input type="button" value="Submit" style="float:right;">
-			<input type="button" value="Save" style="float:right;">
-			<input type="button" value="Cancel" style="float:right;">
+<?php
+			if(isset($_GET['action']) && $_GET['action'] == 'addAssignment'){
+				echo'<input type="button" value="Add to Assignment" style="float:right;">
+					 <input type="button" value="Cancel"  onClick="cancelConfirm()" style="float:right;">';
+			} else {
+				echo'<input type="button" value="Create" style="float:right;">
+				<input type="button" value="Save" style="float:right;">
+				<input type="button" value="Cancel" onClick="cancelConfirm()" style="float:right;">';
+			}
+?>
 			
 			</div>
 <?php	

@@ -74,6 +74,7 @@
 		
 		
 		#<!-- Question Pool tab -->
+	if(isset($_GET['action']) && $_GET['action'] == 'addAssignment'){
 		if ($accounttype=="faculty") {
 		echo'	
 			<div class="CSSTableGenerator" >
@@ -81,89 +82,123 @@
 			<h3>Course Pool</h3>
 						<table>
 							<tr>
-								<td>
-									Name
-								</td>
-								<td >
-									Category
-								</td>
-								<td>
-									Course
-								</td>
-								<td>
-									
-								</td>
-								<td>
-									
-								</td>
+								<td>Name</td>
+								<td>Category</td>
+								<td>Course</td>
+								<td></td>
 							</tr>
 							<tr>
-								<td >
-									<a href="">Problem 1</a>
-								</td>
-								<td>
-									String
-								</td>
-								<td>
-									CSIS-225
-								</td>
-								<td>
-									<a href="">Add to Private Pool</a>
-								</td>
-								<td>
-									<a href="">Edit</a>
-								</td>
+								<td><a href="">Problem 1</a></td>
+								<td>String</td>
+								<td>CSIS-225</td>
+								<td><a href="">Add to Assignment</a></td>
 							</tr>
 							<tr>
-								<td >
-									<a href="">Problem 2</a>
-								</td>
-								<td>
-									Recursion
-								</td>
-								<td>
-									CSIS-225
-								</td>
-								<td >
-									<a href="">Add to Private Pool</a>
-								</td>
-								<td >
-									<a href="">Edit</a>
-								</td>
+								<td><a href="">Problem 2</a></td>
+								<td>Recursion</td>
+								<td>CSIS-225</td>
+								<td><a href="">Add to Assignment</a></td>
 							</tr>
 							<tr>
-								<td >
-									<a href="">Problem 3</a>
-								</td>
-								<td>
-									Array
-								</td>
-								<td>
-									CSIS-225
-								</td>
-								<td>
-									<a href="">Add to Private Pool</a>
-								</td>
-								<td>
-									<a href="">Edit</a>
-								</td>
+								<td><a href="">Problem 3</a></td>
+								<td>Array</td>
+								<td>CSIS-225</td>
+								<td><a href="">Add to Assignment</a></td>
 							</tr>
 							<tr>
-								<td >
-									<a href="">Problem 4</a>
-								</td>
-								<td>
-									Logic
-								</td>
-								<td>
-									CSIS-225
-								</td>
-								<td>
-									<a href="">Add to Private Pool</a>
-								</td>
-								<td>
-									<a href="">Edit</a>
-								</td>
+								<td><a href="">Problem 4</a></td>
+								<td>Logic</td>
+								<td>CSIS-225</td>
+								<td><a href="">Add to Assignment</a></td>
+							</tr>
+						</table>
+						<form method="" action="create_new_assignment.php">							
+							<p class="submit" style="text-align: center"><input type="submit" value="Back"></p>
+						</form>
+					</div>';
+				} else {
+					echo'	
+			<div class="CSSTableGenerator" >
+			
+			<h3>Course Pool</h3>
+						<table>
+							<tr>
+								<td>Name</td>
+								<td>Category</td>
+								<td>Course</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><a href="">Problem 1</a></td>
+								<td>String</td>
+								<td>CSIS-225</td>
+								<td><a href="">Add to Assignment</a></td>
+							</tr>
+							<tr>
+								<td><a href="">Problem 2</a></td>
+								<td>Recursion</td>
+								<td>CSIS-225</td>
+								<td><a href="">Add to Assignment</a></td>
+							</tr>
+							<tr>
+								<td><a href="">Problem 3</a></td>
+								<td>Array</td>
+								<td>CSIS-225</td>
+								<td><a href="">Add to Assignment</a></td>
+							</tr>
+							<tr>
+								<td><a href="">Problem 4</a></td>
+								<td>Logic</td>
+								<td>CSIS-225</td>
+								<td><a href="">Add to Assignment</a></td>
+							</tr>
+						</table>
+						<form method="" action="create_new_assignment.php">							
+							<p class="submit" style="text-align: center"><input type="submit" value="Back"></p>
+						</form>
+					</div>';
+				}
+			} else {
+				if ($accounttype=="faculty") {
+		echo'	
+			<div class="CSSTableGenerator" >
+			
+			<h3>Course Pool</h3>
+						<table>
+							<tr>
+								<td>Name</td>
+								<td>Category</td>
+								<td>Course</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td><a href="">Problem 1</a></td>
+								<td>String</td>
+								<td>CSIS-225</td>
+								<td><a href="">Add to Private Pool</a></td>
+								<td><a href="">Edit</a></td>
+							</tr>
+							<tr>
+								<td><a href="">Problem 2</a></td>
+								<td>Recursion</td>
+								<td>CSIS-225</td>
+								<td><a href="">Add to Private Pool</a></td>
+								<td><a href="">Edit</a></td>
+							</tr>
+							<tr>
+								<td><a href="">Problem 3</a></td>
+								<td>Array</td>
+								<td>CSIS-225</td>
+								<td><a href="">Add to Private Pool</a></td>
+								<td><a href="">Edit</a></td>
+							</tr>
+							<tr>
+								<td><a href="">Problem 4</a></td>
+								<td>Logic</td>
+								<td>CSIS-225</td>
+								<td><a href="">Add to Private Pool</a></td>
+								<td><a href="">Edit</a></td>
 							</tr>
 						</table>
 						<form method="" action="home.php">							
@@ -177,89 +212,39 @@
 			<h3>Course Pool</h3>
 						<table>
 							<tr>
-								<td>
-									Name
-								</td>
-								<td >
-									Category
-								</td>
-								<td>
-									Course
-								</td>
-								<td>
-									
-								</td>
-								<td>
-									
-								</td>
+								<td>Name</td>
+								<td>Category</td>
+								<td>Course</td>
+								<td></td>
+								<td></td>
 							</tr>
 							<tr>
-								<td >
-									<a href="">Problem 1</a>
-								</td>
-								<td>
-									String
-								</td>
-								<td>
-									CSIS-225
-								</td>
-								<td>
-									<a href="">Edit</a>
-								</td>
-								<td>
-									<a href="">Remove</a>
-								</td>
+								<td><a href="">Problem 1</a></td>
+								<td>String</td>
+								<td>CSIS-225</td>
+								<td><a href="">Edit</a></td>
+								<td><a href="">Remove</a></td>
 							</tr>
 							<tr>
-								<td >
-									<a href="">Problem 2</a>
-								</td>
-								<td>
-									Recursion
-								</td>
-								<td>
-									CSIS-225
-								</td>
-								<td >
-									<a href="">Edit</a>
-								</td>
-								<td >
-									<a href="">Remove</a>
-								</td>
+								<td><a href="">Problem 2</a></td>
+								<td>Recursion</td>
+								<td>CSIS-225</td>
+								<td><a href="">Edit</a></td>
+								<td><a href="">Remove</a></td>
 							</tr>
 							<tr>
-								<td >
-									<a href="">Problem 3</a>
-								</td>
-								<td>
-									Array
-								</td>
-								<td>
-									CSIS-225
-								</td>
-								<td>
-									<a href="">Edit</a>
-								</td>
-								<td>
-									<a href="">Remove</a>
-								</td>
+								<td><a href="">Problem 3</a></td>
+								<td>Array</td>
+								<td>CSIS-225</td>
+								<td><a href="">Edit</a></td>
+								<td><a href="">Remove</a></td>
 							</tr>
 							<tr>
-								<td >
-									<a href="">Problem 4</a>
-								</td>
-								<td>
-									Logic
-								</td>
-								<td>
-									CSIS-225
-								</td>
-								<td>
-									<a href="">Edit</a>
-								</td>
-								<td>
-									<a href="">Remove</a>
-								</td>
+								<td><a href="">Problem 4</a></td>
+								<td>Logic</td>
+								<td>CSIS-225</td>
+								<td><a href="">Edit</a></td>
+								<td><a href="">Remove</a></td>
 							</tr>
 						</table>
 						<form method="" action="home.php">							
@@ -267,7 +252,7 @@
 						</form>
 					</div>';
 				}
-				
+			}
 			
 		
 		#<!-- Gradebook tab -->

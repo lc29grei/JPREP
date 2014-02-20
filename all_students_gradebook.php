@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <?php
-	session_start();
+	session_start(); 
 	if (!(isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']!='')) {
 		header ("Location: login.php");
-	}  
+	} 
 	$accounttype=$_SESSION['account_type'];
 	$firstname=$_SESSION['first_name'];
    	echo'
@@ -71,98 +71,101 @@
 			include 'display_manage_accounts.php';
 			displayManageAccounts();
 											
+		
+		
 		#<!-- Question Pool tab -->
+			include 'display_question_pool.php';
+			displayQuestionPool($accounttype);
 			
-		if(isset($_GET['action']) && $_GET['action'] == 'addAssignment'){
-			echo'<div class="CSSTableGenerator" >
-			<h3>Private Pool</h3>
-						<table >
+	?>	
+		<!-- Gradebook tab -->
+			
+			<div class="CSSTableGenerator" >
+			<h3>All Students</h3>
+			<h3 style="padding-left:150px;">Course 1</h3><br><br>
+			<a href="">Edit Grades</a>
+			<br><br>
+						<table>
 							<tr>
-								<td>Name</td>
-								<td>Category</td>
-								<td>Course</td>
-								<td></td>
+								<td>Student Name</td>
+								<td>Assignment</td>
+								<td>Due Date</td>
+								<td>Grade</td>
+								<td>Percentage</td>
+								<td>Status</td>
 							</tr>
 							<tr>
-								<td><a href="">Problem 1</a></td>
-								<td>String</td>
-								<td>CSIS-225</td>
-								<td><a href="">Add to Assignment</a></td>
+								<td>Student 1</td>
+								<td><a href="">Assignment 1</a></td>
+								<td>5/1/2014 11:59 PM</td>
+								<td>100/100</td>
+								<td>100%</td>
+								<td>Complete</td>
 							</tr>
 							<tr>
-								<td><a href="">Problem 2</a></td>
-								<td>Recursion</td>
-								<td>CSIS-120</td>
-								<td><a href="">Add to Assignment</a></td>
+								<td>Student 1</td>
+								<td><a href="">Assignment 2</a></td>
+								<td>5/1/2014 11:59 PM</td>
+								<td>90/100</td>
+								<td>90%</td>
+								<td>In Progress</td>
 							</tr>
 							<tr>
-								<td><a href="">Problem 3</a></td>
-								<td>Array</td>
-								<td>CSIS-225</td>
-								<td><a href="">Add to Assignment</a></td>
+								<td>Student 2</td>
+								<td><a href="">Assignment 1</a></td>
+								<td>5/2/2014 11:59 PM</td>
+								<td>90/100</td>
+								<td>90%</td>
+								<td>Complete</td>
 							</tr>
 							<tr>
-								<td><a href="">Problem 4</a></td>
-								<td>Logic</td>
-								<td>CSIS-225</td>
-								<td><a href="">Add to Assignment</a></td>
-							</tr>
-						</table>
-						<form method="" action="create_new_assignment.php">							
-							<p class="submit" style="text-align: center"><input type="submit" value="Back"></p>
-						</form>
-					</div>';
-		} else {
-			echo'<div class="CSSTableGenerator" >
-			<h3>Private Pool</h3>
-						<table >
-							<tr>
-								<td>Name</td>
-								<td>Category</td>
-								<td>Course</td>
-								<td></td>
-								<td></td>
+								<td>Student 2</td>
+								<td><a href="">Assignment 2</a></td>
+								<td>5/2/2014 11:59 PM</td>
+								<td>100/100</td>
+								<td>100%</td>
+								<td>Complete</td>
 							</tr>
 							<tr>
-								<td><a href="">Problem 1</a></td>
-								<td>String</td>
-								<td>CSIS-225</td>
-								<td><a href="">Edit</a></td>
-								<td><a href="">Remove</a></td>
+								<td>Student 3</td>
+								<td><a href="">Assignment 1</a></td>
+								<td>5/3/2014 11:59 PM</td>
+								<td>65/100</td>
+								<td>65%</td>
+								<td>Complete</td>
 							</tr>
 							<tr>
-								<td><a href="">Problem 2</a></td>
-								<td>Recursion</td>
-								<td>CSIS-120</td>
-								<td><a href="">Edit</a></td>
-								<td><a href="">Remove</a></td>
+								<td>Student 3</td>
+								<td><a href="">Assignment 2</a></td>
+								<td>5/3/2014 11:59 PM</td>
+								<td>75/100</td>
+								<td>75%</td>
+								<td>Complete</td>
 							</tr>
 							<tr>
-								<td><a href="">Problem 3</a></td>
-								<td>Array</td>
-								<td>CSIS-225</td>
-								<td><a href="">Edit</a></td>
-								<td><a href="">Remove</a></td>
+								<td>Student 4</td>
+								<td ><a href="">Assignment 1</a></td>
+								<td>5/4/2014 11:59 PM</td>
+								<td>74/100</td>
+								<td>74%</td>
+								<td>In Progress</td>
 							</tr>
 							<tr>
-								<td><a href="">Problem 4</a></td>
-								<td>Logic</td>
-								<td>CSIS-225</td>
-								<td><a href="">Edit</a></td>
-								<td><a href="">Remove</a></td>
+								<td>Student 4</td>
+								<td ><a href="">Assignment 2</a></td>
+								<td>5/4/2014 11:59 PM</td>
+								<td>84/100</td>
+								<td>84%</td>
+								<td>Complete</td>
 							</tr>
 						</table>
 						<form method="" action="home.php">							
 							<p class="submit" style="text-align: center"><input type="submit" value="Back"></p>
 						</form>
-					</div>';
-		}
-					
-		#<!-- Gradebook tab -->
-		
-			include 'display_grades.php';
-			displayGrades($accounttype);
-		
+					</div>
+				
+			
+	<?php	
 		#<!-- Profile tab -->
 		
 			include 'display_profile.php';
@@ -185,10 +188,3 @@
 	</div>
 
 </html>
-
-
-
-
-
-		
- 

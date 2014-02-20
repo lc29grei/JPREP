@@ -75,7 +75,7 @@ function editProfile($accounttype) {
 function changePassword($accounttype) {
 	echo'
 		<div class="profile">
-			<form method="POST" action="check_change_password.php">
+			<form method="POST" action="check_change_password.php" onsubmit="passwordChecker()">
 				<p>Old Password:<input type="text" name="oldpassword"></p>
 				<p>New Password:<input type="text" name="newpassword"></p>
 				<p>Confirm Password:<input type="text" name="confirmpassword"></p>

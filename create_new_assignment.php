@@ -215,9 +215,9 @@
 								</table>
 			<br>
 			Description<br><input type="text" name="description" style="height: 75px; width: 100%;"><br><br>
-			<a href="./create_new_problem.php" style="font-size:13px;padding-right:20px;">Create and Add New Problem</a>
-			<a href="./private_pool.php" style="font-size:13px;padding-right:20px;">Add Problem from Private Question Pool</a>
-			<a href="./course_pool.php" style="font-size:13px;">Add Problem from Global Question Pool</a><br><br>
+			<a href="./create_new_problem.php?action=addAssignment" style="font-size:13px;padding-right:20px;">Create and Add New Problem</a>
+			<a href="./private_pool.php?action=addAssignment" style="font-size:13px;padding-right:20px;">Add Problem from Private Question Pool</a>
+			<a href="./course_pool.php?action=addAssignment" style="font-size:13px;">Add Problem from Global Question Pool</a><br><br>
 			<table border="0" id="paramTable" style="text-align:center;">
 				<tbody>
 					<tr>
@@ -246,13 +246,21 @@
 						<td>&nbsp;</td>
 						<td><a href="">Remove</a></td>
 					</tr>
+					<tr>
+						<td>&nbsp;</td><td>&nbsp;</td>
+						<td>&nbsp;</td><td>&nbsp;</td>
+						<td><b>Total Points:</b></td>
+						<td>&nbsp;</td>
+						<td style="text-align:center;">0</td>
+						<td>&nbsp;</td><td>&nbsp;</td>
+						<td>&nbsp;</td><td>&nbsp;</td>
+					</tr>
 				</tbody>
 			</table>
 			
 			<br><br>
-			<input type="button" value="Create" style="float:right;">
-			<input type="button" value="Save" style="float:right;">
-			<input type="button" value="Cancel" style="float:right;">
+			<input type="button" value="Create Assignment" style="float:right;">
+			<input type="button" value="Cancel" onClick="cancelConfirm()" style="float:right;">
 			
 			</div>
 <?php	

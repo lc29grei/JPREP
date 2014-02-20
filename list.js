@@ -99,6 +99,12 @@ function addRow(tableID) {
             	element7.name = "checkbox[]";
             	cell8.appendChild(element7);
             	
+            	var cell9 = row.insertCell(8);
+            	var element8 = document.createElement("input");
+            	element8.type = "checkbox";
+            	element8.name = "checkbox[]";
+            	cell9.appendChild(element8);
+            	
             } else {
             	alert('Sorry, you can only have up to 25 test cases');
             }
@@ -149,6 +155,8 @@ function addParam() {
 }
 
 function removeParam(tableId) {
+	var r = confirm("Are you sure you want to remove a parameter?");
+	if (r==true) {
 	if (document.getElementById('param5name').disabled === false) {
 		document.getElementById('param5name').disabled=true;
 		document.getElementById('param5type').disabled=true;
@@ -172,6 +180,33 @@ function removeParam(tableId) {
 	} else {
 		alert('You must have at least 1 parameter!');
 	}
-	
+	} else {
+		return;
+	}
 }
+
+function cancelConfirm() {
+	var x = confirm("Are you sure you want to cancel?");
+	if (x==true) {
+		window.location.href = './home.php';
+		return;
+	} else {
+		return;
+	}
+}
+
+/**function passwordChecker() {
+	if (document.getElementsByName("oldpassword") != "") {
+		alert("Please enter your old password");
+		return false;
+	} else if (document.getElementsByName("newpassword") != "") {
+		alert("Please enter your new password");
+		return false;
+	} else if (document.getElementsByName("confirmpassword") != "") {
+		alert("Please confirm your new password");
+		return false;
+	} else {
+		return true;
+	}
+}**/
 
