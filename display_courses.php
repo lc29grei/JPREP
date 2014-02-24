@@ -43,6 +43,7 @@
    				<a href="./create_new_problem.php">Create New Problem</a><br>
   				<a href="./create_new_assignment.php">Create New Assignment</a><br>
    				<a href="">Manage Assignments</a><br>
+   				<a href="">View Question Pool</a><br>
    				<a href="">View Gradebook</a>
    			</div>
 			<b><a ID="xcourse2" href="javascript:Toggle(\'course2\');">[+]</a> Course 2</b><br>
@@ -50,6 +51,7 @@
    				<a href="./create_new_problem.php">Create New Problem</a><br>
   				<a href="./create_new_assignment.php">Create New Assignment</a><br>
    				<a href="">Manage Assignments</a><br>
+   				<a href="">View Question Pool</a><br>
    				<a href="">View Gradebook</a>
 			</div>
 			<b><a ID="xcourse3" href="javascript:Toggle(\'course3\');">[+]</a> Course 3</b><br>
@@ -57,6 +59,7 @@
    				<a href="./create_new_problem.php">Create New Problem</a><br>
   				<a href="./create_new_assignment.php">Create New Assignment</a><br>
    				<a href="">Manage Assignments</a><br>
+   				<a href="">View Question Pool</a><br>
    				<a href="">View Gradebook</a>
 			</div>
 			<p><b><u>Previous Courses</u></b></p>
@@ -65,6 +68,7 @@
    				<a href="./create_new_problem.php">Create New Problem</a><br>
   				<a href="./create_new_assignment.php">Create New Assignment</a><br>
    				<a href="">Manage Assignments</a><br>
+   				<a href="">View Question Pool</a><br>
    				<a href="">View Gradebook</a>
    			</div>
 			<b><a ID="xcourse5" href="javascript:Toggle(\'course5\');">[+]</a> Course 5</b><br>
@@ -72,6 +76,7 @@
    				<a href="./create_new_problem.php">Create New Problem</a><br>
   				<a href="./create_new_assignment.php">Create New Assignment</a><br>
    				<a href="">Manage Assignments</a><br>
+   				<a href="">View Question Pool</a><br>
    				<a href="">View Gradebook</a>
 			</div>
 		</div>

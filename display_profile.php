@@ -26,7 +26,7 @@ function displayProfile($accounttype)
 				<li>First Name: '.$_SESSION['first_name'].'</li>
 				<li>Last Name: '.$_SESSION['last_name'].'</li>
 				<li>Email Address: '.$_SESSION['username'].'</li>
-				<li>Password: '.$_SESSION['password'].'</li>
+				<li>Password: ********</li>
 				<li>Security Question: '.$_SESSION['secQ'].'</li>
 				<li>Security Answer: '.$_SESSION['secA'].'</li>
 			</ul>
