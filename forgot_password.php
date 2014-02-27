@@ -16,16 +16,13 @@
   <section class="container">
     <img class="logo-center" src="./jprep_logo.png" width="200" height="75"/>
     <div class="login">
-      <h1>Login to JPREP</h1>
+      <h1>Reset your password</h1>
       <form method="POST" action="check.php">
+      	<p>Security Question: What is your middle name?</p>
         <p><input type="text" name="username" placeholder="Username"></p>
-        <p><input type="password" name="password" placeholder="Password"></p>
-        <p class="submit"><input type="submit" name="commit" value="Login"></p>
+        <p class="submit"><input type="submit" name="cancel" onClick="history.go(-1);return true;" value="Cancel"> <input type="submit" name="commit" value="Reset Password"></p>
+        <p style="font-size:12px;text-align:center;">Your new password will be sent to you in an email</p>
       </form>
-    </div>
-
-    <div class="login-help">
-      <p><a href="./forgot_password.php">Forgot your password?</a></p>
     </div>
   </section>
 </body>

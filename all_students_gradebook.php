@@ -83,7 +83,7 @@
 			<div class="CSSTableGenerator" >
 			<h3>All Students</h3>
 			<h3 style="padding-left:150px;">Course 1</h3><br><br>
-			<a href="">Edit Grades</a>
+			<a href="?action=editgrades">Edit Grades</a>
 			<br><br>
 						<table>
 							<tr>

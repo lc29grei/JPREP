@@ -2,7 +2,8 @@
   session_start();
   $_SESSION = array();
   if($_SERVER['REQUEST_METHOD'] == "POST") {
-    mysql_connect("localhost","root","");
+  	#mysqli_connect("oraserv.cs.siena.edu","perm_deltatech","firmly+attend*gale","perm_deltatech");
+   	mysql_connect("localhost","root","");
     @mysql_select_db("jprep") or die( "Unable to connect to database");
     $username = mysql_real_escape_string($_POST['username']);
     $password = mysql_real_escape_string($_POST['password']);
