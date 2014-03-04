@@ -3,8 +3,15 @@ session_start();
 if (!(isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']!='')) {
 		header ("Location: login.php");
 	}
-if (!isset($_SESSION['answer'])) $_SESSION['answer'] = "N,N,N";
-$cmdOutput = split(",", $_SESSION['answer']);
+if (!isset($_SESSION['answer'])) $_SESSION['answer'] = "N,,N,,N,";
+$cmdOutput = $_SESSION['answer'];
+if (strpos($cmdOutput, 'Error') !== false) {
+	$cmdOutput = "N,,N,,N,,Compilation Error";
+	$cmdOutput = split(",", $cmdOutput);
+}
+else {
+	$cmdOutput = split(",", $_SESSION['answer']);
+}
 
 // Create the page template
 function displayPage()
@@ -43,27 +50,31 @@ function displayPage()
 				</br>
 				<input type="submit" />
 				</form>
-				
+				' . $cmdOutput[6] . '
 				<table border="1" style="width:300px">
 					<tr>
 						<td> Input </td>
 						<td> Output </td>
 						<td> Expect </td>
+						<td> Correct </td>
 					</tr>
 					<tr>
 						<td> 5 + 4 </td>
-						<td> ' . $cmdOutput[0] . '</td>
+						<td> ' . $cmdOutput[1] . '</td>
 						<td> 9 </td>
+						<td> ' . $cmdOutput[0] . '</td>
 					</tr>
 					<tr>
 						<td> 1 + 1 </td>
-						<td> ' . $cmdOutput[1] . '</td>
+						<td> ' . $cmdOutput[3] . '</td>
 						<td> 2 </td>
+						<td> ' . $cmdOutput[2] . '</td>
 					</tr>
 					<tr>
 						<td> 2 + 8 </td>
-						<td> ' . $cmdOutput[2] . '</td>
+						<td> ' . $cmdOutput[5] . '</td>
 						<td> 10 </td>
+						<td> ' . $cmdOutput[4] . '</td>
 					</tr>
 				</table>
 				</div>
