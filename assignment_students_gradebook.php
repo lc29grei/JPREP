@@ -12,6 +12,11 @@
 		<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
 		<script language="javascript" src="list.js"></script>
 		<link href="./css/style_home.css" rel="stylesheet" type="text/css">	
+		<script>
+			function goBack() {
+				window.history.back();
+			}
+		</script>
 	</head>
 	<body>		
 		<h1 class="header">
@@ -44,18 +49,18 @@
 		</h1>		
 		</div>
 		<ul class="tabs">
-			<li><a href="#">Courses</a></li> ';	
+			<li><a id="courses" href="#tab1">Courses</a></li> ';	
 			
-			if($accounttype=="admin"){ echo '<li><a href="#">Manage Accounts</a></li>';}
+			if($accounttype=="admin"){ echo '<li><a id="manageAccounts" href="#tab2">Manage Accounts</a></li>';}
 			else echo '<li style="visibility: hidden; display:none;"><a href="#">Manage Accounts</a></li> ';
 						
 			if($accounttype=="student"){ echo '<li style="visibility: hidden; display:none;"><a href="#">Question Pool</a></li> ';}
-			else echo '<li><a href="#">Question Pool</a></li>';
+			else echo '<li><a id="questionPool" href="#tab3">Question Pool</a></li>';
 
 			if($accounttype=="admin" or $accounttype=="coursecoordinator"){ echo '<li style="visibility: hidden; display:none;"><a href="#">Gradebook</a></li> ';}
-			else echo '<li><a href="#">Gradebook</a></li>';
-?>
-<li><a href="#">Profile</a></li>
+			else echo '<li><a id="gradebook" href="#tab4">Gradebook</a></li>';
+	?>
+		<li><a id="profile" href="#tab5">Profile</a></li>
 	</ul>
 	
 	<div class="panes">
@@ -94,69 +99,67 @@
 								<td>Status</td>
 							</tr>
 							<tr>
-								<td><a href="./student_problems_gradebook.php">Student 1</a></td>
+								<td><a href="./student_problems_gradebook.php#tab4">Student 1</a></td>
 								<td>90/100</td>
 								<td>90%</td>
 								<td>Complete</td>
 							</tr>
 							<tr>
-								<td><a href="./student_problems_gradebook.php">Student 2</a></td>
+								<td><a href="./student_problems_gradebook.php#tab4">Student 2</a></td>
 								<td>60/100</td>
 								<td>60%</td>
 								<td>In Progress</td>
 							</tr>
 							<tr>
-								<td><a href="./student_problems_gradebook.php">Student 3</a></td>
+								<td><a href="./student_problems_gradebook.php#tab4">Student 3</a></td>
 								<td>75/100</td>
 								<td>75%</td>
 								<td>Complete</td>
 							</tr>
 							<tr>
-								<td><a href="./student_problems_gradebook.php">Student 4</a></td>
+								<td><a href="./student_problems_gradebook.php#tab4">Student 4</a></td>
 								<td>84/100</td>
 								<td>84%</td>
 								<td>Complete</td>
 							</tr>
 							<tr>
-								<td><a href="./student_problems_gradebook.php">Student 5</a></td>
+								<td><a href="./student_problems_gradebook.php#tab4">Student 5</a></td>
 								<td>80/100</td>
 								<td>80%</td>
 								<td>Complete</td>
 							</tr>
 							<tr>
-								<td><a href="./student_problems_gradebook.php">Student 6</a></td>
+								<td><a href="./student_problems_gradebook.php#tab4">Student 6</a></td>
 								<td>75/100</td>
 								<td>75%</td>
 								<td>Complete</td>
 							</tr>
 							<tr>
-								<td><a href="./student_problems_gradebook.php">Student 7</a></td>
+								<td><a href="./student_problems_gradebook.php#tab4">Student 7</a></td>
 								<td>100/100</td>
 								<td>100%</td>
 								<td>Complete</td>
 							</tr>
 							<tr>
-								<td><a href="./student_problems_gradebook.php">Student 8</a></td>
+								<td><a href="./student_problems_gradebook.php#tab4">Student 8</a></td>
 								<td>82/100</td>
 								<td>82%</td>
 								<td>Complete</td>
 							</tr>
 							<tr>
-								<td><a href="./student_problems_gradebook.php">Student 9</a></td>
+								<td><a href="./student_problems_gradebook.php#tab4">Student 9</a></td>
 								<td>94/100</td>
 								<td>94%</td>
 								<td>Complete</td>
 							</tr>
 							<tr>
-								<td><a href="./student_problems_gradebook.php">Student 10</a></td>
+								<td><a href="./student_problems_gradebook.php#tab4">Student 10</a></td>
 								<td>97/100</td>
 								<td>97%</td>
 								<td>Complete</td>
 							</tr>
 						</table>
-						<form method="" action="course_assignments_gradebook.php">							
-							<p class="submit" style="text-align: center"><input type="submit" value="Back"></p>
-						</form>
+						<button style="text-align: center" onClick="goBack()">Back</button>
 					</div>
 				
 			
@@ -171,7 +174,7 @@
 	
 	<script>
 		$(function() {
-			$("ul.tabs").tabs("div.panes > div");
+			$("ul.tabs").tabs("div.panes > div", { history: true });
 		});
 	</script>
 	

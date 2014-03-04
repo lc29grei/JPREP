@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <?php
-	session_start();
+	session_start();  
 	if (!(isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']!='')) {
 		header ("Location: login.php");
-	}  
+	}
 	$accounttype=$_SESSION['account_type'];
 	$firstname=$_SESSION['first_name'];
    	echo'
@@ -65,100 +65,35 @@
 	
 	<div class="panes">
 	
-	<?php	
 		
-		#<!-- Courses tab -->
+		<!-- Courses tab -->
 		
-			include 'display_courses.php';
-			displayCourses($accounttype);
-							
+			<div>
+			<p style="font-size:12px;">Select the course(s) to be deleted</p>
+			<p style="font-size:16px;"><u>Current Courses</u></p>
+			<table><tr><td>Course 1</td><td></td><td><input type="checkbox"></td></tr>
+					<tr><td>Course 2</td><td></td><td><input type="checkbox"></td></tr>
+					<tr><td>Course 3</td><td></td><td><input type="checkbox"></td></tr></table>
+			<p style="font-size:16px;"><u>Previous Courses</u></p>
+			<table><tr><td>Course 4</td><td></td><td><input type="checkbox"></td></tr>
+					<tr><td>Course 5</td><td></td><td><input type="checkbox"></td></tr></table>
+					
+			<br>
+			<input type="button" onClick="goBack()" value="Cancel">
+			<input type="button" value="Delete Course(s)">
+			
+			</div>
+<?php	
+			
 		#<!-- Manage Accounts tab -->
 			include 'display_manage_accounts.php';
 			displayManageAccounts();
 											
 		#<!-- Question Pool tab -->
+		
+			include 'display_question_pool.php';
+			displayQuestionPool($accounttype);
 			
-		if(isset($_GET['action']) && $_GET['action'] == 'addAssignment'){
-			echo'<div class="CSSTableGenerator" >
-			<h3>Private Pool</h3>
-						<table >
-							<tr>
-								<td>Name</td>
-								<td>Category</td>
-								<td>Course</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td><a href="">Problem 1</a></td>
-								<td>String</td>
-								<td>CSIS-225</td>
-								<td><a href="">Add to Assignment</a></td>
-							</tr>
-							<tr>
-								<td><a href="">Problem 2</a></td>
-								<td>Recursion</td>
-								<td>CSIS-120</td>
-								<td><a href="">Add to Assignment</a></td>
-							</tr>
-							<tr>
-								<td><a href="">Problem 3</a></td>
-								<td>Array</td>
-								<td>CSIS-225</td>
-								<td><a href="">Add to Assignment</a></td>
-							</tr>
-							<tr>
-								<td><a href="">Problem 4</a></td>
-								<td>Logic</td>
-								<td>CSIS-225</td>
-								<td><a href="">Add to Assignment</a></td>
-							</tr>
-						</table>
-						<button style="text-align: center" onClick="goBack()">Back</button>
-					</div>';
-		} else {
-			echo'<div class="CSSTableGenerator" >
-			<h3>Private Pool</h3>
-						<table >
-							<tr>
-								<td>Name</td>
-								<td>Category</td>
-								<td>Course</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td><a href="">Problem 1</a></td>
-								<td>String</td>
-								<td>CSIS-225</td>
-								<td><a href="">Edit</a></td>
-								<td><a href="">Remove</a></td>
-							</tr>
-							<tr>
-								<td><a href="">Problem 2</a></td>
-								<td>Recursion</td>
-								<td>CSIS-120</td>
-								<td><a href="">Edit</a></td>
-								<td><a href="">Remove</a></td>
-							</tr>
-							<tr>
-								<td><a href="">Problem 3</a></td>
-								<td>Array</td>
-								<td>CSIS-225</td>
-								<td><a href="">Edit</a></td>
-								<td><a href="">Remove</a></td>
-							</tr>
-							<tr>
-								<td><a href="">Problem 4</a></td>
-								<td>Logic</td>
-								<td>CSIS-225</td>
-								<td><a href="">Edit</a></td>
-								<td><a href="">Remove</a></td>
-							</tr>
-						</table>
-						<button style="text-align: center" onClick="goBack()">Back</button>
-					</div>';
-		}
-					
 		#<!-- Gradebook tab -->
 		
 			include 'display_grades.php';
@@ -168,7 +103,7 @@
 		
 			include 'display_profile.php';
 			displayProfile($accounttype);
-	?>
+		?>
 	</div>
 	
 	
@@ -186,10 +121,3 @@
 	</div>
 
 </html>
-
-
-
-
-
-		
- 

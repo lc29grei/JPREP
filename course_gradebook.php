@@ -12,6 +12,11 @@
 		<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
 		<script language="javascript" src="list.js"></script>
 		<link href="./css/style_home.css" rel="stylesheet" type="text/css">	
+		<script>
+			function goBack() {
+				window.history.back();
+			}
+		</script>
 	</head>
 	<body>		
 		<h1 class="header">
@@ -44,18 +49,18 @@
 		</h1>		
 		</div>
 		<ul class="tabs">
-			<li><a href="#">Courses</a></li> ';	
+			<li><a id="courses" href="#tab1">Courses</a></li> ';	
 			
-			if($accounttype=="admin"){ echo '<li><a href="#">Manage Accounts</a></li>';}
+			if($accounttype=="admin"){ echo '<li><a id="manageAccounts" href="#tab2">Manage Accounts</a></li>';}
 			else echo '<li style="visibility: hidden; display:none;"><a href="#">Manage Accounts</a></li> ';
 						
 			if($accounttype=="student"){ echo '<li style="visibility: hidden; display:none;"><a href="#">Question Pool</a></li> ';}
-			else echo '<li><a href="#">Question Pool</a></li>';
+			else echo '<li><a id="questionPool" href="#tab3">Question Pool</a></li>';
 
 			if($accounttype=="admin" or $accounttype=="coursecoordinator"){ echo '<li style="visibility: hidden; display:none;"><a href="#">Gradebook</a></li> ';}
-			else echo '<li><a href="#">Gradebook</a></li>';
-?>
-<li><a href="#">Profile</a></li>
+			else echo '<li><a id="gradebook" href="#tab4">Gradebook</a></li>';
+	?>
+		<li><a id="profile" href="#tab5">Profile</a></li>
 	</ul>
 	
 	<div class="panes">
@@ -136,9 +141,7 @@
 								<td>&nbsp;</td>
 							</tr>
 						</table>
-						<form method="" action="home.php">							
-							<p class="submit" style="text-align: center"><input type="submit" value="Back"></p>
-						</form>
+						<button style="text-align: center" onClick="goBack()">Back</button>
 					</div>
 				
 			
@@ -153,7 +156,7 @@
 	
 	<script>
 		$(function() {
-			$("ul.tabs").tabs("div.panes > div");
+			$("ul.tabs").tabs("div.panes > div", { history: true });
 		});
 	</script>
 	

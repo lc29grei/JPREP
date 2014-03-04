@@ -44,18 +44,18 @@
 		</h1>		
 		</div>
 		<ul class="tabs">
-			<li><a href="#">Courses</a></li> ';	
+			<li><a id="courses" href="#tab1">Courses</a></li> ';	
 			
-			if($accounttype=="admin"){ echo '<li><a href="#">Manage Accounts</a></li>';}
+			if($accounttype=="admin"){ echo '<li><a id="manageAccounts" href="#tab2">Manage Accounts</a></li>';}
 			else echo '<li style="visibility: hidden; display:none;"><a href="#">Manage Accounts</a></li> ';
 						
 			if($accounttype=="student"){ echo '<li style="visibility: hidden; display:none;"><a href="#">Question Pool</a></li> ';}
-			else echo '<li><a href="#">Question Pool</a></li>';
+			else echo '<li><a id="questionPool" href="#tab3">Question Pool</a></li>';
 
 			if($accounttype=="admin" or $accounttype=="coursecoordinator"){ echo '<li style="visibility: hidden; display:none;"><a href="#">Gradebook</a></li> ';}
-			else echo '<li><a href="#">Gradebook</a></li>';
-?>
-<li><a href="#">Profile</a></li>
+			else echo '<li><a id="gradebook" href="#tab4">Gradebook</a></li>';
+	?>
+		<li><a id="profile" href="#tab5">Profile</a></li>
 	</ul>
 	
 	<div class="panes">
@@ -254,7 +254,7 @@
 	
 	<script>
 		$(function() {
-			$("ul.tabs").tabs("div.panes > div");
+			$("ul.tabs").tabs("div.panes > div", { history: true });
 		});
 	</script>
 	

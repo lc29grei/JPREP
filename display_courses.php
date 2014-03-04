@@ -110,8 +110,8 @@
 		} else {
 			echo'
 			<div>
-			<a href=""><u>Add Course</u></a>
-			<a href="" style="padding-left:15px;"><u>Delete Course</u></a><br>
+			<a href="./create_course.php"><u>Add Course</u></a>
+			<a href="./delete_course.php" style="padding-left:15px;"><u>Delete Course</u></a><br>
 			<p><b><u>Current Courses</u></b></p>
 			<b><a ID="xcourse1" href="javascript:Toggle(\'course1\');">[+]</a> Course 1</b><br>
    			<div ID="course1" style="display:none; margin-left:2em;">

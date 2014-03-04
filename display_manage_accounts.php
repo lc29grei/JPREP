@@ -24,7 +24,7 @@
 					<h3>Manage Course Coordinator Accounts</h3>
 					</br>
 					</br>
-					<a href="?action=createCC">Create new course coordinator account</a>
+					<a href="?action=createCC">Create New Course Coordinator Account</a>
 					</br>
 					</br>														
 						<table>
@@ -71,7 +71,7 @@ function manageFaculty() {
 					<h3>Manage Faculty Accounts</h3>
 					</br>
 					</br>
-					<a href="?action=createFaculty">Create new faculty account</a>
+					<a href="?action=createFaculty">Create New Faculty Account</a>
 					</br>
 					</br>														
 						<table>
@@ -127,15 +127,9 @@ function manageStudent() {
 			
 		<div class="CSSTableGenerator" >
 			<h3>Manage Student Accounts</h3>
-			</br>
-			</br>
-			<a href="?action=createStudent">Create new student account</a>
-			</br>
-			</br>
-			
-			
-	
-				
+			</br></br>
+			<a href="?action=createStudent">Create New Student Account</a>
+			</br></br>
 				<table>
 					<tr>
 						<td>First Name</td>
@@ -194,11 +188,36 @@ function createCC(){
 					<p>Username:<input type="text" name="email" ></p>		
 					<p>Security Question:<input type="text" name="secQ"></p>
 					<p>Security Answer:<input type="text" name="secA" ></p>
-					<p>Course 1:<input type="text" name="course1" ></p>
-					<p>Course 2(leave blank if necessary):<input type="text" name="course2" ></p>
-					<p>Course 3(leave blank if necessary):<input type="text" name="course2" ></p>
 					<p>Faculty Privileges: <input type="checkbox" name="isFaculty" value="Faculty"></p>
-					<p class="submit"><input type="submit" name="commit" value="Submit"></p>
+					<table style="text-align:center;border:1px solid;">
+							<tr><th style="border:1px solid;">Course Number</th>
+								<th style="border:1px solid;">Course Name</th>
+								<th style="border:1px solid;">Assign</th>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-120</td>
+								<td style="border:1px solid;">Intro to Programming</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-210</td>
+								<td style="border:1px solid;">Data Structures</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-220</td>
+								<td style="border:1px solid;">Assembly Language</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-225</td>
+								<td style="border:1px solid;">Object Oriented</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+						</table>
+					<br>
+					<input type="button" value="Cancel" onClick="cancelConfirm()">
+					<input type="submit" name="commit" value="Create Account">
 				</form>
 			</div>';
 }
@@ -213,10 +232,50 @@ function createFaculty(){
 					<p>Username:<input type="text" name="email" ></p>		
 					<p>Security Question:<input type="text" name="secQ"></p>
 					<p>Security Answer:<input type="text" name="secA" ></p>
-					<p>Course 1:<input type="text" name="course1" ></p>
-					<p>Course 2(leave blank if necessary):<input type="text" name="course2" ></p>
-					<p>Course 3(leave blank if necessary):<input type="text" name="course2" ></p>
-					<p class="submit"><input type="submit" name="commit" value="Submit"></p>
+					<table style="text-align:center;border:1px solid;">
+							<tr><th style="border:1px solid;">Course Number</th>
+								<th style="border:1px solid;">Course Name</th>
+								<th style="border:1px solid;">Assign</th>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-120-01</td>
+								<td style="border:1px solid;">Intro to Programming</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-120-02</td>
+								<td style="border:1px solid;">Intro to Programming</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-120-03</td>
+								<td style="border:1px solid;">Intro to Programming</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-120-04</td>
+								<td style="border:1px solid;">Intro to Programming</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-225-01</td>
+								<td style="border:1px solid;">Object Oriented</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-225-02</td>
+								<td style="border:1px solid;">Object Oriented</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-225-03</td>
+								<td style="border:1px solid;">Object Oriented</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+						</table>
+					<br>
+					<input type="button" value="Cancel" onClick="cancelConfirm()">
+					<input type="submit" name="commit" value="Create Account">
 				</form>
 			</div>';
 }
@@ -231,10 +290,52 @@ function createStudent(){
 					<p>Username:<input type="text" name="email" ></p>		
 					<p>Security Question:<input type="text" name="secQ"></p>
 					<p>Security Answer:<input type="text" name="secA" ></p>
-					<p>Course 1:<input type="text" name="course1" ></p>
-					<p>Course 2(leave blank if necessary):<input type="text" name="course2" ></p>
-					<p>Course 3(leave blank if necessary):<input type="text" name="course2" ></p>
-					<p class="submit"><input type="submit" name="commit" value="Submit"></p>
+					
+						<table style="text-align:center;border:1px solid;">
+							<tr><th style="border:1px solid;">Course Number</th>
+								<th style="border:1px solid;">Course Name</th>
+								<th style="border:1px solid;">Enroll</th>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-120-01</td>
+								<td style="border:1px solid;">Intro to Programming</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-120-02</td>
+								<td style="border:1px solid;">Intro to Programming</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-120-03</td>
+								<td style="border:1px solid;">Intro to Programming</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-120-04</td>
+								<td style="border:1px solid;">Intro to Programming</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-225-01</td>
+								<td style="border:1px solid;">Object Oriented</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-225-02</td>
+								<td style="border:1px solid;">Object Oriented</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-225-03</td>
+								<td style="border:1px solid;">Object Oriented</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+						</table>
+					
+					<br>
+					<input type="button" value="Cancel" onClick="cancelConfirm()">
+					<input type="submit" name="commit" value="Create Account">
 				</form>
 			</div>';
 }
