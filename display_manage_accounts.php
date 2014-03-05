@@ -39,21 +39,21 @@
 								<td>Mr</td>
 								<td>Nick</td>
 								<td>Nack</td>
-								<td><a href="">Edit</a></td>
+								<td><a href="?action=editCCAccount">Edit</a></td>
 								<td><a href="">Delete</a></td>
 							</tr>
 							<tr>
 								<td>Dr</td>
 								<td>Cliff</td>
 								<td>Diver</td>
-								<td><a href="">Edit</a></td>
+								<td><a href="?action=editCCAccount">Edit</a></td>
 								<td><a href="">Delete</a></td>
 							</tr>
 							<tr>
 								<td>Mrs</td>
 								<td>Patty</td>
 								<td>Whack</td>
-								<td><a href="">Edit</a></td>
+								<td><a href="?action=editCCAccount">Edit</a></td>
 								<td><a href="">Delete</a></td>
 							</tr>
 						</table>
@@ -86,28 +86,28 @@ function manageFaculty() {
 								<td>Mr</td>
 								<td>Vic</td>
 								<td>Tory</td>
-								<td><a href="">Edit</a></td>
+								<td><a href="?action=editFacultyAccount">Edit</a></td>
 								<td><a href="">Delete</a></td>
 							</tr>
 							<tr>
 								<td>Dr</td>
 								<td>Luke</td>
 								<td>Warm</td>
-								<td><a href="">Edit</a></td>
+								<td><a href="?action=editFacultyAccount">Edit</a></td>
 								<td><a href="">Delete</a></td>
 							</tr>
 							<tr>
 								<td>Dr</td>
 								<td>Will</td>
 								<td>Power</td>
-								<td><a href="">Edit</a></td>
+								<td><a href="?action=editFacultyAccount">Edit</a></td>
 								<td><a href="">Delete</a></td>
 							</tr>
 							<tr>
 								<td>Mrs</td>
 								<td>Tara</td>
 								<td>Zona</td>
-								<td><a href="">Edit</a></td>
+								<td><a href="?action=editFacultyAccount">Edit</a></td>
 								<td><a href="">Delete</a></td>
 							</tr>
 						</table>
@@ -140,25 +140,25 @@ function manageStudent() {
 					<tr>
 						<td>Petey</td>
 						<td>Cruiser</td>
-						<td><a href="">Edit</a></td>
+						<td><a href="?action=editStudentAccount">Edit</a></td>
 						<td><a href="">Delete</a></td>
 					</tr>
 					<tr>
 						<td>Robin</td>
 						<td>Banks</td>
-						<td><a href="">Edit</a></td>
+						<td><a href="?action=editStudentAccount">Edit</a></td>
 						<td><a href="">Delete</a></td>
 					</tr>
 					<tr>
 						<td>Will</td>
 						<td>Power</td>
-						<td><a href="">Edit</a></td>
+						<td><a href="?action=editStudentAccount">Edit</a></td>
 						<td><a href="">Delete</a></td>
 					</tr>
 					<tr>
 						<td>Mary</td>
 						<td>Christmas</td>
-						<td><a href="">Edit</a></td>
+						<td><a href="?action=editStudentAccount">Edit</a></td>
 						<td><a href="">Delete</a></td>
 					</tr>
 				</table>
@@ -168,6 +168,177 @@ function manageStudent() {
 		</div>																	
 	';
 }
+if(isset($_GET['action']) && $_GET['action'] == 'editStudentAccount'){
+		editStudentAccount();
+} else if(isset($_GET['action']) && $_GET['action'] == 'editFacultyAccount'){
+		editFacultyAccount();
+}else if(isset($_GET['action']) && $_GET['action'] == 'editCCAccount'){
+		editCCAccount();
+}
+function editStudentAccount(){
+	
+	echo'
+			<div class="profile">
+				<form method="POST" action="home.php">
+					<p>First Name:<input type="text" name="fname" placeholder="Petey"></p>
+					<p>Last Name:<input type="text" name="lname" placeholder="Cruiser"></p>
+					<p>Email:<input type="text" name="email" placeholder="PTCruiser@siena.edu"></p>
+					<p>Confirm Email:<input type="text" name="confirm_email" placeholder="PTCruiser@siena.edu"></p>
+					<p>Security Question:<input type="text" name="secQ" placeholder="Whats my favorite car"></p>
+					<p>Security Answer:<input type="text" name="secA" placeholder="PT Cruiser"></p>
+					
+				
+				<table style="text-align:center;border:1px solid;">
+							<tr><th style="border:1px solid;">Course Number</th>
+								<th style="border:1px solid;">Course Name</th>
+								<th style="border:1px solid;">Enroll</th>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-120-01</td>
+								<td style="border:1px solid;">Intro to Programming</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-120-02</td>
+								<td style="border:1px solid;">Intro to Programming</td>
+								<td style="border:1px solid;"><input type="checkbox" checked></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-120-03</td>
+								<td style="border:1px solid;">Intro to Programming</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-120-04</td>
+								<td style="border:1px solid;">Intro to Programming</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-225-01</td>
+								<td style="border:1px solid;">Object Oriented</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-225-02</td>
+								<td style="border:1px solid;">Object Oriented</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-225-03</td>
+								<td style="border:1px solid;">Object Oriented</td>
+								<td style="border:1px solid;"><input type="checkbox"checked></td>
+							</tr>
+						</table>
+						<input type="submit" name="cancel" value="Cancel" onClick="cancelConfirm()">
+						<input type="submit" name="commit" value="Submit">
+						</form>
+						</div>';
+			
+	
+}
+
+function editFacultyAccount(){
+	
+	echo'
+			<div class="profile">
+				<form method="POST" action="home.php">
+					<p>Prefix:<input type="text" name="prefix" placeholder="Dr"></p>
+					<p>First Name:<input type="text" name="fname" placeholder="Darren"></p>
+					<p>Last Name:<input type="text" name="lname" placeholder="Lim"></p>
+					<p>Email:<input type="text" name="email" placeholder="dlim@siena.edu"></p>
+					<p>Confirm Email:<input type="text" name="confirm_email" placeholder="dlim@siena.edu"></p>
+					<p>Security Question:<input type="text" name="secQ" placeholder="Whos the best student"></p>
+					<p>Security Answer:<input type="text" name="secA" placeholder="Luke"></p>
+					
+				
+				<table style="text-align:center;border:1px solid;">
+							<tr><th style="border:1px solid;">Course Number</th>
+								<th style="border:1px solid;">Course Name</th>
+								<th style="border:1px solid;">Enroll</th>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-120-01</td>
+								<td style="border:1px solid;">Intro to Programming</td>
+								<td style="border:1px solid;"><input type="checkbox" checked></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-120-02</td>
+								<td style="border:1px solid;">Intro to Programming</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-120-03</td>
+								<td style="border:1px solid;">Intro to Programming</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-120-04</td>
+								<td style="border:1px solid;">Intro to Programming</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-225-01</td>
+								<td style="border:1px solid;">Object Oriented</td>
+								<td style="border:1px solid;"><input type="checkbox" checked></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-225-02</td>
+								<td style="border:1px solid;">Object Oriented</td>
+								<td style="border:1px solid;"><input type="checkbox" checked></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-225-03</td>
+								<td style="border:1px solid;">Object Oriented</td>
+								<td style="border:1px solid;"><input type="checkbox"checked></td>
+							</tr>
+						</table>
+						<input type="submit" name="cancel" value="Cancel" onClick="cancelConfirm()">
+						<input type="submit" name="commit" value="Submit">
+						</form>
+						</div>';
+			
+	
+}
+
+function editCCAccount(){
+	
+	echo'
+			<div class="profile">
+				<form method="POST" action="home.php">
+					<p>Prefix:<input type="text" name="prefix" placeholder="Dr"></p>
+					<p>First Name:<input type="text" name="fname" placeholder="Darren"></p>
+					<p>Last Name:<input type="text" name="lname" placeholder="Lim"></p>
+					<p>Email:<input type="text" name="email" placeholder="dlim@siena.edu"></p>
+					<p>Confirm Email:<input type="text" name="confirm_email" placeholder="dlim@siena.edu"></p>
+					<p>Security Question:<input type="text" name="secQ" placeholder="Whos the best student"></p>
+					<p>Security Answer:<input type="text" name="secA" placeholder="Luke"></p>
+					
+				
+				<table style="text-align:center;border:1px solid;">
+							<tr><th style="border:1px solid;">Course Number</th>
+								<th style="border:1px solid;">Course Name</th>
+								<th style="border:1px solid;">Enroll</th>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-120</td>
+								<td style="border:1px solid;">Intro to Programming</td>
+								<td style="border:1px solid;"><input type="checkbox"></td>
+							</tr>
+							<tr>
+								<td style="border:1px solid;">CSIS-225</td>
+								<td style="border:1px solid;">Object Oriented</td>
+								<td style="border:1px solid;"><input type="checkbox" checked></td>
+							</tr>
+						</table>
+						<input type="submit" name="cancel" value="Cancel" onClick="cancelConfirm()">
+						<input type="submit" name="commit" value="Submit">
+						</form>
+						</div>';
+			
+	
+}
+	
+	
 
 if(isset($_GET['action']) && $_GET['action'] == 'createCC'){
 		createCC();
