@@ -195,6 +195,8 @@ function cancelConfirm() {
 	}
 }
 
+
+
 /**function passwordChecker() {
 	if (document.getElementsByName("oldpassword") != "") {
 		alert("Please enter your old password");
