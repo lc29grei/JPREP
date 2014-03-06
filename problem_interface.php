@@ -3,7 +3,7 @@ session_start();
 if (!(isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']!='')) {
 		header ("Location: login.php");
 	}
-if (!isset($_SESSION['answer'])) $_SESSION['answer'] = "N,,N,,N,";
+if (!isset($_SESSION['answer'])) $_SESSION['answer'] = "N,,N,,N,,";
 $cmdOutput = $_SESSION['answer'];
 if (strpos($cmdOutput, 'Error') !== false) {
 	$cmdOutput = "N,,N,,N,,Compilation Error";
