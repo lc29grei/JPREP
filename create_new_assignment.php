@@ -160,8 +160,10 @@
 														</select></td>
 								</tr>
 								</table>
-			<br>
-			Description<br><input type="text" name="description" style="height: 75px; width: 100%;"><br><br>
+			
+			<form method="post">
+			Description<br><textarea name="description" rows="5" cols="150" style="resize:none;"></textarea>
+			</form><br>
 			<a href="./create_new_problem.php?action=addAssignment" style="font-size:13px;padding-right:20px;">Create and Add New Problem</a>
 			<a href="./private_pool.php?action=addAssignment" style="font-size:13px;padding-right:20px;">Add Problem from Private Question Pool</a>
 			<a href="./course_pool.php?action=addAssignment" style="font-size:13px;">Add Problem from Global Question Pool</a><br><br>

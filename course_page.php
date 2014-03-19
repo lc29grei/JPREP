@@ -27,7 +27,7 @@
 								<td>Assignment 1</td>
 								<td>3/10/14	11:59 PM</td>
 								<td>Not Completed</td>
-								<td><a href="">Complete Now</a></td>
+								<td><a href="./problem_interface.php">Complete Now</a></td>
 							</tr>
 							<tr>
 								<td>Assignment 2</td>
@@ -68,6 +68,8 @@
 								<td>Completed</td>
 								<td><a href="">View Grade</a></td>
 							</tr>
+							</table>
+							<button style="text-align: center;" onClick="goBack()">Back</button>
 					</div>';
 			} else {
 				echo'<div class="CSSTableGenerator" >
@@ -119,6 +121,8 @@
 								<td>1/12/14	11:59 PM</td>
 								<td><a href="">Edit</a></td>
 							</tr>
+							</table>
+							<button style="text-align: center;" onClick="goBack()">Back</button>
 					</div>';
 			}
 							

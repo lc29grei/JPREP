@@ -21,7 +21,9 @@
 							 <option value="">Course 3</option>
 							 <option value="">Course 4</option>
 							 <option value="">Course 5</option></select><br><br>
-			Question/Description<br><input type="text" name="description" style="height: 75px; width: 100%;"><br><br>
+			<form method="post">
+			Question/Description<br><textarea name="description" rows="5" cols="150" style="resize:none;"></textarea>
+			</form><br>
 			
 			<table border="0" id="paramTable">
 				<tbody>
@@ -159,10 +161,11 @@
 				</tbody>
 			</table>
 			
-			<br><br>
-			
-			Solution Code<br><input type="text" name="description" style="height: 200px; width: 100%;">
-			<br><br>
+			<br>
+			<form method="post">
+			Solution Code<br><textarea name="description" rows="15" cols="150" style="resize:none;"></textarea>
+			</form>
+			<br>
 <?php
 			if(isset($_GET['action']) && $_GET['action'] == 'addAssignment'){
 				echo'<input type="button" value="Add to Assignment" style="float:right;">

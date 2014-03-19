@@ -187,7 +187,7 @@
 								<td><a href="">Remove</a></td>
 							</tr>
 						</table>
-						<button style="text-align: center" onClick="goBack()">Back</button>
+						<button style="text-align: center;" onClick="goBack()">Back</button>
 					</div>';
 				}
 			}

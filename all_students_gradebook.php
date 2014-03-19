@@ -41,23 +41,23 @@
 							</tr>
 							<tr>
 								<td>Student 1</td>
-								<td><a href="./single_student_assignment.php#tab4">Assignment 1</a></td>
+								<td><a href="./student_problems_gradebook.php#tab4">Assignment 1</a></td>
 								<td>5/1/2014 11:59 PM</td>
-								<td>100/100</td>
-								<td>100%</td>
+								<td>90/100</td>
+								<td>90%</td>
 								<td>Complete</td>
 							</tr>
 							<tr>
 								<td>Student 1</td>
-								<td><a href="./single_student_assignment.php#tab4">Assignment 2</a></td>
+								<td><a href="./student_problems_gradebook.php#tab4">Assignment 2</a></td>
 								<td>5/1/2014 11:59 PM</td>
-								<td>90/100</td>
-								<td>90%</td>
+								<td>100/100</td>
+								<td>100%</td>
 								<td>In Progress</td>
 							</tr>
 							<tr>
 								<td>Student 2</td>
-								<td><a href="./single_student_assignment.php#tab4">Assignment 1</a></td>
+								<td><a href="./student_problems_gradebook.php#tab4">Assignment 1</a></td>
 								<td>5/2/2014 11:59 PM</td>
 								<td>90/100</td>
 								<td>90%</td>
@@ -65,7 +65,7 @@
 							</tr>
 							<tr>
 								<td>Student 2</td>
-								<td><a href="./single_student_assignment.php#tab4">Assignment 2</a></td>
+								<td><a href="./student_problems_gradebook.php#tab4">Assignment 2</a></td>
 								<td>5/2/2014 11:59 PM</td>
 								<td>100/100</td>
 								<td>100%</td>
@@ -73,7 +73,7 @@
 							</tr>
 							<tr>
 								<td>Student 3</td>
-								<td><a href="./single_student_assignment.php#tab4">Assignment 1</a></td>
+								<td><a href="./student_problems_gradebook.php#tab4">Assignment 1</a></td>
 								<td>5/3/2014 11:59 PM</td>
 								<td>65/100</td>
 								<td>65%</td>
@@ -81,7 +81,7 @@
 							</tr>
 							<tr>
 								<td>Student 3</td>
-								<td><a href="./single_student_assignment.php#tab4">Assignment 2</a></td>
+								<td><a href="./student_problems_gradebook.php#tab4">Assignment 2</a></td>
 								<td>5/3/2014 11:59 PM</td>
 								<td>75/100</td>
 								<td>75%</td>
@@ -89,7 +89,7 @@
 							</tr>
 							<tr>
 								<td>Student 4</td>
-								<td ><a href="./single_student_assignment.php#tab4">Assignment 1</a></td>
+								<td ><a href="./student_problems_gradebook.php#tab4">Assignment 1</a></td>
 								<td>5/4/2014 11:59 PM</td>
 								<td>74/100</td>
 								<td>74%</td>
@@ -97,7 +97,7 @@
 							</tr>
 							<tr>
 								<td>Student 4</td>
-								<td ><a href="./single_student_assignment.php#tab4">Assignment 2</a></td>
+								<td ><a href="./student_problems_gradebook.php#tab4">Assignment 2</a></td>
 								<td>5/4/2014 11:59 PM</td>
 								<td>84/100</td>
 								<td>84%</td>

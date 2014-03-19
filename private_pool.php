@@ -55,7 +55,9 @@
 								<td><a href="">Add to Assignment</a></td>
 							</tr>
 						</table>
-						<button style="text-align: center" onClick="goBack()">Back</button>
+						
+						<button style="text-align: center;" onClick="goBack()">Back</button>
+						
 					</div>';
 		} else {
 			echo'<div class="CSSTableGenerator" >

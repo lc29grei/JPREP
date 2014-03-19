@@ -25,171 +25,35 @@ function displayGrades($accountType)
 			<p><b><u>Current Courses</u></b></p>
 			<b><a ID="xcourse1grade" href="javascript:Toggle(\'course1grade\');">[+]</a> Course 1</b><br>
 			<div ID="course1grade" style="display:none; margin-left:2em;">
-				<a href="?action=all_students_gradebook">View Students</a><br>
+				<a href="./all_students_gradebook.php#tab4">View Students</a><br>
 				<a href="./course_assignments_gradebook.php#tab4">View Assignments</a>
 			</div>
 			<b><a ID="xcourse2grade" href="javascript:Toggle(\'course2grade\');">[+]</a> Course 2</b><br>
 			<div ID="course2grade" style="display:none; margin-left:2em;">
-				<a href="?action=all_students_gradebook">View Students</a><br>
+				<a href="./all_students_gradebook.php#tab4">View Students</a><br>
 				<a href="./course_assignments_gradebook.php#tab4">View Assignments</a>
 			</div>
 			<b><a ID="xcourse3grade" href="javascript:Toggle(\'course3grade\');">[+]</a> Course 3</b><br>
 			<div ID="course3grade" style="display:none; margin-left:2em;">
-				<a href="?action=all_students_gradebook">View Students</a><br>
+				<a href="./all_students_gradebook.php#tab4">View Students</a><br>
 				<a href="./course_assignments_gradebook.php#tab4">View Assignments</a>
 			</div>
 			<p><b><u>Previous Courses</u></b></p>
 			<b><a ID="xcourse4grade" href="javascript:Toggle(\'course4grade\');">[+]</a> Course 4</b><br>
 			<div ID="course4grade" style="display:none; margin-left:2em;">
-				<a href="?action=all_students_gradebook">View Students</a><br>
+				<a href="./all_students_gradebook.php#tab4">View Students</a><br>
 				<a href="./course_assignments_gradebook.php#tab4">View Assignments</a>
 			</div>
 			<b><a ID="xcourse5grade" href="javascript:Toggle(\'course5grade\');">[+]</a> Course 5</b><br>
 			<div ID="course5grade" style="display:none; margin-left:2em;">
-				<a href="?action=all_students_gradebook">View Students</a><br>
+				<a href="./all_students_gradebook.php#tab4">View Students</a><br>
 				<a href="./course_assignments_gradebook.php#tab4">View Assignments</a>
 			</div>
 		</div>
 		';	
 	}
 	}
-if(isset($_GET['action']) && $_GET['action'] == 'all_students_gradebook'){
-	allStudentsGradebook();
-}
-	
 
-function allStudentsGradebook(){
-		echo'
-			<div class="CSSTableGenerator" >
-				<h3>All Students</h3>
-				<h3 style="padding-left:150px;">Course 1</h3><br><br>
-				<a href="?action=editgrades">Edit Grades</a>
-				<br><br>
-				<table>
-					<tr>
-						<td>Student Name</td>
-						<td>Assignment</td>
-						<td>Due Date</td>
-						<td>Grade</td>
-						<td>Percentage</td>
-						<td>Status</td>
-					</tr>
-					<tr>
-						<td>Student 1</td>
-						<td><a href="?action=single_student_assignment">Assignment 1</a></td>
-						<td>5/1/2014 11:59 PM</td>
-						<td>100/100</td>
-						<td>100%</td>
-						<td>Complete</td>
-					</tr>
-					<tr>
-						<td>Student 1</td>
-						<td><a href="?action=single_student_assignment">Assignment 2</a></td>
-						<td>5/1/2014 11:59 PM</td>
-						<td>90/100</td>
-						<td>90%</td>
-						<td>In Progress</td>
-					</tr>
-					<tr>
-						<td>Student 2</td>
-						<td><a href="?action=single_student_assignment">Assignment 1</a></td>
-						<td>5/2/2014 11:59 PM</td>
-						<td>90/100</td>
-						<td>90%</td>
-						<td>Complete</td>
-					</tr>
-					<tr>
-						<td>Student 2</td>
-						<td><a href="?action=single_student_assignment">Assignment 2</a></td>
-						<td>5/2/2014 11:59 PM</td>
-						<td>100/100</td>
-						<td>100%</td>
-						<td>Complete</td>
-					</tr>
-					<tr>
-						<td>Student 3</td>
-						<td><a href="?action=single_student_assignment">Assignment 1</a></td>
-						<td>5/3/2014 11:59 PM</td>
-						<td>65/100</td>
-						<td>65%</td>
-						<td>Complete</td>
-					</tr>
-					<tr>
-						<td>Student 3</td>
-						<td><a href="?action=single_student_assignment">Assignment 2</a></td>
-						<td>5/3/2014 11:59 PM</td>
-						<td>75/100</td>
-						<td>75%</td>
-						<td>Complete</td>
-					</tr>
-					<tr>
-						<td>Student 4</td>
-						<td ><a href="?action=single_student_assignment">Assignment 1</a></td>
-						<td>5/4/2014 11:59 PM</td>
-						<td>74/100</td>
-						<td>74%</td>
-						<td>In Progress</td>
-					</tr>
-					<tr>
-						<td>Student 4</td>
-						<td ><a href="?action=single_student_assignment">Assignment 2</a></td>
-						<td>5/4/2014 11:59 PM</td>
-						<td>84/100</td>
-						<td>84%</td>
-						<td>Complete</td>
-					</tr>
-				</table>						
-					<button style="text-align: center" onClick="goBack()">Back</button>
-				
-			</div>		
-		';
-	}	
-if(isset($_GET['action']) && $_GET['action'] == 'editgrades'){
-editGrades();}
-
-if(isset($_GET['action']) && $_GET['action'] == 'single_student_assignment'){
-singleStudentAssignment();
-}
-
-function singleStudentAssignment(){
-	echo'
-		<div class="CSSTableGenerator" >
-			<h3>Student</h3>
-			<h3 style="padding-left:150px;">Assignment</h3><br><br>
-			<a href="?action=editgradessingle">Edit Grades</a>
-			<br><br>
-			<table>
-				<tr>
-					<td>Problem Name</td>
-					<td>Points Earned</td>
-					<td>Possible Points</td>
-					<td>Status</td>
-				</tr>
-				<tr>
-					<td>Hello World</td>
-					<td>45</td>
-					<td>45</td>
-					<td>Complete</td>
-				</tr>
-				<tr>
-					<td>Fun with Recursion</td>
-					<td>30</td>
-					<td>40</td>
-					<td>Complete</td>
-				</tr>	
-				<tr>
-					<td>Strings</td>
-					<td>15</td>
-					<td>15</td>
-					<td>Complete</td>
-				</tr>	
-			</table>						
-				<button style="text-align: center" onClick="goBack()">Back</button>
-				
-		</div>
-	';
-	
-}
 if(isset($_GET['action']) && $_GET['action'] == 'editgradessingle'){
 editGradesSingle();
 }
