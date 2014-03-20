@@ -58,7 +58,7 @@
 								<td><a href="">Add to Assignment</a></td>
 							</tr>
 						</table>
-						<button style="text-align: center" onClick="goBack()">Back</button>
+						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 					</div>';
 				} else {
 					echo'	
@@ -97,7 +97,7 @@
 								<td><a href="">Add to Assignment</a></td>
 							</tr>
 						</table>
-						<button style="text-align: center" onClick="goBack()">Back</button>
+						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 					</div>';
 				}
 			} else {
@@ -115,35 +115,35 @@
 								<td></td>
 							</tr>
 							<tr>
-								<td><a href="">Problem 1</a></td>
+								<td>Problem 1</td>
 								<td>String</td>
 								<td>CSIS-225</td>
 								<td><a href="">Add to Private Pool</a></td>
 								<td><a href="">Edit</a></td>
 							</tr>
 							<tr>
-								<td><a href="">Problem 2</a></td>
+								<td>Problem 2</td>
 								<td>Recursion</td>
 								<td>CSIS-225</td>
 								<td><a href="">Add to Private Pool</a></td>
 								<td><a href="">Edit</a></td>
 							</tr>
 							<tr>
-								<td><a href="">Problem 3</a></td>
+								<td>Problem 3</td>
 								<td>Array</td>
 								<td>CSIS-225</td>
 								<td><a href="">Add to Private Pool</a></td>
 								<td><a href="">Edit</a></td>
 							</tr>
 							<tr>
-								<td><a href="">Problem 4</a></td>
+								<td>Problem 4</td>
 								<td>Logic</td>
 								<td>CSIS-225</td>
 								<td><a href="">Add to Private Pool</a></td>
 								<td><a href="">Edit</a></td>
 							</tr>
 						</table>
-						<button style="text-align: center" onClick="goBack()">Back</button>
+						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 					</div>';
 				} else {
 					echo'	
@@ -159,35 +159,35 @@
 								<td></td>
 							</tr>
 							<tr>
-								<td><a href="">Problem 1</a></td>
+								<td>Problem 1</td>
 								<td>String</td>
 								<td>CSIS-225</td>
 								<td><a href="">Edit</a></td>
 								<td><a href="">Remove</a></td>
 							</tr>
 							<tr>
-								<td><a href="">Problem 2</a></td>
+								<td>Problem 2</td>
 								<td>Recursion</td>
 								<td>CSIS-225</td>
 								<td><a href="">Edit</a></td>
 								<td><a href="">Remove</a></td>
 							</tr>
 							<tr>
-								<td><a href="">Problem 3</a></td>
+								<td>Problem 3</td>
 								<td>Array</td>
 								<td>CSIS-225</td>
 								<td><a href="">Edit</a></td>
 								<td><a href="">Remove</a></td>
 							</tr>
 							<tr>
-								<td><a href="">Problem 4</a></td>
+								<td>Problem 4</td>
 								<td>Logic</td>
 								<td>CSIS-225</td>
 								<td><a href="">Edit</a></td>
 								<td><a href="">Remove</a></td>
 							</tr>
 						</table>
-						<button style="text-align: center;" onClick="goBack()">Back</button>
+						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 					</div>';
 				}
 			}

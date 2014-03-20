@@ -3,9 +3,9 @@
 		echo'
 		<div>
 			<ul>
-				<a href="?action=manageStudent"><li><u>Manage Students</u></li></a>
-				<a href="?action=manageFaculty"><li><u>Manage Faculty</u></li></a>
-				<a href="?action=manageCC"><li><u>Manage Course Coordinators</u></li></a>
+				<a href="?action=manageStudent&#tab2"><li><u>Manage Students</u></li></a>
+				<a href="?action=manageFaculty&#tab2"><li><u>Manage Faculty</u></li></a>
+				<a href="?action=manageCC&#tab2"><li><u>Manage Course Coordinators</u></li></a>
 			</ul>
 		</div>
 		';
@@ -24,7 +24,7 @@
 					<h3>Manage Course Coordinator Accounts</h3>
 					</br>
 					</br>
-					<a href="?action=createCC">Create New Course Coordinator Account</a>
+					<a href="?action=createCC&#tab2">Create New Course Coordinator Account</a>
 					</br>
 					</br>														
 						<table>
@@ -39,26 +39,26 @@
 								<td>Mr</td>
 								<td>Nick</td>
 								<td>Nack</td>
-								<td><a href="?action=editCCAccount">Edit</a></td>
+								<td><a href="?action=editCCAccount&#tab2">Edit</a></td>
 								<td><a href="">Delete</a></td>
 							</tr>
 							<tr>
 								<td>Dr</td>
 								<td>Cliff</td>
 								<td>Diver</td>
-								<td><a href="?action=editCCAccount">Edit</a></td>
+								<td><a href="?action=editCCAccount&#tab2">Edit</a></td>
 								<td><a href="">Delete</a></td>
 							</tr>
 							<tr>
 								<td>Mrs</td>
 								<td>Patty</td>
 								<td>Whack</td>
-								<td><a href="?action=editCCAccount">Edit</a></td>
+								<td><a href="?action=editCCAccount&#tab2">Edit</a></td>
 								<td><a href="">Delete</a></td>
 							</tr>
 						</table>
-					<form method="" action="home.php">							
-						<p class="submit" style="text-align: center"><input type="submit" value="Back"></p>
+					<form method="">							
+						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 					</form>
 				</div>			
 			';
@@ -71,7 +71,7 @@ function manageFaculty() {
 					<h3>Manage Faculty Accounts</h3>
 					</br>
 					</br>
-					<a href="?action=createFaculty">Create New Faculty Account</a>
+					<a href="?action=createFaculty&#tab2">Create New Faculty Account</a>
 					</br>
 					</br>														
 						<table>
@@ -86,33 +86,33 @@ function manageFaculty() {
 								<td>Mr</td>
 								<td>Vic</td>
 								<td>Tory</td>
-								<td><a href="?action=editFacultyAccount">Edit</a></td>
+								<td><a href="?action=editFacultyAccount&#tab2">Edit</a></td>
 								<td><a href="">Delete</a></td>
 							</tr>
 							<tr>
 								<td>Dr</td>
 								<td>Luke</td>
 								<td>Warm</td>
-								<td><a href="?action=editFacultyAccount">Edit</a></td>
+								<td><a href="?action=editFacultyAccount&#tab2">Edit</a></td>
 								<td><a href="">Delete</a></td>
 							</tr>
 							<tr>
 								<td>Dr</td>
 								<td>Will</td>
 								<td>Power</td>
-								<td><a href="?action=editFacultyAccount">Edit</a></td>
+								<td><a href="?action=editFacultyAccount&#tab2">Edit</a></td>
 								<td><a href="">Delete</a></td>
 							</tr>
 							<tr>
 								<td>Mrs</td>
 								<td>Tara</td>
 								<td>Zona</td>
-								<td><a href="?action=editFacultyAccount">Edit</a></td>
+								<td><a href="?action=editFacultyAccount&#tab2">Edit</a></td>
 								<td><a href="">Delete</a></td>
 							</tr>
 						</table>
-					<form method="" action="home.php">							
-						<p class="submit" style="text-align: center"><input type="submit" value="Back"></p>
+					<form method="">							
+						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 					</form>
 				</div>
 					
@@ -128,7 +128,7 @@ function manageStudent() {
 		<div class="CSSTableGenerator" >
 			<h3>Manage Student Accounts</h3>
 			</br></br>
-			<a href="?action=createStudent">Create New Student Account</a>
+			<a href="?action=createStudent&#tab2">Create New Student Account</a>
 			</br></br>
 				<table>
 					<tr>
@@ -140,30 +140,30 @@ function manageStudent() {
 					<tr>
 						<td>Petey</td>
 						<td>Cruiser</td>
-						<td><a href="?action=editStudentAccount">Edit</a></td>
+						<td><a href="?action=editStudentAccount&#tab2">Edit</a></td>
 						<td><a href="">Delete</a></td>
 					</tr>
 					<tr>
 						<td>Robin</td>
 						<td>Banks</td>
-						<td><a href="?action=editStudentAccount">Edit</a></td>
+						<td><a href="?action=editStudentAccount&#tab2">Edit</a></td>
 						<td><a href="">Delete</a></td>
 					</tr>
 					<tr>
 						<td>Will</td>
 						<td>Power</td>
-						<td><a href="?action=editStudentAccount">Edit</a></td>
+						<td><a href="?action=editStudentAccount&#tab2">Edit</a></td>
 						<td><a href="">Delete</a></td>
 					</tr>
 					<tr>
 						<td>Mary</td>
 						<td>Christmas</td>
-						<td><a href="?action=editStudentAccount">Edit</a></td>
+						<td><a href="?action=editStudentAccount&#tab2">Edit</a></td>
 						<td><a href="">Delete</a></td>
 					</tr>
 				</table>
-			<form method="" action="home.php">							
-				<p class="submit" style="text-align: center"><input type="submit" value="Back"></p>
+			<form method="">							
+				<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 			</form>
 		</div>																	
 	';
@@ -179,7 +179,7 @@ function editStudentAccount(){
 	
 	echo'
 			<div class="profile">
-				<form method="POST" action="home.php">
+				<form method="POST" action="home.php?action=manageStudent&#tab2">
 					<p>First Name:<input type="text" name="fname" placeholder="Petey"></p>
 					<p>Last Name:<input type="text" name="lname" placeholder="Cruiser"></p>
 					<p>Email:<input type="text" name="email" placeholder="PTCruiser@siena.edu"></p>
@@ -229,8 +229,8 @@ function editStudentAccount(){
 								<td style="border:1px solid;"><input type="checkbox"checked></td>
 							</tr>
 						</table>
-						<input type="submit" name="cancel" value="Cancel" onClick="cancelConfirm()">
-						<input type="submit" name="commit" value="Submit">
+						<input type="submit" value="Cancel" onClick="goBack()">
+						<input type="submit" value="Submit">
 						</form>
 						</div>';
 			
@@ -241,7 +241,7 @@ function editFacultyAccount(){
 	
 	echo'
 			<div class="profile">
-				<form method="POST" action="home.php">
+				<form method="POST" action="home.php?action=manageFaculty&#tab2">
 					<p>Prefix:<input type="text" name="prefix" placeholder="Dr"></p>
 					<p>First Name:<input type="text" name="fname" placeholder="Darren"></p>
 					<p>Last Name:<input type="text" name="lname" placeholder="Lim"></p>
@@ -292,7 +292,7 @@ function editFacultyAccount(){
 								<td style="border:1px solid;"><input type="checkbox"checked></td>
 							</tr>
 						</table>
-						<input type="submit" name="cancel" value="Cancel" onClick="cancelConfirm()">
+						<input type="submit" name="cancel" value="Cancel" onClick="goBack()">
 						<input type="submit" name="commit" value="Submit">
 						</form>
 						</div>';
@@ -304,7 +304,7 @@ function editCCAccount(){
 	
 	echo'
 			<div class="profile">
-				<form method="POST" action="home.php">
+				<form method="POST" action="home.php?action=manageCC&#tab2">
 					<p>Prefix:<input type="text" name="prefix" placeholder="Dr"></p>
 					<p>First Name:<input type="text" name="fname" placeholder="Darren"></p>
 					<p>Last Name:<input type="text" name="lname" placeholder="Lim"></p>
@@ -330,7 +330,7 @@ function editCCAccount(){
 								<td style="border:1px solid;"><input type="checkbox" checked></td>
 							</tr>
 						</table>
-						<input type="submit" name="cancel" value="Cancel" onClick="cancelConfirm()">
+						<input type="submit" name="cancel" value="Cancel" onClick="goBack()">
 						<input type="submit" name="commit" value="Submit">
 						</form>
 						</div>';
@@ -387,7 +387,7 @@ function createCC(){
 							</tr>
 						</table>
 					<br>
-					<input type="button" value="Cancel" onClick="cancelConfirm()">
+					<input type="button" value="Cancel" onClick="goBack()">
 					<input type="submit" name="commit" value="Create Account">
 				</form>
 			</div>';
@@ -445,7 +445,7 @@ function createFaculty(){
 							</tr>
 						</table>
 					<br>
-					<input type="button" value="Cancel" onClick="cancelConfirm()">
+					<input type="button" value="Cancel" onClick="goBack()">
 					<input type="submit" name="commit" value="Create Account">
 				</form>
 			</div>';
@@ -505,7 +505,7 @@ function createStudent(){
 						</table>
 					
 					<br>
-					<input type="button" value="Cancel" onClick="cancelConfirm()">
+					<input type="button" value="Cancel" onClick="goBack()">
 					<input type="submit" name="commit" value="Create Account">
 				</form>
 			</div>';

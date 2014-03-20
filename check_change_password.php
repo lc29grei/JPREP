@@ -35,7 +35,7 @@
 	$_SESSION['password']=$password.'';
 	mysql_close($conn);
 
-	header("location:home.php");	
+	header("location:home.php#tab5");	
   }
 	
 ?>

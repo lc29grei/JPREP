@@ -8,7 +8,12 @@
   
   if($_SERVER['REQUEST_METHOD'] == "POST") {
     
-    #$new_prefix = mysql_real_escape_string($_POST['prefix']);
+    if($_POST['prefix']!=null)
+	{
+		$new_prefix = mysql_real_escape_string($_POST['prefix']);
+	}
+	else $new_prefix = $_SESSION['prefix'].'';
+    
 	if($_POST['fname']!=null)
 	{
 		$new_firstname = mysql_real_escape_string($_POST['fname']);
@@ -45,6 +50,7 @@
 	
 	$sql = 'UPDATE users
 			SET 
+			prefix="'.$new_prefix.'",
 			first="'.$new_firstname.'",
 			last="'.$new_lastname.'", 
 			secQ="'.$new_secq.'", 
@@ -79,6 +85,6 @@
 	$_SESSION['password']=$password.'';
 	mysql_close($conn);
 
-	header("location:home.php");	
+	header("location:home.php#tab5");	
   }
 ?>

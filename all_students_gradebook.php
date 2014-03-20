@@ -28,8 +28,6 @@
 			<div class="CSSTableGenerator" >
 			<h3>All Students</h3>
 			<h3 style="padding-left:150px;">Course 1</h3><br><br>
-			<a href="?action=editgrades">Edit Grades</a>
-			<br><br>
 						<table>
 							<tr>
 								<td>Student Name</td>
@@ -104,7 +102,7 @@
 								<td>Complete</td>
 							</tr>
 						</table>						
-							<button style="text-align: center" onClick="goBack()">Back</button>
+						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 						
 					</div>
 			

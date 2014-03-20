@@ -33,13 +33,13 @@
 								<td>Assignment 2</td>
 								<td>3/11/14	11:59 PM</td>
 								<td>Completed</td>
-								<td><a href="">View Grade</a></td>
+								<td><a href="./course_gradebook.php#tab4">View Grade</a></td>
 							</tr>
 							<tr>
 								<td>Assignment 3</td>
 								<td>3/12/14	11:59 PM</td>
 								<td>Not Completed</td>
-								<td><a href="">Complete Now</a></td>
+								<td><a href="./problem_interface.php">Complete Now</a></td>
 							</tr>
 						</table><br>
 						<p style="font-size:12px;"><u>Past Assignments</u></p>
@@ -54,22 +54,22 @@
 								<td>Assignment 4</td>
 								<td>1/10/14	11:59 PM</td>
 								<td>Completed</td>
-								<td><a href="">View Grade</a></td>
+								<td><a href="./course_gradebook.php#tab4">View Grade</a></td>
 							</tr>
 							<tr>
 								<td>Assignment 5</td>
 								<td>1/11/14	11:59 PM</td>
 								<td>Completed</td>
-								<td><a href="">View Grade</a></td>
+								<td><a href="./course_gradebook.php#tab4">View Grade</a></td>
 							</tr>
 							<tr>
 								<td>Assignment 6</td>
 								<td>1/12/14	11:59 PM</td>
 								<td>Completed</td>
-								<td><a href="">View Grade</a></td>
+								<td><a href="./course_gradebook.php#tab4">View Grade</a></td>
 							</tr>
 							</table>
-							<button style="text-align: center;" onClick="goBack()">Back</button>
+							<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 					</div>';
 			} else {
 				echo'<div class="CSSTableGenerator" >
@@ -122,7 +122,7 @@
 								<td><a href="">Edit</a></td>
 							</tr>
 							</table>
-							<button style="text-align: center;" onClick="goBack()">Back</button>
+							<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 					</div>';
 			}
 							

@@ -24,15 +24,50 @@
 		#<!-- Question Pool tab -->
 			include 'display_question_pool.php';
 			displayQuestionPool($accounttype);
-			
-	?>	
-		<!-- Gradebook tab -->
-			
+				
+		#<!-- Gradebook tab -->
+		if(isset($_GET['action']) && $_GET['action'] == 'editgradessingle'){
+			echo'
 			<div class="CSSTableGenerator" >
 			<h3>Student Name</h3>
 			<h3 style="padding-left:150px;">Assignment Name</h3>
+			<h3 style="padding-left:150px;">Overall Grade: 90/100</h3>
+			<br><br>
+			<table>
+				<tr>
+					<td>Problem Name</td>
+					<td>Points Earned</td>
+					<td>Possible Points</td>
+					<td>Status</td>
+				</tr>
+				<tr>
+					<td>Hello World</td>
+					<td><input type="text" placeholder="45"></td>
+					<td>45</td>
+					<td>Complete</td>
+				</tr>
+				<tr>
+					<td>Fun with Recursion</td>
+					<td><input type="text" placeholder="30"></td>
+					<td>40</td>
+					<td>Complete</td>
+				</tr>	
+				<tr>
+					<td>Strings</td>
+					<td><input type="text" placeholder="15"></td>
+					<td>15</td>
+					<td>Complete</td>
+				</tr>	
+			</table>						
+				<p class="submit" style="text-align: center"><input type="submit" value="Cancel" onClick="goBack()"><input type="submit" value="Submit" onClick="goBack()"></p>
+				
+		</div>';
+		} else {
+			echo'<div class="CSSTableGenerator" >
+			<h3>Student Name</h3>
+			<h3 style="padding-left:150px;">Assignment Name</h3>
 			<h3 style="padding-left:150px;">Overall Grade: 90/100</h3><br><br>
-			<a href="">Edit Grades</a><br><br>
+			<a href="?action=editgradessingle&#tab4">Edit Grades</a><br><br>
 						<table>
 							<tr>
 								<td>Problem Name</td>
@@ -59,11 +94,10 @@
 								<td>Complete</td>
 							</tr>
 						</table>
-						<button style="text-align: center" onClick="goBack()">Back</button>
-					</div>
-				
+						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
+					</div>';
+			}
 			
-	<?php	
 		#<!-- Profile tab -->
 		
 			include 'display_profile.php';

@@ -4,8 +4,8 @@ function displayProfile($accounttype)
 	if ($accounttype=="student") {
 		echo'
 		<div class="profile">
-			<a href="?action=editProfile"><u>Edit Profile</u></a>
-			<a href="?action=changePassword" style="padding-left:15px;"><u>Change Password</u></a><br>
+			<a href="?action=editProfile&#tab5"><u>Edit Profile</u></a>
+			<a href="?action=changePassword&#tab5" style="padding-left:15px;"><u>Change Password</u></a><br>
 				<ul>
 					<li>First Name: '.$_SESSION['first_name'].'</li>
 					<li>Last Name: '.$_SESSION['last_name'].'</li>
@@ -19,8 +19,8 @@ function displayProfile($accounttype)
 	} else {
 	echo'	
 	<div class="profile">
-		<a href="?action=editProfile"><u>Edit Profile</u></a>
-		<a href="?action=changePassword" style="padding-left:15px;"><u>Change Password</u></a><br>
+		<a href="?action=editProfile&#tab5"><u>Edit Profile</u></a>
+		<a href="?action=changePassword&#tab5" style="padding-left:15px;"><u>Change Password</u></a><br>
 			<ul>
 				<li>Prefix: '.$_SESSION['prefix'].'</li>
 				<li>First Name: '.$_SESSION['first_name'].'</li>

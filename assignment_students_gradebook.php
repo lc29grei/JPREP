@@ -32,7 +32,7 @@
 			<h3 style="padding-left:150px;">Assignment Name</h3>
 			<h3 style="padding-left:150px;">Due Date: 3/10/2014 11:59 PM</h3><br>
 			<p style="font-size:12px;">Click on a student's name to view individual problem grades for that student</p>
-			<a href="">Edit Grades</a><br><br>
+			
 						<table>
 							<tr>
 								<td>Student Name</td>
@@ -101,7 +101,7 @@
 								<td>Complete</td>
 							</tr>
 						</table>
-						<button style="text-align: center" onClick="goBack()">Back</button>
+						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 					</div>
 				
 			

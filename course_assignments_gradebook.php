@@ -75,7 +75,7 @@
 								<td>60</td>
 							</tr>
 						</table>
-						<button style="text-align: center" onClick="goBack()">Back</button>
+						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 					</div>
 				
 			
