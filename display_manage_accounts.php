@@ -1,4 +1,11 @@
 <?php
+	
+	$dbhost = 'localhost';
+  	$dbuser = 'root';
+  	$dbpass = '';
+  	$conn = mysql_connect($dbhost, $dbuser, $dbpass);
+	mysql_select_db("jprep");
+	
 	function displayManageAccounts () {
 		echo'
 		<div>
@@ -10,57 +17,45 @@
 		</div>
 		';
 	}
-	if(isset($_GET['action']) && $_GET['action'] == 'manageCC'){
-		manageCC();
-	} else if(isset($_GET['action']) && $_GET['action'] == 'manageStudent'){
-		manageStudent();
-	} else if(isset($_GET['action']) && $_GET['action'] == 'manageFaculty'){
-		manageFaculty();
-	} 
+	
 	function manageCC() {
-	echo'
-			
-				<div class="CSSTableGenerator" >
+				echo'<div class="CSSTableGenerator">
 					<h3>Manage Course Coordinator Accounts</h3>
 					</br>
 					</br>
 					<a href="?action=createCC&#tab2">Create New Course Coordinator Account</a>
-					</br>
-					</br>														
-						<table>
+					</br></br>';
+					
+					$query = "SELECT * FROM users WHERE role1='c' OR role2='c'";
+					$result = mysql_query($query);
+		
+					if (mysql_num_rows($result) > 0) {
+					echo'<table>
 							<tr>
 								<td>Prefix</td>
 								<td>First Name</td>
 								<td>Last Name</td>
 								<td></td>
 								<td></td>
-							</tr>
-							<tr>
-								<td>Mr</td>
-								<td>Nick</td>
-								<td>Nack</td>
-								<td><a href="?action=editCCAccount&#tab2">Edit</a></td>
-								<td><a href="">Delete</a></td>
-							</tr>
-							<tr>
-								<td>Dr</td>
-								<td>Cliff</td>
-								<td>Diver</td>
-								<td><a href="?action=editCCAccount&#tab2">Edit</a></td>
-								<td><a href="">Delete</a></td>
-							</tr>
-							<tr>
-								<td>Mrs</td>
-								<td>Patty</td>
-								<td>Whack</td>
-								<td><a href="?action=editCCAccount&#tab2">Edit</a></td>
-								<td><a href="">Delete</a></td>
-							</tr>
-						</table>
-					<form method="">							
+							</tr>';
+							while($row=mysql_fetch_array($result)) {
+								echo'<tr>';
+								echo'<td>' . $row['prefix'] . '</td>';
+								echo'<td>' . $row['first'] . '</td>';
+								echo'<td>' . $row['last'] . '</td>';
+								echo'<td><a href="?action=editCCAccount&id='.$row['email'].'&#tab2">Edit</a></td>';
+								if ($row['active'] == 1) echo'<td><a href="?action=disable&id='.$row['email'].'&role=c">Disable</a></td>';
+								else echo'<td><a href="?action=activate&id='.$row['email'].'&role=c">Activate</a></td>';
+							}				
+						echo'</table>';
+					} else {
+						echo'<p style="text-align: center;font-size:16px;">No Course Coordinators currently exist</p>';
+					}		
+					mysql_free_result($result);				
+					echo'<form>							
 						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
-					</form>
-				</div>			
+						</form>
+				</div>
 			';
 }
 
@@ -73,53 +68,38 @@ function manageFaculty() {
 					</br>
 					<a href="?action=createFaculty&#tab2">Create New Faculty Account</a>
 					</br>
-					</br>														
-						<table>
+					</br>';
+					
+						$query = "SELECT * FROM users WHERE role1='f' OR role2='f'";
+						$result = mysql_query($query);
+					
+					if (mysql_num_rows($result) > 0) {
+					echo'<table>
 							<tr>
 								<td>Prefix</td>
 								<td>First Name</td>
 								<td>Last Name</td>
 								<td></td>
 								<td></td>
-							</tr>
-							<tr>
-								<td>Mr</td>
-								<td>Vic</td>
-								<td>Tory</td>
-								<td><a href="?action=editFacultyAccount&#tab2">Edit</a></td>
-								<td><a href="">Delete</a></td>
-							</tr>
-							<tr>
-								<td>Dr</td>
-								<td>Luke</td>
-								<td>Warm</td>
-								<td><a href="?action=editFacultyAccount&#tab2">Edit</a></td>
-								<td><a href="">Delete</a></td>
-							</tr>
-							<tr>
-								<td>Dr</td>
-								<td>Will</td>
-								<td>Power</td>
-								<td><a href="?action=editFacultyAccount&#tab2">Edit</a></td>
-								<td><a href="">Delete</a></td>
-							</tr>
-							<tr>
-								<td>Mrs</td>
-								<td>Tara</td>
-								<td>Zona</td>
-								<td><a href="?action=editFacultyAccount&#tab2">Edit</a></td>
-								<td><a href="">Delete</a></td>
-							</tr>
-						</table>
-					<form method="">							
+							</tr>';
+							while($row=mysql_fetch_array($result)) {
+								echo'<tr>';
+								echo'<td>' . $row['prefix'] . '</td>';
+								echo'<td>' . $row['first'] . '</td>';
+								echo'<td>' . $row['last'] . '</td>';
+								echo'<td><a href="?action=editFacultyAccount&id='.$row['email'].'&#tab2">Edit</a></td>';
+								if ($row['active'] == 1) echo'<td><a href="?action=disable&id='.$row['email'].'&role=f">Disable</a></td>';
+								else echo'<td><a href="?action=activate&id='.$row['email'].'&role=f">Activate</a></td>';
+							}				
+						echo'</table>';
+					} else {
+						echo'<p style="text-align: center;font-size:16px;">No Faculty users currently exist</p>';
+					}		
+					mysql_free_result($result);
+					echo'<form method="">							
 						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 					</form>
-				</div>
-					
-					
-				
-			
-			';
+				</div>';
 }
 
 function manageStudent() {
@@ -129,63 +109,55 @@ function manageStudent() {
 			<h3>Manage Student Accounts</h3>
 			</br></br>
 			<a href="?action=createStudent&#tab2">Create New Student Account</a>
-			</br></br>
-				<table>
-					<tr>
-						<td>First Name</td>
-						<td>Last Name</td>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>Petey</td>
-						<td>Cruiser</td>
-						<td><a href="?action=editStudentAccount&#tab2">Edit</a></td>
-						<td><a href="">Delete</a></td>
-					</tr>
-					<tr>
-						<td>Robin</td>
-						<td>Banks</td>
-						<td><a href="?action=editStudentAccount&#tab2">Edit</a></td>
-						<td><a href="">Delete</a></td>
-					</tr>
-					<tr>
-						<td>Will</td>
-						<td>Power</td>
-						<td><a href="?action=editStudentAccount&#tab2">Edit</a></td>
-						<td><a href="">Delete</a></td>
-					</tr>
-					<tr>
-						<td>Mary</td>
-						<td>Christmas</td>
-						<td><a href="?action=editStudentAccount&#tab2">Edit</a></td>
-						<td><a href="">Delete</a></td>
-					</tr>
-				</table>
-			<form method="">							
+			</br></br>';
+					
+						$query = "SELECT * FROM users WHERE role1='s' OR role2='s'";
+						$result = mysql_query($query);
+					
+					if (mysql_num_rows($result) > 0) {
+					echo'<table>
+							<tr>
+								<td>First Name</td>
+								<td>Last Name</td>
+								<td></td>
+								<td></td>
+							</tr>';
+							while($row=mysql_fetch_array($result)) {
+								echo'<tr>';
+								echo'<td>' . $row['first'] . '</td>';
+								echo'<td>' . $row['last'] . '</td>';
+								echo'<td><a href="?action=editStudentAccount&id='.$row['email'].'&#tab2">Edit</a></td>';
+								if ($row['active'] == 1) echo'<td><a href="?action=disable&id='.$row['email'].'&role=s">Disable</a></td>';
+								else echo'<td><a href="?action=activate&id='.$row['email'].'&role=s">Activate</a></td>';
+							}				
+						echo'</table>';
+					} else {
+						echo'<p style="text-align: center;font-size:16px;">No Students currently exist</p>';
+					}		
+					mysql_free_result($result);
+					echo'<form method="">							
 				<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 			</form>
 		</div>																	
 	';
 }
-if(isset($_GET['action']) && $_GET['action'] == 'editStudentAccount'){
-		editStudentAccount();
-} else if(isset($_GET['action']) && $_GET['action'] == 'editFacultyAccount'){
-		editFacultyAccount();
-}else if(isset($_GET['action']) && $_GET['action'] == 'editCCAccount'){
-		editCCAccount();
-}
+
 function editStudentAccount(){
+	$email=$_GET['id'];
+	$first_name=mysql_result(mysql_query("SELECT first FROM users WHERE email='$email'"),0);
+	$last_name=mysql_result(mysql_query("SELECT last FROM users WHERE email='$email'"),0);
+	$secQ=mysql_result(mysql_query("SELECT secQ FROM users WHERE email='$email'"),0);
+	$secA=mysql_result(mysql_query("SELECT secA FROM users WHERE email='$email'"),0);
 	
 	echo'
 			<div class="profile">
 				<form method="POST" action="home.php?action=manageStudent&#tab2">
-					<p>First Name:<input type="text" name="fname" placeholder="Petey"></p>
-					<p>Last Name:<input type="text" name="lname" placeholder="Cruiser"></p>
-					<p>Email:<input type="text" name="email" placeholder="PTCruiser@siena.edu"></p>
-					<p>Confirm Email:<input type="text" name="confirm_email" placeholder="PTCruiser@siena.edu"></p>
-					<p>Security Question:<input type="text" name="secQ" placeholder="Whats my favorite car"></p>
-					<p>Security Answer:<input type="text" name="secA" placeholder="PT Cruiser"></p>
+					<p>First Name:<input type="text" name="fname" placeholder="'.$first_name.'"></p>
+					<p>Last Name:<input type="text" name="lname" placeholder="'.$last_name.'"></p>
+					<p>Email:<input type="text" name="email" placeholder="'.$email.'"></p>
+					<p>Confirm Email:<input type="text" name="confirm_email" placeholder="'.$email.'"></p>
+					<p>Security Question:<input type="text" name="secQ" placeholder="'.$secQ.'"></p>
+					<p>Security Answer:<input type="text" name="secA" placeholder="'.$secA.'"></p>
 					
 				
 				<table style="text-align:center;border:1px solid;">
@@ -238,17 +210,23 @@ function editStudentAccount(){
 }
 
 function editFacultyAccount(){
+	$email=$_GET['id'];
+	$prefix=mysql_result(mysql_query("SELECT prefix FROM users WHERE email='$email'"),0);
+	$first_name=mysql_result(mysql_query("SELECT first FROM users WHERE email='$email'"),0);
+	$last_name=mysql_result(mysql_query("SELECT last FROM users WHERE email='$email'"),0);
+	$secQ=mysql_result(mysql_query("SELECT secQ FROM users WHERE email='$email'"),0);
+	$secA=mysql_result(mysql_query("SELECT secA FROM users WHERE email='$email'"),0);
 	
 	echo'
 			<div class="profile">
 				<form method="POST" action="home.php?action=manageFaculty&#tab2">
-					<p>Prefix:<input type="text" name="prefix" placeholder="Dr"></p>
-					<p>First Name:<input type="text" name="fname" placeholder="Darren"></p>
-					<p>Last Name:<input type="text" name="lname" placeholder="Lim"></p>
-					<p>Email:<input type="text" name="email" placeholder="dlim@siena.edu"></p>
-					<p>Confirm Email:<input type="text" name="confirm_email" placeholder="dlim@siena.edu"></p>
-					<p>Security Question:<input type="text" name="secQ" placeholder="Whos the best student"></p>
-					<p>Security Answer:<input type="text" name="secA" placeholder="Luke"></p>
+					<p>Prefix:<input type="text" name="prefix" placeholder="'.$prefix.'"></p>
+					<p>First Name:<input type="text" name="fname" placeholder="'.$first_name.'"></p>
+					<p>Last Name:<input type="text" name="lname" placeholder="'.$last_name.'"></p>
+					<p>Email:<input type="text" name="email" placeholder="'.$email.'"></p>
+					<p>Confirm Email:<input type="text" name="confirm_email" placeholder="'.$email.'"></p>
+					<p>Security Question:<input type="text" name="secQ" placeholder="'.$secQ.'"></p>
+					<p>Security Answer:<input type="text" name="secA" placeholder="'.$secA.'"></p>
 					
 				
 				<table style="text-align:center;border:1px solid;">
@@ -302,16 +280,22 @@ function editFacultyAccount(){
 
 function editCCAccount(){
 	
+	$email=$_GET['id'];
+	$prefix=mysql_result(mysql_query("SELECT prefix FROM users WHERE email='$email'"),0);
+	$first_name=mysql_result(mysql_query("SELECT first FROM users WHERE email='$email'"),0);
+	$last_name=mysql_result(mysql_query("SELECT last FROM users WHERE email='$email'"),0);
+	$secQ=mysql_result(mysql_query("SELECT secQ FROM users WHERE email='$email'"),0);
+	$secA=mysql_result(mysql_query("SELECT secA FROM users WHERE email='$email'"),0);
 	echo'
 			<div class="profile">
 				<form method="POST" action="home.php?action=manageCC&#tab2">
-					<p>Prefix:<input type="text" name="prefix" placeholder="Dr"></p>
-					<p>First Name:<input type="text" name="fname" placeholder="Darren"></p>
-					<p>Last Name:<input type="text" name="lname" placeholder="Lim"></p>
-					<p>Email:<input type="text" name="email" placeholder="dlim@siena.edu"></p>
-					<p>Confirm Email:<input type="text" name="confirm_email" placeholder="dlim@siena.edu"></p>
-					<p>Security Question:<input type="text" name="secQ" placeholder="Whos the best student"></p>
-					<p>Security Answer:<input type="text" name="secA" placeholder="Luke"></p>
+					<p>Prefix:<input type="text" name="prefix" placeholder="'.$prefix.'"></p>
+					<p>First Name:<input type="text" name="fname" placeholder="'.$first_name.'"></p>
+					<p>Last Name:<input type="text" name="lname" placeholder="'.$last_name.'"></p>
+					<p>Email:<input type="text" name="email" placeholder="'.$email.'"></p>
+					<p>Confirm Email:<input type="text" name="confirm_email" placeholder="'.$email.'"></p>
+					<p>Security Question:<input type="text" name="secQ" placeholder="'.$secQ.'"></p>
+					<p>Security Answer:<input type="text" name="secA" placeholder="'.$secA.'"></p>
 					
 				
 				<table style="text-align:center;border:1px solid;">
@@ -510,7 +494,24 @@ function createStudent(){
 				</form>
 			</div>';
 }
+
+function disableUser() {
+	$id=$_GET['id'];
+	$role=$_GET['role'];
+	mysql_query("UPDATE users SET active=0 WHERE email='$id'");
+	if ($role=="s") header("Location: ?action=manageStudent&#tab2");
+	else if ($role=="f") header("Location: ?action=manageFaculty&#tab2");
+	if ($role=="c") header("Location: ?action=manageCC&#tab2");
+}
 	
+function activateUser() {
+	$id=$_GET['id'];
+	$role=$_GET['role'];
+	mysql_query("UPDATE users SET active=1 WHERE email='$id'");
+	if ($role=="s") header("Location: ?action=manageStudent&#tab2");
+	else if ($role=="f") header("Location: ?action=manageFaculty&#tab2");
+	if ($role=="c") header("Location: ?action=manageCC&#tab2");
+}
 	
 ?>
 

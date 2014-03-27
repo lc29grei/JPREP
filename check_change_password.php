@@ -21,7 +21,7 @@
 	$sql = 'UPDATE users
 			SET 
 			password="'.$new_password.'"
-			WHERE username="'.$_SESSION['username'].'"';
+			WHERE email="'.$_SESSION['username'].'"';
 	mysql_select_db('jprep');
 	$retval = mysql_query( $sql, $conn );
 	if(! $retval )

@@ -1,7 +1,7 @@
 <?php
-	function displayCourses($accounttype)
+	function displayCourses($currentrole)
 	{
-		if ($accounttype=="student") {
+		if ($currentrole=="s") {
 			echo'
 			<div>
 			<p><b><u>Current Courses</u></b></p>
@@ -33,7 +33,7 @@
 			</div>
 			</div>';
 		}
-		else if ($accounttype=="faculty") {
+		else if ($currentrole=="f") {
 		echo
 		'
 		<div>
@@ -81,7 +81,7 @@
 			</div>
 		</div>
 		';
-		} else if ($accounttype=="coursecoordinator") {
+		} else if ($currentrole=="c") {
 			echo'
 			<div>
 			<p><b><u>Current Courses</u></b></p>
@@ -107,7 +107,7 @@
    				<a href="./create_new_problem.php">Create New Problem</a><br>
 			</div>
 		</div>';
-		} else {
+		} else if ($currentrole=="a") {
 			echo'
 			<div>
 			<a href="./create_course.php"><u>Add Course</u></a>
@@ -143,8 +143,3 @@
 		}
 	}
 ?>
-
-
-
-
-

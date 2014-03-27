@@ -1,8 +1,8 @@
 <?php
 	
-	function displayQuestionPool($accounttype)
+	function displayQuestionPool($currentrole)
 	{
-		if ($accounttype=="faculty") {
+		if ($currentrole=="f") {
 			echo 
 			'
 			<div class="qpool">

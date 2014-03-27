@@ -1,5 +1,7 @@
 <?php
-function headerLayout($accounttype, $firstname) {
+function headerLayout($currentrole, $firstname) {
+$role2=$_SESSION['role2'];
+
 echo'
 	<head>
 		<title>Welcome to JPREP</title>
@@ -10,6 +12,10 @@ echo'
 		<script>
 			function goBack() {
 				window.history.back();
+			};
+			
+			function changeRole(val) {
+				window.location.href="./home.php";
 			};
 		</script>	
 	</head>
@@ -22,19 +28,25 @@ echo'
 					<a href="./logout.php">Logout</a>
 			</p>
 			</br>';
-			if($accounttype=="faculty") {
+			if($currentrole=="f") {
 				echo '<span>You are currently logged in as a FACULTY
-					  <select onChange="changeRole()">
-						  <option value="faculty">Faculty</option>
-						  <option value="coursecoordinator">Course Coordinator</option>
-					  </select>';}
-			else if($accounttype=="coursecoordinator") {
+					';
+					if ($role2!=NULL) {
+					  echo'<form method="POST" style="display:inline;padding-left:15px;" action="check_change_role.php">
+					  			<input type="submit" value="Switch to Course Coordinator">
+					  		</form>';
+					  }
+			}
+			else if($currentrole=="c") {
 				echo '<span>You are currently logged in as a COURSE COORDINATOR
-					  <select onChange="changeRole()">
-						  <option value="coursecoordinator">Course Coordinator</option>
-						  <option value="faculty">Faculty</option>
-					  </select>';}
-			else if($accounttype=="student"){
+					';
+					if ($role2!=NULL) {
+					  echo'<form method="POST" style="display:inline;padding-left:15px;" action="check_change_role.php">
+					  			<input type="submit" value="Switch to Faculty">
+					  		</form>';
+					  }
+			}
+			else if($currentrole=="s"){
 				echo'<span>You are currently logged in as a STUDENT';}
 			else 
 				echo'<span>You are currently logged in as a ADMIN';
@@ -46,13 +58,13 @@ echo'
 		<ul class="tabs">
 			<li><a id="courses" href="#tab1">Courses</a></li> ';	
 			
-			if($accounttype=="admin"){ echo '<li><a id="manageAccounts" href="#tab2">Manage Accounts</a></li>';}
+			if($currentrole=="a"){ echo '<li><a id="manageAccounts" href="#tab2">Manage Accounts</a></li>';}
 			else echo '<li style="visibility: hidden; display:none;"><a href="#">Manage Accounts</a></li> ';
 						
-			if($accounttype=="student"){ echo '<li style="visibility: hidden; display:none;"><a href="#">Question Pool</a></li> ';}
+			if($currentrole=="s"){ echo '<li style="visibility: hidden; display:none;"><a href="#">Question Pool</a></li> ';}
 			else echo '<li><a id="questionPool" href="#tab3">Question Pool</a></li>';
 
-			if($accounttype=="admin" or $accounttype=="coursecoordinator"){ echo '<li style="visibility: hidden; display:none;"><a href="#">Gradebook</a></li> ';}
+			if($currentrole=="a" or $currentrole=="c"){ echo '<li style="visibility: hidden; display:none;"><a href="#">Gradebook</a></li> ';}
 			else echo '<li><a id="gradebook" href="#tab4">Gradebook</a></li>';
 			
 

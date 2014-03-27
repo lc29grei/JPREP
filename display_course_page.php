@@ -1,6 +1,6 @@
 <?php
-function displayCourses($accounttype) {
-	if ($accounttype=="student") {
+function displayCourses($currentrole) {
+	if ($currentrole=="s") {
 		echo'
 			<div class="CSSTableGenerator">
 			<h3>Course</h3>

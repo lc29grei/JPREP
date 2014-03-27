@@ -1,7 +1,7 @@
 <?php
-function displayProfile($accounttype)
+function displayProfile($currentrole)
 {
-	if ($accounttype=="student") {
+	if ($currentrole=="s") {
 		echo'
 		<div class="profile">
 			<a href="?action=editProfile&#tab5"><u>Edit Profile</u></a>
@@ -36,14 +36,14 @@ function displayProfile($accounttype)
 }
 
 if(isset($_GET['action']) && $_GET['action'] == 'editProfile'){
-		editProfile($accounttype);
+		editProfile($currentrole);
 } else if(isset($_GET['action']) && $_GET['action'] == 'changePassword'){
-		changePassword($accounttype);
+		changePassword($currentrole);
 }
 	
-function editProfile($accounttype) {
+function editProfile($currentrole) {
 		
-		if ($accounttype=="student") {
+		if ($currentrole=="s") {
 			
 			echo'
 			<div class="profile">
@@ -72,7 +72,7 @@ function editProfile($accounttype) {
 		}
 }
 
-function changePassword($accounttype) {
+function changePassword($currentrole) {
 	echo'
 		<div class="profile">
 			<form method="POST" action="check_change_password.php" onsubmit="passwordChecker()">

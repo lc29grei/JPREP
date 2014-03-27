@@ -55,9 +55,9 @@
 			last="'.$new_lastname.'", 
 			secQ="'.$new_secq.'", 
 			secA="'.$new_seca.'",
-			username="'.$new_username.'",
+			email="'.$new_username.'",
 			password="'.$new_password.'"
-			WHERE username="'.$_SESSION['username'].'"';
+			WHERE email="'.$_SESSION['username'].'"';
 	mysql_select_db('jprep');
 	$retval = mysql_query( $sql, $conn );
 	if(! $retval )
@@ -68,15 +68,15 @@
 	
 	$username = $new_username;
     $password = $new_password;
-	$accounttype = mysql_result(mysql_query("SELECT type FROM users WHERE username='$username' AND password='$password'"),0)."";
-	$firstName = mysql_result(mysql_query("SELECT first FROM users WHERE username='$username' AND password='$password'"),0)."";
-	$lastName = mysql_result(mysql_query("SELECT last FROM users WHERE username='$username' AND password='$password'"),0)."";
-	$prefix = mysql_result(mysql_query("SELECT prefix FROM users WHERE username='$username' AND password='$password'"),0)."";
-	$secQ = mysql_result(mysql_query("SELECT secQ FROM users WHERE username='$username' AND password='$password'"),0)."";
-	$secA = mysql_result(mysql_query("SELECT secA FROM users WHERE username='$username' AND password='$password'"),0)."";
+	$currentrole = mysql_result(mysql_query("SELECT currentrole FROM users WHERE email='$username' AND password='$password'"),0)."";
+	$firstName = mysql_result(mysql_query("SELECT first FROM users WHERE email='$username' AND password='$password'"),0)."";
+	$lastName = mysql_result(mysql_query("SELECT last FROM users WHERE email='$username' AND password='$password'"),0)."";
+	$prefix = mysql_result(mysql_query("SELECT prefix FROM users WHERE email='$username' AND password='$password'"),0)."";
+	$secQ = mysql_result(mysql_query("SELECT secQ FROM users WHERE email='$username' AND password='$password'"),0)."";
+	$secA = mysql_result(mysql_query("SELECT secA FROM users WHERE email='$username' AND password='$password'"),0)."";
 	
 	$_SESSION['username']=$username.'';
-	$_SESSION['account_type']=$accounttype.'';
+	$_SESSION['currentrole']=$currentrole.'';
 	$_SESSION['first_name']=$firstName.'';
 	$_SESSION['last_name']=$lastName.'';
 	$_SESSION['prefix']=$prefix.'';
