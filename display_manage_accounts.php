@@ -151,62 +151,36 @@ function editStudentAccount(){
 	
 	echo'
 			<div class="profile">
-				<form method="POST" action="home.php?action=manageStudent&#tab2">
+				<form method="POST" action="check_edit_account.php?role=s&id='.$email.'">
 					<p>First Name:<input type="text" name="fname" placeholder="'.$first_name.'"></p>
 					<p>Last Name:<input type="text" name="lname" placeholder="'.$last_name.'"></p>
 					<p>Email:<input type="text" name="email" placeholder="'.$email.'"></p>
 					<p>Confirm Email:<input type="text" name="confirm_email" placeholder="'.$email.'"></p>
 					<p>Security Question:<input type="text" name="secQ" placeholder="'.$secQ.'"></p>
-					<p>Security Answer:<input type="text" name="secA" placeholder="'.$secA.'"></p>
+					<p>Security Answer:<input type="text" name="secA" placeholder="'.$secA.'"></p>';
 					
+				$query = "SELECT * FROM Section";
+				$result = mysql_query($query);
 				
-				<table style="text-align:center;border:1px solid;">
+				if (mysql_num_rows($result) > 0) {
+							echo'<table style="text-align:center;border:1px solid;">
 							<tr><th style="border:1px solid;">Course Number</th>
 								<th style="border:1px solid;">Course Name</th>
-								<th style="border:1px solid;">Enroll</th>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-120-01</td>
-								<td style="border:1px solid;">Intro to Programming</td>
+								<th style="border:1px solid;">Assign</th>
+							</tr>';
+							while($row=mysql_fetch_array($result)) {
+								echo'<tr>
+								<td style="border:1px solid;">CSIS-'.$row['courseId'].'-'.$row['sectionId'].'</td>
+								<td style="border:1px solid;">'.$row['coursename'].'</td>
 								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-120-02</td>
-								<td style="border:1px solid;">Intro to Programming</td>
-								<td style="border:1px solid;"><input type="checkbox" checked></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-120-03</td>
-								<td style="border:1px solid;">Intro to Programming</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-120-04</td>
-								<td style="border:1px solid;">Intro to Programming</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-225-01</td>
-								<td style="border:1px solid;">Object Oriented</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-225-02</td>
-								<td style="border:1px solid;">Object Oriented</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-225-03</td>
-								<td style="border:1px solid;">Object Oriented</td>
-								<td style="border:1px solid;"><input type="checkbox"checked></td>
-							</tr>
-						</table>
-						<input type="submit" value="Cancel" onClick="goBack()">
+								</tr>';
+							}
+							echo'</table>';
+						} echo'<br>
+						<input type="button" value="Cancel" onClick="goBack()">
 						<input type="submit" value="Submit">
 						</form>
 						</div>';
-			
-	
 }
 
 function editFacultyAccount(){
@@ -219,63 +193,37 @@ function editFacultyAccount(){
 	
 	echo'
 			<div class="profile">
-				<form method="POST" action="home.php?action=manageFaculty&#tab2">
+				<form method="POST" action="check_edit_account.php?role=f&id='.$email.'">
 					<p>Prefix:<input type="text" name="prefix" placeholder="'.$prefix.'"></p>
 					<p>First Name:<input type="text" name="fname" placeholder="'.$first_name.'"></p>
 					<p>Last Name:<input type="text" name="lname" placeholder="'.$last_name.'"></p>
 					<p>Email:<input type="text" name="email" placeholder="'.$email.'"></p>
 					<p>Confirm Email:<input type="text" name="confirm_email" placeholder="'.$email.'"></p>
 					<p>Security Question:<input type="text" name="secQ" placeholder="'.$secQ.'"></p>
-					<p>Security Answer:<input type="text" name="secA" placeholder="'.$secA.'"></p>
+					<p>Security Answer:<input type="text" name="secA" placeholder="'.$secA.'"></p>';
 					
+				$query = "SELECT * FROM Section";
+				$result = mysql_query($query);
 				
-				<table style="text-align:center;border:1px solid;">
+				if (mysql_num_rows($result) > 0) {
+							echo'<table style="text-align:center;border:1px solid;">
 							<tr><th style="border:1px solid;">Course Number</th>
 								<th style="border:1px solid;">Course Name</th>
-								<th style="border:1px solid;">Enroll</th>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-120-01</td>
-								<td style="border:1px solid;">Intro to Programming</td>
-								<td style="border:1px solid;"><input type="checkbox" checked></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-120-02</td>
-								<td style="border:1px solid;">Intro to Programming</td>
+								<th style="border:1px solid;">Assign</th>
+							</tr>';
+							while($row=mysql_fetch_array($result)) {
+								echo'<tr>
+								<td style="border:1px solid;">CSIS-'.$row['courseId'].'-'.$row['sectionId'].'</td>
+								<td style="border:1px solid;">'.$row['coursename'].'</td>
 								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-120-03</td>
-								<td style="border:1px solid;">Intro to Programming</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-120-04</td>
-								<td style="border:1px solid;">Intro to Programming</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-225-01</td>
-								<td style="border:1px solid;">Object Oriented</td>
-								<td style="border:1px solid;"><input type="checkbox" checked></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-225-02</td>
-								<td style="border:1px solid;">Object Oriented</td>
-								<td style="border:1px solid;"><input type="checkbox" checked></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-225-03</td>
-								<td style="border:1px solid;">Object Oriented</td>
-								<td style="border:1px solid;"><input type="checkbox"checked></td>
-							</tr>
-						</table>
-						<input type="submit" name="cancel" value="Cancel" onClick="goBack()">
-						<input type="submit" name="commit" value="Submit">
+								</tr>';
+							}
+							echo'</table>';
+						} echo'<br>
+						<input type="button" value="Cancel" onClick="goBack()">
+						<input type="submit" value="Submit">
 						</form>
 						</div>';
-			
-	
 }
 
 function editCCAccount(){
@@ -288,38 +236,37 @@ function editCCAccount(){
 	$secA=mysql_result(mysql_query("SELECT secA FROM users WHERE email='$email'"),0);
 	echo'
 			<div class="profile">
-				<form method="POST" action="home.php?action=manageCC&#tab2">
+				<form method="POST" action="check_edit_account.php?role=cc&id='.$email.'">
 					<p>Prefix:<input type="text" name="prefix" placeholder="'.$prefix.'"></p>
 					<p>First Name:<input type="text" name="fname" placeholder="'.$first_name.'"></p>
 					<p>Last Name:<input type="text" name="lname" placeholder="'.$last_name.'"></p>
 					<p>Email:<input type="text" name="email" placeholder="'.$email.'"></p>
 					<p>Confirm Email:<input type="text" name="confirm_email" placeholder="'.$email.'"></p>
 					<p>Security Question:<input type="text" name="secQ" placeholder="'.$secQ.'"></p>
-					<p>Security Answer:<input type="text" name="secA" placeholder="'.$secA.'"></p>
+					<p>Security Answer:<input type="text" name="secA" placeholder="'.$secA.'"></p>';
 					
+				$query = "SELECT * FROM Section";
+				$result = mysql_query($query);
 				
-				<table style="text-align:center;border:1px solid;">
+				if (mysql_num_rows($result) > 0) {
+							echo'<table style="text-align:center;border:1px solid;">
 							<tr><th style="border:1px solid;">Course Number</th>
 								<th style="border:1px solid;">Course Name</th>
-								<th style="border:1px solid;">Enroll</th>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-120</td>
-								<td style="border:1px solid;">Intro to Programming</td>
+								<th style="border:1px solid;">Assign</th>
+							</tr>';
+							while($row=mysql_fetch_array($result)) {
+								echo'<tr>
+								<td style="border:1px solid;">CSIS-'.$row['courseId'].'-'.$row['sectionId'].'</td>
+								<td style="border:1px solid;">'.$row['coursename'].'</td>
 								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-225</td>
-								<td style="border:1px solid;">Object Oriented</td>
-								<td style="border:1px solid;"><input type="checkbox" checked></td>
-							</tr>
-						</table>
-						<input type="submit" name="cancel" value="Cancel" onClick="goBack()">
-						<input type="submit" name="commit" value="Submit">
+								</tr>';
+							}
+							echo'</table>';
+						} echo'<br>
+						<input type="button" value="Cancel" onClick="goBack()">
+						<input type="submit" value="Submit">
 						</form>
 						</div>';
-			
-	
 }
 	
 	
@@ -336,163 +283,111 @@ function createCC(){
 	echo'
 			<div class="profile">
 				<h3>Create New Course Coordinator</h3>
-				<form method="POST" action="home.php">
+				<form method="POST" action="check_edit_account.php?action=create&role=cc">
 					<p>Prefix:<input type="text" name="prefix" ></p>
-					<p>First Name:<input type="text" name="fname" ></p>
+					<p>First Name:<input type="text" name="fname"></p>
 					<p>Last Name:<input type="text" name="lname"></p>
-					<p>Username:<input type="text" name="email" ></p>		
+					<p>Email:<input type="text" name="email"></p>	
+					<p>Confirm Email:<input type="text" name="confirm_email"></p>	
 					<p>Security Question:<input type="text" name="secQ"></p>
-					<p>Security Answer:<input type="text" name="secA" ></p>
-					<p>Faculty Privileges: <input type="checkbox" name="isFaculty" value="Faculty"></p>
-					<table style="text-align:center;border:1px solid;">
+					<p>Security Answer:<input type="text" name="secA"></p>
+					<p>Faculty Privileges: <input type="checkbox" name="isFaculty" value="Faculty"></p>';
+					
+				$query = "SELECT * FROM Section";
+				$result = mysql_query($query);
+				
+				if (mysql_num_rows($result) > 0) {
+							echo'<table style="text-align:center;border:1px solid;">
 							<tr><th style="border:1px solid;">Course Number</th>
 								<th style="border:1px solid;">Course Name</th>
 								<th style="border:1px solid;">Assign</th>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-120</td>
-								<td style="border:1px solid;">Intro to Programming</td>
+							</tr>';
+							while($row=mysql_fetch_array($result)) {
+								echo'<tr>
+								<td style="border:1px solid;">CSIS-'.$row['courseId'].'-'.$row['sectionId'].'</td>
+								<td style="border:1px solid;">'.$row['coursename'].'</td>
 								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-210</td>
-								<td style="border:1px solid;">Data Structures</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-220</td>
-								<td style="border:1px solid;">Assembly Language</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-225</td>
-								<td style="border:1px solid;">Object Oriented</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-						</table>
-					<br>
-					<input type="button" value="Cancel" onClick="goBack()">
-					<input type="submit" name="commit" value="Create Account">
-				</form>
-			</div>';
+								</tr>';
+							}
+							echo'</table>';
+						} echo'<br>
+						<input type="button" value="Cancel" onClick="goBack()">
+						<input type="submit" value="Submit">
+						</form>
+						</div>';
 }
 function createFaculty(){
 	echo'
 			<div class="profile">
 				<h3>Create New Faculty</h3>
-				<form method="POST" action="home.php">
+				<form method="POST" action="check_edit_account.php?action=create&role=f">
 					<p>Prefix:<input type="text" name="prefix" ></p>
-					<p>First Name:<input type="text" name="fname" ></p>
+					<p>First Name:<input type="text" name="fname"></p>
 					<p>Last Name:<input type="text" name="lname"></p>
-					<p>Username:<input type="text" name="email" ></p>		
+					<p>Email:<input type="text" name="email"></p>
+					<p>Confirm Email:<input type="text" name="confirm_email"></p>		
 					<p>Security Question:<input type="text" name="secQ"></p>
-					<p>Security Answer:<input type="text" name="secA" ></p>
-					<table style="text-align:center;border:1px solid;">
+					<p>Security Answer:<input type="text" name="secA"></p>
+					<p>Course Coordinator Privileges: <input type="checkbox" name="isCC" value="CC"></p>';
+					
+				$query = "SELECT * FROM Section";
+				$result = mysql_query($query);
+				
+				if (mysql_num_rows($result) > 0) {
+							echo'<table style="text-align:center;border:1px solid;">
 							<tr><th style="border:1px solid;">Course Number</th>
 								<th style="border:1px solid;">Course Name</th>
 								<th style="border:1px solid;">Assign</th>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-120-01</td>
-								<td style="border:1px solid;">Intro to Programming</td>
+							</tr>';
+							while($row=mysql_fetch_array($result)) {
+								echo'<tr>
+								<td style="border:1px solid;">CSIS-'.$row['courseId'].'-'.$row['sectionId'].'</td>
+								<td style="border:1px solid;">'.$row['coursename'].'</td>
 								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-120-02</td>
-								<td style="border:1px solid;">Intro to Programming</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-120-03</td>
-								<td style="border:1px solid;">Intro to Programming</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-120-04</td>
-								<td style="border:1px solid;">Intro to Programming</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-225-01</td>
-								<td style="border:1px solid;">Object Oriented</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-225-02</td>
-								<td style="border:1px solid;">Object Oriented</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-225-03</td>
-								<td style="border:1px solid;">Object Oriented</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-						</table>
-					<br>
-					<input type="button" value="Cancel" onClick="goBack()">
-					<input type="submit" name="commit" value="Create Account">
-				</form>
-			</div>';
+								</tr>';
+							}
+							echo'</table>';
+						} echo'<br>
+						<input type="button" value="Cancel" onClick="goBack()">
+						<input type="submit" value="Submit">
+						</form>
+						</div>';
 }
 
 function createStudent(){
 	echo'
 			<div class="profile">
 				<h3>Create New Student</h3>
-				<form method="POST" action="home.php">
+				<form method="POST" action="check_edit_account.php?action=create&role=s">
 					<p>First Name:<input type="text" name="fname" ></p>
 					<p>Last Name:<input type="text" name="lname"></p>
-					<p>Username:<input type="text" name="email" ></p>		
+					<p>Email:<input type="text" name="email"></p>
+					<p>Confirm Email:<input type="text" name="confirm_email"></p>		
 					<p>Security Question:<input type="text" name="secQ"></p>
-					<p>Security Answer:<input type="text" name="secA" ></p>
+					<p>Security Answer:<input type="text" name="secA"></p>';
 					
-						<table style="text-align:center;border:1px solid;">
+				$query = "SELECT * FROM Section";
+				$result = mysql_query($query);
+				
+				if (mysql_num_rows($result) > 0) {
+							echo'<table style="text-align:center;border:1px solid;">
 							<tr><th style="border:1px solid;">Course Number</th>
 								<th style="border:1px solid;">Course Name</th>
 								<th style="border:1px solid;">Enroll</th>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-120-01</td>
-								<td style="border:1px solid;">Intro to Programming</td>
+							</tr>';
+							while($row=mysql_fetch_array($result)) {
+								echo'<tr>
+								<td style="border:1px solid;">CSIS-'.$row['courseId'].'-'.$row['sectionId'].'</td>
+								<td style="border:1px solid;">'.$row['coursename'].'</td>
 								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-120-02</td>
-								<td style="border:1px solid;">Intro to Programming</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-120-03</td>
-								<td style="border:1px solid;">Intro to Programming</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-120-04</td>
-								<td style="border:1px solid;">Intro to Programming</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-225-01</td>
-								<td style="border:1px solid;">Object Oriented</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-225-02</td>
-								<td style="border:1px solid;">Object Oriented</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-							<tr>
-								<td style="border:1px solid;">CSIS-225-03</td>
-								<td style="border:1px solid;">Object Oriented</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-							</tr>
-						</table>
-					
-					<br>
-					<input type="button" value="Cancel" onClick="goBack()">
-					<input type="submit" name="commit" value="Create Account">
-				</form>
-			</div>';
+								</tr>';
+							}
+							echo'</table>';
+						} echo'<br>
+						<input type="button" value="Cancel" onClick="goBack()">
+						<input type="submit" value="Submit">
+						</form>
+						</div>';
 }
 
 function disableUser() {
