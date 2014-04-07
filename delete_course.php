@@ -45,8 +45,7 @@
 			</form>
 			
 			</div>';
-			
-			mysql_data_seek( $sectionCountResult, 0 );
+			if($sectionCountResultRows>0) mysql_data_seek( $sectionCountResult, 0 );
 			if(isset($_POST['deleteCoursePost'])){
 				if ($sectionCountResultRows > 0) {
 					while($row=mysql_fetch_array($sectionCountResult)) {
