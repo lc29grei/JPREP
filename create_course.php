@@ -19,7 +19,54 @@
 			$result1 = mysql_query($query1);
 			$query2 = "SELECT * FROM users WHERE role1='c' OR role2='c'";
 			$result2 = mysql_query($query2);
+			
+		if(isset($_GET['action']) && $_GET['action'] == 'edit'){
+			$secId = $_GET['id'];
+			$courseNum = mysql_result(mysql_query("SELECT courseId FROM Section WHERE sectionId='$secId'"),0)."";
+			$courseName = mysql_result(mysql_query("SELECT coursename FROM Section WHERE sectionId='$secId'"),0)."";
+			$description = mysql_result(mysql_query("SELECT description FROM Section WHERE sectionId='$secId'"),0)."";
+			$facultyName = mysql_result(mysql_query("SELECT faculty FROM Section WHERE sectionId='$secId'"),0)."";
+			$ccName = mysql_result(mysql_query("SELECT coursecoordinator FROM Section WHERE sectionId='$secId'"),0)."";
 			echo'
+			<div>
+			<p style="font-size:18px;"><u>Create New Course</u></p>
+			<form method="POST" action="check_create_course.php?action=edit&id='.$secId.'">
+			Course Number: CSIS-<input type="text" name="courseNum" placeholder="'.$courseNum.'"> 
+			Section Number: <input type="text" name="sectionNum" placeholder="'.$secId.'">
+			<br><br>Course Name: <input type="text" name="courseName" placeholder="'.$courseName.'">
+			<br><br>
+			Description<br><textarea name="description" rows="5" cols="150" style="resize:none;" placeholder="'.$description.'"></textarea><br><br>
+			Semester: <select><option id="fall2013">Fall 2013</option>
+							<option id="spring2014">Spring 2014</option>
+							<option id="summer2014">Summer 2014</option>
+						</select><br><br>
+			Assign Faculty Member: <select name="facultyName"><option>Select Faulty</option>';
+							if (mysql_num_rows($result1) > 0) {
+								while($row=mysql_fetch_array($result1)) {
+									if ($row['email'] == $facultyName) {
+										echo'<option value="'.$row['email'].'" selected="selected">'.$row['prefix'].'. '.$row['first'].' '.$row['last'].'</option>';
+									} else echo'<option value="'.$row['email'].'">'.$row['prefix'].'. '.$row['first'].' '.$row['last'].'</option>';		
+								}
+							}
+					echo'</select><br><br>
+			Assign Course Coordinator: <select name="ccName"><option>Select Course Coordinator</option>';
+							if (mysql_num_rows($result2) > 0) {
+								while($rows=mysql_fetch_array($result2)) {
+									if ($rows['email'] == $ccName) {
+										echo'<option value="'.$rows['email'].'" selected="selected">'.$rows['prefix'].'. '.$rows['first'].' '.$rows['last'].'</option>';
+									} else echo'<option value="'.$rows['email'].'">'.$rows['prefix'].'. '.$rows['first'].' '.$rows['last'].'</option>';		
+								}
+							}
+					echo'</select>
+			
+			<br><br><br>
+			<input type="button" value="Cancel" onClick="cancelConfirm()">
+			<input type="submit" value="Save Changes">
+			</form>
+			
+			</div>';
+		} else {
+				echo'
 			<div>
 			<p style="font-size:18px;"><u>Create New Course</u></p>
 			<form method="POST" action="check_create_course.php">
@@ -53,6 +100,7 @@
 			</form>
 			
 			</div>';
+		}
 	
 		#<!-- Manage Accounts tab -->
 			include 'display_manage_accounts.php';

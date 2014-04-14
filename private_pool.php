@@ -1,11 +1,19 @@
 <!DOCTYPE HTML>
 <?php
 	session_start();
+	
+	$dbhost = 'localhost';
+  	$dbuser = 'root';
+  	$dbpass = '';
+  	$conn = mysql_connect($dbhost, $dbuser, $dbpass);
+  	mysql_select_db('jprep');
+  	
 	if (!(isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']!='')) {
 		header ("Location: login.php");
 	}  
 	$currentrole=$_SESSION['currentrole'];
 	$firstname=$_SESSION['first_name'];
+	$email = $_SESSION['username'];
    	include 'home_layout.php';
    	headerLayout($currentrole, $firstname);	
 		
@@ -37,45 +45,30 @@
 			}
 											
 		#<!-- Question Pool tab -->
-			
+		
+		$privatePoolSQL = 'SELECT * FROM Problem WHERE poolid="private_'.$email.'"';
+		$privatePoolSQLResult = mysql_query($privatePoolSQL, $conn);
+		
 		if(isset($_GET['action']) && $_GET['action'] == 'addAssignment'){
-			echo'<div class="CSSTableGenerator" >
+			echo'<div class="CSSTableGenerator">
 			<h3>Private Pool</h3>
-						<table >
+						<table>
 							<tr>
 								<td>Name</td>
-								<td>Category</td>
-								<td>Course</td>
+								<td>Method Name</td>
+								<td>Type</td>
 								<td></td>
-							</tr>
-							<tr>
-								<td>Problem 1</td>
-								<td>String</td>
-								<td>CSIS-225</td>
-								<td><a href="">Add to Assignment</a></td>
-							</tr>
-							<tr>
-								<td>Problem 2</td>
-								<td>Recursion</td>
-								<td>CSIS-120</td>
-								<td><a href="">Add to Assignment</a></td>
-							</tr>
-							<tr>
-								<td>Problem 3</td>
-								<td>Array</td>
-								<td>CSIS-225</td>
-								<td><a href="">Add to Assignment</a></td>
-							</tr>
-							<tr>
-								<td>Problem 4</td>
-								<td>Logic</td>
-								<td>CSIS-225</td>
-								<td><a href="">Add to Assignment</a></td>
-							</tr>
-						</table>
-						
+							</tr>';
+							if ($privatePoolSQLResult > 0) {
+								while($row=mysql_fetch_array($privatePoolSQLResult)) {
+									echo'<tr><td>'.$row['title'].'</td>';
+									echo'<td>'.$row['methodname'].'</td>';
+									echo'<td>'.$row['resulttype'].'</td>';
+									echo'<td><a href="">Add to Assignment</a></td></tr>';
+								}
+							} else echo'You have no problems in your Private Pool';
+						echo'</table>
 						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
-						
 					</div>';
 		} else {
 			echo'<div class="CSSTableGenerator" >
@@ -83,40 +76,22 @@
 						<table >
 							<tr>
 								<td>Name</td>
-								<td>Category</td>
-								<td>Course</td>
+								<td>Method Name</td>
+								<td>Type</td>
 								<td></td>
 								<td></td>
-							</tr>
-							<tr>
-								<td>Problem 1</td>
-								<td>String</td>
-								<td>CSIS-225</td>
-								<td><a href="">Edit</a></td>
-								<td><a href="">Remove</a></td>
-							</tr>
-							<tr>
-								<td>Problem 2</td>
-								<td>Recursion</td>
-								<td>CSIS-120</td>
-								<td><a href="">Edit</a></td>
-								<td><a href="">Remove</a></td>
-							</tr>
-							<tr>
-								<td>Problem 3</td>
-								<td>Array</td>
-								<td>CSIS-225</td>
-								<td><a href="">Edit</a></td>
-								<td><a href="">Remove</a></td>
-							</tr>
-							<tr>
-								<td>Problem 4</td>
-								<td>Logic</td>
-								<td>CSIS-225</td>
-								<td><a href="">Edit</a></td>
-								<td><a href="">Remove</a></td>
-							</tr>
-						</table>
+							</tr>';
+							if ($privatePoolSQLResult > 0) {
+								while($row=mysql_fetch_array($privatePoolSQLResult)) {
+									echo'<tr><td>'.$row['title'].'</td>';
+									echo'<td>'.$row['methodname'].'</td>';
+									echo'<td>'.$row['resulttype'].'</td>';
+									echo'<td><a href="">Edit</a></td>';
+									if ($row['active'] == 1) echo'<td><a href="?action=disable&id='.$row['problemId'].'">Remove</a></td></tr>';
+									else echo'<td><a href="?action=activate&id='.$row['problemId'].'">Activate</a></td></tr>';
+								}
+							} else echo'You have no problems in your Private Pool';
+						echo'</table>
 						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 					</div>';
 		}

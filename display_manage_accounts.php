@@ -44,8 +44,8 @@
 								echo'<td>' . $row['first'] . '</td>';
 								echo'<td>' . $row['last'] . '</td>';
 								echo'<td><a href="?action=editCCAccount&id='.$row['email'].'&#tab2">Edit</a></td>';
-								if ($row['active'] == 1) echo'<td><a href="?action=disable&id='.$row['email'].'&role=c">Disable</a></td>';
-								else echo'<td><a href="?action=activate&id='.$row['email'].'&role=c">Activate</a></td>';
+								if ($row['active'] == 1) echo'<td><a href="?action=disable&id='.$row['email'].'&role=c&#tab2">Disable</a></td>';
+								else echo'<td><a href="?action=activate&id='.$row['email'].'&role=c&#tab2">Activate</a></td>';
 							}				
 						echo'</table>';
 					} else {
@@ -88,8 +88,8 @@ function manageFaculty() {
 								echo'<td>' . $row['first'] . '</td>';
 								echo'<td>' . $row['last'] . '</td>';
 								echo'<td><a href="?action=editFacultyAccount&id='.$row['email'].'&#tab2">Edit</a></td>';
-								if ($row['active'] == 1) echo'<td><a href="?action=disable&id='.$row['email'].'&role=f">Disable</a></td>';
-								else echo'<td><a href="?action=activate&id='.$row['email'].'&role=f">Activate</a></td>';
+								if ($row['active'] == 1) echo'<td><a href="?action=disable&id='.$row['email'].'&role=f&#tab2">Disable</a></td>';
+								else echo'<td><a href="?action=activate&id='.$row['email'].'&role=f&#tab2">Activate</a></td>';
 							}				
 						echo'</table>';
 					} else {
@@ -127,8 +127,8 @@ function manageStudent() {
 								echo'<td>' . $row['first'] . '</td>';
 								echo'<td>' . $row['last'] . '</td>';
 								echo'<td><a href="?action=editStudentAccount&id='.$row['email'].'&#tab2">Edit</a></td>';
-								if ($row['active'] == 1) echo'<td><a href="?action=disable&id='.$row['email'].'&role=s">Disable</a></td>';
-								else echo'<td><a href="?action=activate&id='.$row['email'].'&role=s">Activate</a></td>';
+								if ($row['active'] == 1) echo'<td><a href="?action=disable&id='.$row['email'].'&role=s&#tab2">Disable</a></td>';
+								else echo'<td><a href="?action=activate&id='.$row['email'].'&role=s&#tab2">Activate</a></td>';
 							}				
 						echo'</table>';
 					} else {
@@ -151,7 +151,7 @@ function editStudentAccount(){
 	
 	echo'
 			<div class="profile">
-				<form method="POST" action="check_edit_account.php?role=s&id='.$email.'">
+				<form method="POST" action="check_edit_account.php?action=edit&role=s&id='.$email.'">
 					<p>First Name:<input type="text" name="fname" placeholder="'.$first_name.'"></p>
 					<p>Last Name:<input type="text" name="lname" placeholder="'.$last_name.'"></p>
 					<p>Email:<input type="text" name="email" placeholder="'.$email.'"></p>
@@ -172,7 +172,7 @@ function editStudentAccount(){
 								echo'<tr>
 								<td style="border:1px solid;">CSIS-'.$row['courseId'].'-'.$row['sectionId'].'</td>
 								<td style="border:1px solid;">'.$row['coursename'].'</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
+								<td style="border:1px solid;"><input type="checkbox" name="'.$row['sectionId'].'"></td>
 								</tr>';
 							}
 							echo'</table>';
@@ -193,7 +193,7 @@ function editFacultyAccount(){
 	
 	echo'
 			<div class="profile">
-				<form method="POST" action="check_edit_account.php?role=f&id='.$email.'">
+				<form method="POST" action="check_edit_account.php?action=edit&role=f&id='.$email.'">
 					<p>Prefix:<input type="text" name="prefix" placeholder="'.$prefix.'"></p>
 					<p>First Name:<input type="text" name="fname" placeholder="'.$first_name.'"></p>
 					<p>Last Name:<input type="text" name="lname" placeholder="'.$last_name.'"></p>
@@ -215,12 +215,23 @@ function editFacultyAccount(){
 								echo'<tr>
 								<td style="border:1px solid;">CSIS-'.$row['courseId'].'-'.$row['sectionId'].'</td>
 								<td style="border:1px solid;">'.$row['coursename'].'</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-								</tr>';
+								<td style="border:1px solid;">';
+								if ($row['faculty'] == $email) echo'<input type="checkbox" id="'.$row['coursename'].'-'.$row['sectionId'].'" name="'.$row['sectionId'].'" checked onClick="chooseFaculty(this.id)">';
+								else echo'<input type="checkbox" name="'.$row['sectionId'].'">';
+								echo'</td></tr>';
 							}
 							echo'</table>';
-						} echo'<br>
-						<input type="button" value="Cancel" onClick="goBack()">
+				} echo'<div id="chooseFacultydiv" style="display:none;"><p id="chooseFacultytext" style="display:inline;"></p>';
+						$facultyListResult = mysql_query ('SELECT * FROM users WHERE role1="f" OR role2="f"');
+						echo'<select id="listOfFaculty" name="listOfFaculty" style="display:inline;">';
+						if (mysql_num_rows($facultyListResult) > 0) {
+							while($rows=mysql_fetch_array($facultyListResult)) {
+								if ($rows['email'] == $email) echo'<option value="'.$rows['email'].'" selected="selected">'.$rows['prefix'].'. '.$rows['first'].' '.$rows['last'].'</option>';
+								else echo'<option value="'.$rows['email'].'">'.$rows['prefix'].'. '.$rows['first'].' '.$rows['last'].'</option>';
+							}
+							echo'</select></div><br>';
+						}	
+						echo'<input type="button" value="Cancel" onClick="goBack()">
 						<input type="submit" value="Submit">
 						</form>
 						</div>';
@@ -236,7 +247,7 @@ function editCCAccount(){
 	$secA=mysql_result(mysql_query("SELECT secA FROM users WHERE email='$email'"),0);
 	echo'
 			<div class="profile">
-				<form method="POST" action="check_edit_account.php?role=cc&id='.$email.'">
+				<form method="POST" action="check_edit_account.php?action=edit&role=cc&id='.$email.'">
 					<p>Prefix:<input type="text" name="prefix" placeholder="'.$prefix.'"></p>
 					<p>First Name:<input type="text" name="fname" placeholder="'.$first_name.'"></p>
 					<p>Last Name:<input type="text" name="lname" placeholder="'.$last_name.'"></p>
@@ -245,7 +256,7 @@ function editCCAccount(){
 					<p>Security Question:<input type="text" name="secQ" placeholder="'.$secQ.'"></p>
 					<p>Security Answer:<input type="text" name="secA" placeholder="'.$secA.'"></p>';
 					
-				$query = "SELECT * FROM Section";
+				$query = "SELECT DISTINCT (courseId),coursename,coursecoordinator FROM Section GROUP BY courseId";
 				$result = mysql_query($query);
 				
 				if (mysql_num_rows($result) > 0) {
@@ -256,14 +267,25 @@ function editCCAccount(){
 							</tr>';
 							while($row=mysql_fetch_array($result)) {
 								echo'<tr>
-								<td style="border:1px solid;">CSIS-'.$row['courseId'].'-'.$row['sectionId'].'</td>
+								<td style="border:1px solid;">CSIS-'.$row['courseId'].'</td>
 								<td style="border:1px solid;">'.$row['coursename'].'</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
-								</tr>';
+								<td style="border:1px solid;">';
+								if ($row['coursecoordinator'] == $email) echo'<input type="checkbox" id="'.$row['coursename'].'" name="'.$row['courseId'].'" checked onClick="chooseCC(this.id)">';
+								else echo'<input type="checkbox" name="'.$row['courseId'].'">';
+								echo'</td></tr>';
 							}
 							echo'</table>';
-						} echo'<br>
-						<input type="button" value="Cancel" onClick="goBack()">
+						} echo'<div id="chooseCCdiv" style="display:none;"><p id="chooseCCtext" style="display:inline;"></p>';
+						$ccListResult = mysql_query ('SELECT * FROM users WHERE role1="c" OR role2="c"');
+						echo'<select id="listOfCC" name="listOfCC" style="display:inline;">';
+						if (mysql_num_rows($ccListResult) > 0) {
+							while($rows=mysql_fetch_array($ccListResult)) {
+								if ($rows['email'] == $email) echo'<option value="'.$rows['email'].'" selected="selected">'.$rows['prefix'].'. '.$rows['first'].' '.$rows['last'].'</option>';
+								else echo'<option value="'.$rows['email'].'">'.$rows['prefix'].'. '.$rows['first'].' '.$rows['last'].'</option>';
+							}
+							echo'</select></div><br>';
+						}	
+						echo'<input type="button" value="Cancel" onClick="goBack()">
 						<input type="submit" value="Submit">
 						</form>
 						</div>';
@@ -293,7 +315,7 @@ function createCC(){
 					<p>Security Answer:<input type="text" name="secA"></p>
 					<p>Faculty Privileges: <input type="checkbox" name="isFaculty" value="Faculty"></p>';
 					
-				$query = "SELECT * FROM Section";
+				$query = "SELECT DISTINCT courseId,coursename FROM Section";
 				$result = mysql_query($query);
 				
 				if (mysql_num_rows($result) > 0) {
@@ -304,9 +326,9 @@ function createCC(){
 							</tr>';
 							while($row=mysql_fetch_array($result)) {
 								echo'<tr>
-								<td style="border:1px solid;">CSIS-'.$row['courseId'].'-'.$row['sectionId'].'</td>
+								<td style="border:1px solid;">CSIS-'.$row['courseId'].'</td>
 								<td style="border:1px solid;">'.$row['coursename'].'</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
+								<td style="border:1px solid;"><input type="checkbox" name="'.$row['courseId'].'"></td>
 								</tr>';
 							}
 							echo'</table>';
@@ -343,7 +365,7 @@ function createFaculty(){
 								echo'<tr>
 								<td style="border:1px solid;">CSIS-'.$row['courseId'].'-'.$row['sectionId'].'</td>
 								<td style="border:1px solid;">'.$row['coursename'].'</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
+								<td style="border:1px solid;"><input type="checkbox" name="'.$row['sectionId'].'"></td>
 								</tr>';
 							}
 							echo'</table>';
@@ -379,7 +401,7 @@ function createStudent(){
 								echo'<tr>
 								<td style="border:1px solid;">CSIS-'.$row['courseId'].'-'.$row['sectionId'].'</td>
 								<td style="border:1px solid;">'.$row['coursename'].'</td>
-								<td style="border:1px solid;"><input type="checkbox"></td>
+								<td style="border:1px solid;"><input type="checkbox" name="'.$row['sectionId'].'"></td>
 								</tr>';
 							}
 							echo'</table>';
@@ -394,19 +416,18 @@ function disableUser() {
 	$id=$_GET['id'];
 	$role=$_GET['role'];
 	mysql_query("UPDATE users SET active=0 WHERE email='$id'");
-	if ($role=="s") header("Location: ?action=manageStudent&#tab2");
-	else if ($role=="f") header("Location: ?action=manageFaculty&#tab2");
-	if ($role=="c") header("Location: ?action=manageCC&#tab2");
+	if ($role=="s") manageStudent();
+	else if ($role=="f") manageFaculty();
+	if ($role=="c") manageCC();
 }
 	
 function activateUser() {
 	$id=$_GET['id'];
 	$role=$_GET['role'];
 	mysql_query("UPDATE users SET active=1 WHERE email='$id'");
-	if ($role=="s") header("Location: ?action=manageStudent&#tab2");
-	else if ($role=="f") header("Location: ?action=manageFaculty&#tab2");
-	if ($role=="c") header("Location: ?action=manageCC&#tab2");
+	if ($role=="s") manageStudent();
+	else if ($role=="f") manageFaculty();
+	if ($role=="c") manageCC();
 }
 	
 ?>
-

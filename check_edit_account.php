@@ -7,7 +7,7 @@
   $conn = mysql_connect($dbhost, $dbuser, $dbpass);
   mysql_select_db('jprep');
   
-  if (isset($_GET['action']) && $_GET['action'] != 'create'){
+  if (isset($_GET['action']) && $_GET['action'] == 'edit'){
   $selectedUser = $_GET['id'];
   $new_prefix = mysql_result(mysql_query('SELECT prefix FROM users WHERE email="'.$selectedUser.'"'),0);
   $new_firstname = mysql_result(mysql_query('SELECT first FROM users WHERE email="'.$selectedUser.'"'),0);
@@ -56,7 +56,6 @@
 		$isCC = "c";
 	} else $isCC = null;
 
-
 	if (isset($_GET['action']) && $_GET['action'] == 'create'){
 		if (isset($_GET['role']) && $_GET['role'] == 'cc'){
 			$sql = 'INSERT INTO users VALUES ("'.$new_username.'","test",1,"c","'.$new_prefix.'","'.$new_firstname.'","'.$new_lastname.'","'.$new_secq.'","'.$new_seca.'","c","'.$isFaculty.'")';
@@ -83,6 +82,46 @@
 	  die('Could not update data: ' . mysql_error());
 	}
 	echo "Updated data successfully\n";
+	
+	if (isset($_GET['role']) && $_GET['role'] == 'cc'){
+		$courseIds = mysql_query('SELECT DISTINCT (courseId), coursecoordinator FROM Section GROUP BY courseId');
+		if (mysql_num_rows($courseIds) > 0) {
+			while($rows=mysql_fetch_array($courseIds)) {
+				if(isset($_POST[$rows['courseId']])){
+					$retval1 = mysql_query('UPDATE Section SET coursecoordinator="'.$new_username.'" WHERE courseId="'.$rows['courseId'].'"', $conn );
+					if(! $retval1 ) {
+	  					die('Could not update data: ' . mysql_error());
+					} echo "Updated data successfully\n";
+				} else {
+					if($rows['coursecoordinator'] == $selectedUser) {
+						$retval1 = mysql_query('UPDATE Section SET coursecoordinator="'.$_POST['listOfCC'].'" WHERE courseId="'.$rows['courseId'].'"', $conn);
+						if(! $retval1 ) {
+	  						die('Could not update data: ' . mysql_error());
+						} echo "Updated data successfully\n";
+					}
+				}
+			} 
+		}
+	} else if (isset($_GET['role']) && $_GET['role'] == 'f'){
+		$sectionIds = mysql_query('SELECT sectionId,faculty FROM Section');
+		if (mysql_num_rows($sectionIds) > 0) {
+			while($rows=mysql_fetch_array($sectionIds)) {
+				if(isset($_POST[$rows['sectionId']])){
+					$retval2 = mysql_query('UPDATE Section SET faculty="'.$new_username.'" WHERE sectionId="'.$rows['sectionId'].'"', $conn );
+					if(! $retval2 ) {
+	  					die('Could not update data: ' . mysql_error());
+					} echo "Updated data successfully\n";
+				} else {
+					if($rows['faculty'] == $selectedUser) {
+						$retval2 = mysql_query('UPDATE Section SET faculty="'.$_POST['listOfFaculty'].'" WHERE sectionId="'.$rows['sectionId'].'"', $conn);
+						if(! $retval2 ) {
+	  						die('Could not update data: ' . mysql_error());
+						} echo "Updated data successfully\n";
+					}
+				}
+			}
+		}
+	}
 	
 	mysql_close($conn);
 

@@ -17,6 +17,22 @@ echo'
 			function changeRole(val) {
 				window.location.href="./home.php";
 			};
+			function chooseCC(selected_name) {
+				if (document.getElementById(selected_name).checked) {
+					document.getElementById("chooseCCdiv").style.display="none";
+				} else {
+					document.getElementById("chooseCCtext").innerHTML="Choose a new Course Coordinator for " + selected_name + ": ";
+					document.getElementById("chooseCCdiv").style.display="block";
+				}
+			};
+			function chooseFaculty(selected_name) {
+				if (document.getElementById(selected_name).checked) {
+					document.getElementById("chooseFacultydiv").style.display="none";
+				} else {
+					document.getElementById("chooseFacultytext").innerHTML="Choose a new Faculty user for " + selected_name + ": ";
+					document.getElementById("chooseFacultydiv").style.display="block";
+				}
+			};
 		</script>	
 	</head>
 	<body>		

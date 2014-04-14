@@ -1,4 +1,11 @@
 <?php
+
+$dbhost = 'localhost';
+  $dbuser = 'root';
+  $dbpass = '';
+  $conn = mysql_connect($dbhost, $dbuser, $dbpass);
+  mysql_select_db('jprep');
+  
 function displayProfile($currentrole)
 {
 	if ($currentrole=="s") {
@@ -44,7 +51,6 @@ if(isset($_GET['action']) && $_GET['action'] == 'editProfile'){
 function editProfile($currentrole) {
 		
 		if ($currentrole=="s") {
-			
 			echo'
 			<div class="profile">
 				<form method="POST" action="check_edit.php">
@@ -73,15 +79,64 @@ function editProfile($currentrole) {
 }
 
 function changePassword($currentrole) {
-	echo'
+	$oldPassErr = $newPassErr = $confirmPassErr = "";
+	$oldPassVal = $newPassVal = $confirmPassVal = "";
+	
+	if($_SERVER['REQUEST_METHOD'] == "POST") {
+		if(empty($_POST['oldpassword'])) {
+			$oldPassErr = "  Enter your old password";
+			$newPassVal = $_POST['newpassword'];
+			$confirmPassVal = $_POST['confirmpassword'];
+		} else if($_POST['oldpassword'] != $_SESSION['password']) {
+			$oldPassErr = "  Incorrect password";
+			$newPassVal = $_POST['newpassword'];
+			$confirmPassVal = $_POST['confirmpassword'];
+		}
+		if(empty($_POST['newpassword'])) {
+			$newPassErr = "  Enter your new password";
+			$oldPassVal = $_POST['oldpassword'];
+			$confirmPassVal = $_POST['confirmpassword'];
+		} else if ($_POST['newpassword'] == $_POST['oldpassword']) {
+			$newPassErr = "  New password must be different from old password";
+			$oldPassVal = $_POST['oldpassword'];
+			$confirmPassVal = $_POST['confirmpassword'];
+		}
+		if(empty($_POST['confirmpassword'])) {
+			$confirmPassErr = "  Confirm your new password";
+			$oldPassVal = $_POST['oldpassword'];
+			$newPassVal = $_POST['newpassword'];
+		} else if ($_POST['newpassword'] != $_POST['confirmpassword']) {
+			$confirmPassErr = "  Passwords do not match";
+			$oldPassVal = $_POST['oldpassword'];
+			$newPassVal = $_POST['newpassword'];
+		}
+		
+  		if (($oldPassErr=="") and ($newPassErr=="") and ($confirmPassErr=="")) {
+  			$new_password = $_POST['newpassword'];
+  			$sql = 'UPDATE users
+					SET 
+					password="'.$new_password.'"
+					WHERE email="'.$_SESSION['username'].'"';
+			$retval = mysql_query($sql);
+			if(! $retval ) {
+	  			die('Could not update data: ' . mysql_error());
+			}
+			
+			$password = $new_password;
+			$_SESSION['password']=$password.'';
+			
+			displayProfile($currentrole);
+  		}
+  	}
+ ?> 
 		<div class="profile">
-			<form method="POST" action="check_change_password.php" onsubmit="passwordChecker()">
-				<p>Old Password:<input type="text" name="oldpassword"></p>
-				<p>New Password:<input type="text" name="newpassword"></p>
-				<p>Confirm Password:<input type="text" name="confirmpassword"></p>
-				<p class="submit"><input type="submit" name="commit" value="Submit"></p>
+			<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>?action=changePassword&#tab5">
+				<p>Old Password:<input type="text" name="oldpassword" value="<?php echo htmlspecialchars($oldPassVal);?>"><span style="font-size:12px;color:#FF0000;"><?php echo $oldPassErr;?></span></p>
+				<p>New Password:<input type="text" name="newpassword" value="<?php echo htmlspecialchars($newPassVal);?>"><span style="font-size:12px;color:#FF0000;"><?php echo $newPassErr;?></span></p>
+				<p>Confirm Password:<input type="text" name="confirmpassword" value="<?php echo htmlspecialchars($confirmPassVal);?>"><span style="font-size:12px;color:#FF0000;"><?php echo $confirmPassErr;?></span></p>
+				<p class="submit"><input type="submit" name="commit" value="Submit" onClick="changePassword(<?php echo $currentRole;?>)"></p>
 			</form>
 		</div>	
-	';
+<?php	
 }
 ?>
