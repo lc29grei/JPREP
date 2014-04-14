@@ -15,7 +15,6 @@
 		
 		$title = mysql_real_escape_string($_POST['title']);
 		$methodName = mysql_real_escape_string($_POST['methodName']);
-		$category = mysql_real_escape_string($_POST['category']);
 		$selecctedCourse = mysql_real_escape_string($_POST['selectedCourse']);
 		$description = mysql_real_escape_string($_POST['description']);
 		$param1name = mysql_real_escape_string($_POST['param1name']);

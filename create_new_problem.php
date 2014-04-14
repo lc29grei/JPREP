@@ -11,7 +11,7 @@
   	$conn = mysql_connect($dbhost, $dbuser, $dbpass);
 	mysql_select_db("jprep");
 	
-	$activeCourseQuery = "SELECT * FROM section";
+	$activeCourseQuery = "SELECT DISTINCT(courseId), coursename, sectionId FROM section GROUP BY courseId";
 	$activeCourseResult = mysql_query($activeCourseQuery);
 			
 			
@@ -26,20 +26,12 @@
 			<form method="POST" action="check_create_problem.php">
 			Title   <input type="text" name="title">
 			Method Name   <input type="text" name="methodName">
-			Category   <select name="category">
-					   <option value="string">String</option>
-					   <option value="logic1">Logic 1</option>
-					   <option value="logic2">Logic 2</option>
-					   <option value="recursion1">Recursion 1</option>
-					   <option value="recursion2">Recursion 2</option>
-					   <option value="array">Array</option>
-					   
-					   <select>
 			Course   <select name="selectedCourse">
 			<?php
 				if (mysql_num_rows($activeCourseResult) > 0) {
 					while($row=mysql_fetch_array($activeCourseResult)) {
-						echo'<option value="'.$row['sectionId'].$row['courseId'].'">'.$row['courseId'].' '.$row['coursename'].'</option>';							
+						if ($_GET['id'] == $row['courseId']) echo'<option value="'.$row['sectionId'].$row['courseId'].'" selected="selected">'.$row['courseId'].' '.$row['coursename'].'</option>';							
+						else echo'<option value="'.$row['sectionId'].$row['courseId'].'">'.$row['courseId'].' '.$row['coursename'].'</option>';
 					}
 				}
 			?>

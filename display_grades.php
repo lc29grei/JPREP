@@ -1,6 +1,15 @@
 <?php
+	
 function displayGrades($currentrole)
 {
+	$dbhost = 'localhost';
+	$dbuser = 'root';
+	$dbpass = '';
+	$conn = mysql_connect($dbhost, $dbuser, $dbpass);
+	mysql_select_db("jprep");
+
+	$email = $_SESSION['username'];
+
 	if($currentrole=="s")
 	{
 		echo 
@@ -19,36 +28,20 @@ function displayGrades($currentrole)
 	}
 	else if ($currentrole=="f")
 	{
-		echo
-		'
-		<div>
-			<p><b><u>Current Courses</u></b></p>
-			<b><a ID="xcourse1grade" style="text-decoration:none;" href="javascript:Toggle(\'course1grade\');">[+]</a> <a ID="xcourse1grade" style="text-decoration:none;color:black;" href="javascript:Toggle(\'course1grade\');">Course 1</a></b><br>
-			<div ID="course1grade" style="display:none; margin-left:2em;">
-				<a href="./all_students_gradebook.php#tab4">View Students</a><br>
-				<a href="./course_assignments_gradebook.php#tab4">View Assignments</a>
-			</div>
-			<b><a ID="xcourse2grade" style="text-decoration:none;" href="javascript:Toggle(\'course2grade\');">[+]</a> <a ID="xcourse2grade" style="text-decoration:none;color:black;" href="javascript:Toggle(\'course2grade\');">Course 2</a></b><br>
-			<div ID="course2grade" style="display:none; margin-left:2em;">
-				<a href="./all_students_gradebook.php#tab4">View Students</a><br>
-				<a href="./course_assignments_gradebook.php#tab4">View Assignments</a>
-			</div>
-			<b><a ID="xcourse3grade" style="text-decoration:none;" href="javascript:Toggle(\'course3grade\');">[+]</a> <a ID="xcourse3grade" style="text-decoration:none;color:black;" href="javascript:Toggle(\'course3grade\');">Course 3</a></b><br>
-			<div ID="course3grade" style="display:none; margin-left:2em;">
-				<a href="./all_students_gradebook.php#tab4">View Students</a><br>
-				<a href="./course_assignments_gradebook.php#tab4">View Assignments</a>
-			</div>
-			<p><b><u>Previous Courses</u></b></p>
-			<b><a ID="xcourse4grade" style="text-decoration:none;" href="javascript:Toggle(\'course4grade\');">[+]</a> <a ID="xcourse4grade" style="text-decoration:none;color:black;" href="javascript:Toggle(\'course4grade\');">Course 4</a></b><br>
-			<div ID="course4grade" style="display:none; margin-left:2em;">
-				<a href="./all_students_gradebook.php#tab4">View Students</a><br>
-				<a href="./course_assignments_gradebook.php#tab4">View Assignments</a>
-			</div>
-			<b><a ID="xcourse5grade" style="text-decoration:none;" href="javascript:Toggle(\'course5grade\');">[+]</a> <a ID="xcourse5grade" style="text-decoration:none;color:black;" href="javascript:Toggle(\'course5grade\');">Course 5</a></b><br>
-			<div ID="course5grade" style="display:none; margin-left:2em;">
-				<a href="./all_students_gradebook.php#tab4">View Students</a><br>
-				<a href="./course_assignments_gradebook.php#tab4">View Assignments</a>
-			</div>
+		$facultySQL = 'SELECT * FROM Section WHERE faculty="'.$email.'"';
+		$facultySQLResult = mysql_query($facultySQL, $conn);
+		echo'<div>
+			<p><b><u>Current Courses</u></b></p>';
+			if (mysql_num_rows($facultySQLResult) > 0) {
+				while($row=mysql_fetch_array($facultySQLResult)) {
+					echo'<b><a ID="x'.$row['sectionId'].'grade" style="text-decoration:none;" href="javascript:Toggle(\''.$row['sectionId'].'grade\');">[+]</a> <a ID="x'.$row['sectionId'].'grade" style="text-decoration:none;color:black;" href="javascript:Toggle(\''.$row['sectionId'].'grade\');">'.$row['coursename'].'-'.$row['sectionId'].'</a></b><br>
+					<div ID="'.$row['sectionId'].'grade" style="display:none; margin-left:2em;">
+						<a href="./all_students_gradebook.php?id='.$row['sectionId'].'&#tab4">View Students</a><br>
+						<a href="./course_assignments_gradebook.php?id='.$row['sectionId'].'&#tab4">View Assignments</a>
+					</div>';
+				}
+			}
+			echo'<p><b><u>Previous Courses</u></b></p>
 		</div>
 		';	
 	} else {
