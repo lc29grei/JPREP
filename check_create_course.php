@@ -52,7 +52,7 @@
 		$courseCoordinator = mysql_real_escape_string($_POST['ccName']);
 		$faculty = mysql_real_escape_string($_POST['facultyName']);
 		
-		$sql = 'INSERT INTO Section VALUES ("'.$sectionNumber.'","'.$faculty.'","'.$courseCoordinator.'","'.$courseNumber.'","'.$courseName.'","'.$description.'")';
+		$sql = 'INSERT INTO Section VALUES ("'.$sectionNumber.'","'.$faculty.'","'.$courseCoordinator.'","'.$courseNumber.'","'.$courseName.'","'.$description.'",1)';
 	}
 		$retval = mysql_query($sql, $conn );
 		if(! $retval ) {

@@ -166,14 +166,16 @@ function editStudentAccount(){
 							echo'<table style="text-align:center;border:1px solid;">
 							<tr><th style="border:1px solid;">Course Number</th>
 								<th style="border:1px solid;">Course Name</th>
-								<th style="border:1px solid;">Assign</th>
+								<th style="border:1px solid;">Enroll</th>
 							</tr>';
 							while($row=mysql_fetch_array($result)) {
 								echo'<tr>
 								<td style="border:1px solid;">CSIS-'.$row['courseId'].'-'.$row['sectionId'].'</td>
-								<td style="border:1px solid;">'.$row['coursename'].'</td>
-								<td style="border:1px solid;"><input type="checkbox" name="'.$row['sectionId'].'"></td>
-								</tr>';
+								<td style="border:1px solid;">'.$row['coursename'].'</td>';
+								$query1Result = mysql_fetch_array(mysql_query('SELECT sectionId FROM Roster WHERE studentId="'.$email.'" AND sectionId="'.$row['sectionId'].'" AND active=1'));
+								if ($query1Result == null) echo'<td style="border:1px solid;"><input type="checkbox" name="'.$row['sectionId'].'"></td>';
+								else echo'<td style="border:1px solid;"><input type="checkbox" name="'.$row['sectionId'].'" checked></td>';
+								echo'</tr>';
 							}
 							echo'</table>';
 						} echo'<br>

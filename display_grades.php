@@ -12,23 +12,23 @@ function displayGrades($currentrole)
 
 	if($currentrole=="s")
 	{
-		echo 
-		'
-		<div>
+		$studentSQL = 'SELECT * FROM Section,Roster WHERE Section.sectionId = Roster.sectionId AND Roster.active=1 AND Section.active=1 AND Roster.studentId="'.$email.'"';
+		$studentSQLResult = mysql_query($studentSQL, $conn);
+		
+		echo '<div>
 			<p>Select a course to view your grade</p>
-				<p><b><u>Current Courses</u></b></p>
-				<a href="./course_gradebook.php#tab4"><u>Course 1</u></a><br>
-				<a href="./course_gradebook.php#tab4"><u>Course 2</u></a><br>
-				<a href="./course_gradebook.php#tab4"><u>Course 3</u></a><br>
-				<p><b><u>Previous Courses</u></b></p>
-				<a href="./course_gradebook.php#tab4"><u>Course 4</u></a><br>
-				<a href="./course_gradebook.php#tab4"><u>Course 5</u></a><br>
-		</div>
-		';
+				<p><b><u>Current Courses</u></b></p>';
+				if (mysql_num_rows($studentSQLResult) > 0) {
+					while($row=mysql_fetch_array($studentSQLResult)) {
+						echo'<a href="./course_gradebook.php?num='.$row['sectionId'].'&id='.$email.'&#tab4"><u>'.$row['coursename'].'-'.$row['sectionId'].'</u></a><br>';
+					}
+				}
+				echo'<p><b><u>Previous Courses</u></b></p>
+		</div>';
 	}
 	else if ($currentrole=="f")
 	{
-		$facultySQL = 'SELECT * FROM Section WHERE faculty="'.$email.'"';
+		$facultySQL = 'SELECT * FROM Section WHERE faculty="'.$email.'" AND active=1';
 		$facultySQLResult = mysql_query($facultySQL, $conn);
 		echo'<div>
 			<p><b><u>Current Courses</u></b></p>';

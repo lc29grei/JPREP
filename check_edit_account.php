@@ -121,6 +121,34 @@
 				}
 			}
 		}
+	} else if (isset($_GET['role']) && $_GET['role'] == 's'){
+		$sectionIds = mysql_query('SELECT sectionId FROM Section');
+		if (mysql_num_rows($sectionIds) > 0) {
+			while($rows=mysql_fetch_array($sectionIds)) {
+				if(isset($_POST[$rows['sectionId']])){
+					$query1 = mysql_query('SELECT * FROM Roster WHERE sectionId="'.$rows['sectionId'].'" AND studentId="'.$selectedUser.'"');
+					if(mysql_num_rows($query1)==0) {
+						$retval2 = mysql_query('INSERT INTO Roster VALUES("'.$rows['sectionId'].'","'.$new_username.'",1)', $conn );
+						if(! $retval2 ) {
+	  					die('Could not update data: ' . mysql_error());
+					} echo "Updated data successfully\n";
+					} else {
+						$retval2 = mysql_query('UPDATE Roster SET active=1 WHERE sectionId="'.$rows['sectionId'].'" AND studentId="'.$selectedUser.'"', $conn);
+						if(! $retval2 ) {
+	  						die('Could not update data: ' . mysql_error());
+						} echo "Updated data successfully\n";
+					}
+				} else {
+					$query1 = mysql_query('SELECT * FROM Roster WHERE sectionId="'.$rows['sectionId'].'" AND studentId="'.$selectedUser.'"', $conn);
+					if(mysql_num_rows($query1)==1) {
+						$retval2 = mysql_query('UPDATE Roster SET active=0 WHERE sectionId="'.$rows['sectionId'].'" AND studentId="'.$selectedUser.'"', $conn);
+						if(! $retval2 ) {
+	  						die('Could not update data: ' . mysql_error());
+						} echo "Updated data successfully\n";
+					}
+				}
+			}
+		}
 	}
 	
 	mysql_close($conn);

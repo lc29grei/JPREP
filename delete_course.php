@@ -21,7 +21,7 @@
 		#<!-- Courses tab -->
 			echo'
 			<div>
-			<p style="font-size:12px;">Select the course(s) to be deleted</p>
+			<p style="font-size:12px;">Select the course(s) to be disabled</p>
 			<p style="font-size:16px;"><u>Current Courses</u></p>
 			<form action="" method="post">
 			<table>';
@@ -29,15 +29,16 @@
 			if ($sectionCountResultRows > 0) {
 				while($row=mysql_fetch_array($sectionCountResult)) {
 			
-					echo'<tr><td>'.$row['courseId'].'-'.$row['sectionId'].' '.$row['coursename'].'
-					</td><td></td><td><input name="'.$row['courseId'].$row['sectionId'].'" type="checkbox"></td></tr>';
+					echo'<tr><td>CSIS-'.$row['courseId'].'-'.$row['sectionId'].' '.$row['coursename'].'
+					</td><td></td><td>';
+					if($row['active'] == 0) echo'<input name="'.$row['courseId'].$row['sectionId'].'" type="checkbox" checked></td></tr>';
+					else echo'<input name="'.$row['courseId'].$row['sectionId'].'" type="checkbox"></td></tr>';
 				}
 			}	
 			echo'
 			</table>
 			<p style="font-size:16px;"><u>Previous Courses</u></p>
-			<table><tr><td>Course 4</td><td></td><td><input type="checkbox"></td></tr>
-					<tr><td>Course 5</td><td></td><td><input type="checkbox"></td></tr></table>
+			<table></table>
 					
 			<br>
 			<input type="button" onClick="goBack()" value="Cancel">
@@ -50,9 +51,7 @@
 				if ($sectionCountResultRows > 0) {
 					while($row=mysql_fetch_array($sectionCountResult)) {
 						if (isset($_POST["".$row['courseId'].$row['sectionId'].""])) {
-							$deleteCourseQuery = "DELETE FROM section where courseId='".$row["courseId"]."' and sectionId='".$row["sectionId"]."'";			
-							//mysql_query($conn,$deleteCourseQuery);
-							//mysql_close($conn);
+							$deleteCourseQuery = "UPDATE Section SET active=0 WHERE courseId='".$row["courseId"]."' and sectionId='".$row["sectionId"]."'";			
 							
 							// Perform Query
 							$result = mysql_query($deleteCourseQuery);
@@ -62,6 +61,20 @@
 							if (!$result) {
 								$message  = 'Invalid query: ' . mysql_error() . "\n";
 								$message .= 'Whole query: ' . $deleteCourseQuery;
+								die($message);								
+							}
+							header("Location: home.php");
+						} else {
+							$enableCourseQuery = "UPDATE Section SET active=1 WHERE courseId='".$row["courseId"]."' and sectionId='".$row["sectionId"]."'";			
+							
+							// Perform Query
+							$result = mysql_query($enableCourseQuery);
+
+							// Check result
+							// This shows the actual query sent to MySQL, and the error. Useful for debugging.
+							if (!$result) {
+								$message  = 'Invalid query: ' . mysql_error() . "\n";
+								$message .= 'Whole query: ' . $enableCourseQuery;
 								die($message);								
 							}
 							header("Location: home.php");
