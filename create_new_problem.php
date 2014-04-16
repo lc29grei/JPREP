@@ -40,7 +40,7 @@
 			Question/Description<br><textarea name="description" rows="5" cols="150" style="resize:none;"></textarea>
 			<br>
 			
-			<table border="0" id="paramTable">
+			<table border="0" id="paramTable" name="paramTable">
 				<tbody>
 					<tr>
 						<th>&nbsp;</th>
@@ -179,7 +179,6 @@
 			<br>
 			
 			Solution Code<br><textarea id ="solution" name="solution" rows="15" cols="150" style="resize:none;">Solution Code Here</textarea>
-			
 			<br>
 <?php
 			if(isset($_GET['action']) && $_GET['action'] == 'addAssignment'){
@@ -187,11 +186,8 @@
 					 <input type="button" value="Cancel"  onClick="cancelConfirm()" style="float:right;">';
 			} else {
 				echo'
-				
-				
 				<input type="button" value="Cancel" onClick="cancelConfirm()">
-				<input type="submit" value="Create">
-			';
+				<input type="submit" value="Create">';
 			}
 
 			echo'</form></div>';

@@ -1,11 +1,21 @@
 <!DOCTYPE HTML>
 <?php
 	session_start();  
+	
+	$dbhost = 'localhost';
+  	$dbuser = 'root';
+  	$dbpass = '';
+  	$conn = mysql_connect($dbhost, $dbuser, $dbpass);
+  	mysql_select_db('jprep');
+	
 	if (!(isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']!='')) {
 		header ("Location: login.php");
 	}
+	
 	$currentrole=$_SESSION['currentrole'];
 	$firstname=$_SESSION['first_name'];
+	$email = $_SESSION['username'];
+	
    	include 'home_layout.php';
    	headerLayout($currentrole, $firstname);
 		#<!-- Courses tab -->
@@ -37,6 +47,9 @@
 		
 		#<!-- Question Pool tab -->
 	if(isset($_GET['action']) && $_GET['action'] == 'addAssignment'){
+		$coursePoolSQL = 'SELECT * FROM Problem WHERE poolid="private_'.$email.'"';
+		$coursePoolSQLResult = mysql_query($coursePoolSQL, $conn);
+		
 		if ($currentrole=="f") {
 		echo'	
 			<div class="CSSTableGenerator" >

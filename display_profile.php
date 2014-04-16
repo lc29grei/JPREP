@@ -134,7 +134,7 @@ function changePassword($currentrole) {
 				<p>Old Password:<input type="text" name="oldpassword" value="<?php echo htmlspecialchars($oldPassVal);?>"><span style="font-size:12px;color:#FF0000;"><?php echo $oldPassErr;?></span></p>
 				<p>New Password:<input type="text" name="newpassword" value="<?php echo htmlspecialchars($newPassVal);?>"><span style="font-size:12px;color:#FF0000;"><?php echo $newPassErr;?></span></p>
 				<p>Confirm Password:<input type="text" name="confirmpassword" value="<?php echo htmlspecialchars($confirmPassVal);?>"><span style="font-size:12px;color:#FF0000;"><?php echo $confirmPassErr;?></span></p>
-				<p class="submit"><input type="submit" name="commit" value="Submit" onClick="changePassword(<?php echo $currentRole;?>)"></p>
+				<p class="submit"><input type="button" value="Cancel" onClick="goBack()"><input type="submit" name="commit" value="Submit" onClick="changePassword(<?php echo $currentRole;?>)"></p>
 			</form>
 		</div>	
 <?php	

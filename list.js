@@ -47,35 +47,35 @@ function addRow(tableID) {
             			if ((document.getElementById('param2name').disabled) && (i == 2)) {
             				var element1 = document.createElement("input");
             				element1.type = "text";
-            				element1.name = "txtbox[]";
+            				element1.name = "case" + (rowCount - 6) + "param2";
             				element1.disabled = true;
             				cell2.appendChild(element1);
             				x = true;
             			} else if ((document.getElementById('param3name').disabled) && (i == 3)) {
             				var element1 = document.createElement("input");
             				element1.type = "text";
-            				element1.name = "txtbox[]";
+            				element1.name = "case" + (rowCount - 6) + "param3";
             				element1.disabled = true;
             				cell2.appendChild(element1);
             				x = true;
             			} else if ((document.getElementById('param4name').disabled) && (i == 4)) {
             				var element1 = document.createElement("input");
             				element1.type = "text";
-            				element1.name = "txtbox[]";
+            				element1.name = "case" + (rowCount - 6) + "param4";
             				element1.disabled = true;
             				cell2.appendChild(element1);
             				x = true;
             			} else if ((document.getElementById('param5name').disabled) && (i == 5)) {
             				var element1 = document.createElement("input");
             				element1.type = "text";
-            				element1.name = "txtbox[]";
+            				element1.name = "case" + (rowCount - 6) + "param5";
             				element1.disabled = true;
             				cell2.appendChild(element1);
             				x = true;
             			} else {
             				var element1 = document.createElement("input");
             				element1.type = "text";
-            				element1.name = "txtbox[]";
+            				element1.name = "case" + (rowCount - 6) + "param1";
             				cell2.appendChild(element1);
             			}
             		} else {
@@ -90,19 +90,19 @@ function addRow(tableID) {
             	var cell3 = row.insertCell(6);
             	var element2 = document.createElement("input");
             	element2.type = "text";
-            	element2.name = "txtbox[]";
+            	element2.name = "case" + (rowCount - 6) + "result";
             	cell3.appendChild(element2);
             
             	var cell8 = row.insertCell(7);
             	var element7 = document.createElement("input");
             	element7.type = "checkbox";
-            	element7.name = "checkbox[]";
+            	element7.name = "case" + (rowCount - 6) + "hidden";
             	cell8.appendChild(element7);
             	
             	var cell9 = row.insertCell(8);
             	var element8 = document.createElement("input");
             	element8.type = "checkbox";
-            	element8.name = "checkbox[]";
+            	element8.name = "case" + (rowCount - 6) + "remove";
             	cell9.appendChild(element8);
             	
             } else {
@@ -194,21 +194,4 @@ function cancelConfirm() {
 		return;
 	}
 }
-
-
-
-/**function passwordChecker() {
-	if (document.getElementsByName("oldpassword") != "") {
-		alert("Please enter your old password");
-		return false;
-	} else if (document.getElementsByName("newpassword") != "") {
-		alert("Please enter your new password");
-		return false;
-	} else if (document.getElementsByName("confirmpassword") != "") {
-		alert("Please confirm your new password");
-		return false;
-	} else {
-		return true;
-	}
-}**/
 
