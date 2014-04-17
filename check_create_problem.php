@@ -55,7 +55,7 @@
 		$resultType= mysql_real_escape_string($_POST['resultType']);
 		$solution= mysql_real_escape_string($_POST['solution']);
 		
-		$sql = "INSERT INTO Problem VALUES('".$problemId."','private_".$email."','',1,'".$title."','".$methodName."','".$resultType."','".$solution."','".$param1name."','".$param2name."','".$param3name."','".$param4name."','".$param5name."','".$starter."','','".$param1type."','".$param2type."','".$param3type."','".$param4type."','".$param5type."',)";
+		$sql = "INSERT INTO Problem VALUES('".$problemId."','private_".$email."','',1,'".$title."','".$methodName."','".$resultType."','".$solution."','".$param1name."','".$param2name."','".$param3name."','".$param4name."','".$param5name."','".$starterCode."','','".$param1type."','".$param2type."','".$param3type."','".$param4type."','".$param5type."')";
 	
 		$retval = mysql_query( $sql, $conn );
 		if(! $retval ) {
