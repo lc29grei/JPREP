@@ -18,6 +18,7 @@
 		$selecctedCourse = mysql_real_escape_string($_POST['selectedCourse']);
 		$description = mysql_real_escape_string($_POST['description']);
 		$param1name = mysql_real_escape_string($_POST['param1name']);
+		$starterCode = mysql_real_escape_string($_POST['starter']);
 		
 		if (!empty($_POST["param2name"])) {
 			$param2name = mysql_real_escape_string($_POST['param2name']);
@@ -44,7 +45,7 @@
 		}
 			
 		$param2type = $param3type = $param4type = $param5type = "";
-		$param1type	= $_POST['param1type'];	
+		$param1type	= mysql_real_escape_string($_POST['param1type']);	
 		
 		if (!empty($_POST["param2name"])) $param2type = $_POST['param2type'];
 		if (!empty($_POST["param3name"])) $param3type = $_POST['param3type'];
@@ -54,7 +55,7 @@
 		$resultType= mysql_real_escape_string($_POST['resultType']);
 		$solution= mysql_real_escape_string($_POST['solution']);
 		
-		$sql = "INSERT INTO Problem VALUES('".$problemId."','private_".$email."','',1,'".$title."','".$methodName."','".$resultType."','".$solution."','".$param1name."','".$param2name."','".$param3name."','".$param4name."','".$param5name."','','')";
+		$sql = "INSERT INTO Problem VALUES('".$problemId."','private_".$email."','',1,'".$title."','".$methodName."','".$resultType."','".$solution."','".$param1name."','".$param2name."','".$param3name."','".$param4name."','".$param5name."','".$starter."','','".$param1type."','".$param2type."','".$param3type."','".$param4type."','".$param5type."',)";
 	
 		$retval = mysql_query( $sql, $conn );
 		if(! $retval ) {
