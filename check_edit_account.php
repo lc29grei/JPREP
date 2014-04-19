@@ -58,11 +58,11 @@
 
 	if (isset($_GET['action']) && $_GET['action'] == 'create'){
 		if (isset($_GET['role']) && $_GET['role'] == 'cc'){
-			$sql = 'INSERT INTO users VALUES ("'.$new_username.'","test",1,"c","'.$new_prefix.'","'.$new_firstname.'","'.$new_lastname.'","'.$new_secq.'","'.$new_seca.'","c","'.$isFaculty.'")';
+			$sql = 'INSERT INTO users VALUES ("'.$new_username.'","test",1,"c","'.$isFaculty.'","c","'.$new_prefix.'","'.$new_firstname.'","'.$new_lastname.'","'.$new_secq.'","'.$new_seca.'")';
 		} else if (isset($_GET['role']) && $_GET['role'] == 'f'){
-			$sql = 'INSERT INTO users VALUES ("'.$new_username.'","test",1,"f","'.$new_prefix.'","'.$new_firstname.'","'.$new_lastname.'","'.$new_secq.'","'.$new_seca.'","f","'.$isCC.'")';
+			$sql = 'INSERT INTO users VALUES ("'.$new_username.'","test",1,"f","'.$isCC.'","f","'.$new_prefix.'","'.$new_firstname.'","'.$new_lastname.'","'.$new_secq.'","'.$new_seca.'")';
 		} else {
-			$sql = 'INSERT INTO users VALUES ("'.$new_username.'","test",1,"s",NULL,"'.$new_firstname.'","'.$new_lastname.'","'.$new_secq.'","'.$new_seca.'","s",NULL)';
+			$sql = 'INSERT INTO users VALUES ("'.$new_username.'","test",1,"s","","s","","'.$new_firstname.'","'.$new_lastname.'","'.$new_secq.'","'.$new_seca.'")';
 		}
 	} else {
 		$sql = 'UPDATE users
