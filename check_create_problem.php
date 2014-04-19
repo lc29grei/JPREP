@@ -11,6 +11,7 @@
   $problemCountResult = mysql_query($problemCountQuery);
   $problemId = mysql_num_rows($problemCountResult)+1;
   $email = $_SESSION['username'];
+ 
 	if($_SERVER['REQUEST_METHOD'] == "POST") {
 		
 		$title = mysql_real_escape_string($_POST['title']);
@@ -83,7 +84,20 @@
 		}
 	
 		mysql_close($conn);
-		
-		header("location: private_pool.php#tab3");
+		if(!$_SESSION["isAddToAssignment"]) header("location: private_pool.php#tab3");
+		else
+		{
+			if(!isset($_SESSION['assignmentProblemArray']))
+			{
+			$_SESSION['assignmentProblemArray'] = array();
+			array_push($_SESSION['assignmentProblemArray'], $problemId);
+			}
+			else
+			{
+				array_push($_SESSION['assignmentProblemArray'], $problemId);
+			}
+			header("location: create_new_assignment.php?id=4");
+		}
 	}
+	
 ?>

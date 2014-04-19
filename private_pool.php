@@ -64,7 +64,7 @@
 									echo'<tr><td>'.$row['title'].'</td>';
 									echo'<td>'.$row['methodname'].'</td>';
 									echo'<td>'.$row['resulttype'].'</td>';
-									echo'<td><a href="">Add to Assignment</a></td></tr>';
+									echo'<td><a href="?action=addToAssignmentFromPrivate&problemId='.$row['problemId'].'">Add to Assignment</a></td></tr>';
 								}
 							} else echo'You have no problems in your Private Pool';
 						echo'</table>
@@ -95,6 +95,12 @@
 						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 					</div>';
 		}
+		include 'addProblemFromPool.php';
+		if(isset($_GET['action']) and $_GET['action'] = 'addToAssignmentFromPrivate')
+		{
+			addProblem();
+		}
+		
 					
 		#<!-- Gradebook tab -->
 		

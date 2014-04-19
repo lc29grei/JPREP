@@ -185,9 +185,11 @@
 			<br>
 <?php
 			if(isset($_GET['action']) && $_GET['action'] == 'addAssignment'){
-				echo'<input type="button" value="Add to Assignment" style="float:right;">
+				$_SESSION['isAddToAssignment']= true;
+				echo'<input type="submit" value="Add to Assignment" style="float:right;">
 					 <input type="button" value="Cancel"  onClick="cancelConfirm()" style="float:right;">';
 			} else {
+				$_SESSION['isAddToAssignment']=false;
 				echo'
 				<input type="button" value="Cancel" onClick="cancelConfirm()">
 				<input type="submit" value="Create">';

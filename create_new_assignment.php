@@ -4,7 +4,6 @@
 	if (!(isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']!='')) {
 		header ("Location: login.php");
 	}
-	
 	$dbhost = 'localhost';
   	$dbuser = 'root';
   	$dbpass = '';
@@ -98,7 +97,7 @@
 			Description<br><textarea name="description" rows="5" cols="150" style="resize:none;"></textarea>
 			</form><br>
 			<a href="./create_new_problem.php?action=addAssignment" style="font-size:13px;padding-right:20px;">Create and Add New Problem</a>
-			<a href="./private_pool.php?action=addAssignment" style="font-size:13px;padding-right:20px;">Add Problem from Private Question Pool</a>
+			<a href="./private_pool.php?action=addAssignment#tab3" style="font-size:13px;padding-right:20px;">Add Problem from Private Question Pool</a>
 			<a href="./course_pool.php?action=addAssignment" style="font-size:13px;">Add Problem from Global Question Pool</a><br><br>
 			<table border="0" id="paramTable" style="text-align:center;">
 				<tbody>
@@ -114,20 +113,63 @@
 						<th>&nbsp;</th>
 						<th>&nbsp;</th>
 						<th>&nbsp;</th>
-					</tr>
-					<tr>
-						<td><b>Problem 1:</b></td>
-						<td>&nbsp;</td>
-						<td>String Problem</td>
-						<td>&nbsp;</td>
-						<td>String</td>
-						<td>&nbsp;</td>
-						<td><input type="text" name="pointValue"></td>
-						<td>&nbsp;</td>
-						<td><a href="">Edit</a></td>
-						<td>&nbsp;</td>
-						<td><a href="">Remove</a></td>
-					</tr>
+					</tr>';
+					if(isset($_SESSION['assignmentProblemArray'])){
+						print_r(array_values($_SESSION['assignmentProblemArray']));
+						//pointer for array
+						$arrayPointer = current($_SESSION['assignmentProblemArray']);
+					
+						//problem counter
+						$currProblemCount=1;
+						//while new problems are still in the array
+						while($arrayPointer!= false)
+						{
+							$problemQuery = "SELECT title, resulttype FROM problem WHERE problemId = ".$arrayPointer."";
+							$problemResult = mysql_query($problemQuery);
+							
+							//makes sure query runs properly, dies otherwise
+							if(!$problemResult)
+							 {
+								$message  = 'Invalid query: ' . mysql_error() . "\n";
+								$message .= 'Whole query: ' . $problemQuery;
+								die($message);
+							 }
+							 
+							 //fetches values
+							 $currProblemTitle="";
+							 $currProblemType="";
+							 
+							 while($row=mysql_fetch_assoc($problemResult))
+							 {
+								$currProblemTitle = $row['title'];
+								$currProblemType = $row['resulttype'];
+							 }
+							 //create necessary number of html rows
+							echo'
+							<tr>
+							<td><b>Problem '.$currProblemCount.':</b></td>
+							<td>&nbsp;</td>
+							<td>'.$currProblemTitle.'</td>
+							<td>&nbsp;</td>
+							<td>'.$currProblemType.'</td>
+							<td>&nbsp;</td>
+							<td><input type="text" name="pointValue"></td>
+							<td>&nbsp;</td>
+							<td><a href="">Edit</a></td>
+							<td>&nbsp;</td>
+							<td><a href="">Remove</a></td>
+							</tr>
+							';
+							 
+							//increments problem counter
+							$currProblemCount=$currProblemCount+1;
+							//moves pointer to next in array					
+							$arrayPointer = next($_SESSION['assignmentProblemArray']);
+						}
+					}
+				echo'
+				
+				
 					<tr>
 						<td>&nbsp;</td><td>&nbsp;</td>
 						<td>&nbsp;</td><td>&nbsp;</td>
@@ -183,5 +225,7 @@
 			include 'display_profile.php';
 			displayProfile($currentrole);
 		footerLayout();
+		
+		
 		?>
 </html>
