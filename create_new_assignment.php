@@ -31,14 +31,14 @@
 									<td>Category:</td>
 									<td><select><option value="">Select Category</option></select></td><td>&nbsp;</td>
 									<td>Course:</td>
-									<td><select>';
+									<td>';
 									if (mysql_num_rows($activeCourseResult) > 0) {
 										while($row=mysql_fetch_array($activeCourseResult)) {
-											if ($_GET['id'] == $row['sectionId']) echo'<option value="'.$row['sectionId'].'" selected="selected">'.$row['coursename'].'-'.$row['sectionId'].'</option>';							
-											else echo'<option value="'.$row['sectionId'].'">'.$row['coursename'].'-'.$row['sectionId'].'</option>';
+											if ($_GET['id'] == $row['sectionId']) echo'<p value="'.$row['sectionId'].'" selected="selected">'.$row['coursename'].'-'.$row['sectionId'].'</p>';							
+											//else echo'<option value="'.$row['sectionId'].'">'.$row['coursename'].'-'.$row['sectionId'].'</option>';
 										}
 									}
-									echo'</select>
+									echo'
 									</td><td>&nbsp;</td>
 									<td>&nbsp;</td>
 									<td>Due Date:</td>
@@ -98,7 +98,7 @@
 			</form><br>
 			<a href="./create_new_problem.php?action=addAssignment" style="font-size:13px;padding-right:20px;">Create and Add New Problem</a>
 			<a href="./private_pool.php?action=addAssignment#tab3" style="font-size:13px;padding-right:20px;">Add Problem from Private Question Pool</a>
-			<a href="./course_pool.php?action=addAssignment#tab3" style="font-size:13px;">Add Problem from Global Question Pool</a><br><br>
+			<a href="./course_pool.php?action=addAssignment&courseNumber='.$_GET['courseNumber'].'#tab3" style="font-size:13px;">Add Problem from Global Question Pool</a><br><br>
 			<table border="0" id="paramTable" style="text-align:center;">
 				<tbody>
 					<tr>

@@ -46,182 +46,61 @@
 			}
 		
 		#<!-- Question Pool tab -->
-	if(isset($_GET['action']) && $_GET['action'] == 'addAssignment'){
-		$coursePoolSQL = 'SELECT * FROM Problem WHERE poolid="private_'.$email.'"';
+		$coursePoolSQL = 'SELECT * FROM Problem WHERE poolid="'.$_GET['courseNumber'].'"';
 		$coursePoolSQLResult = mysql_query($coursePoolSQL, $conn);
-		
-		if ($currentrole=="f") {
-		echo'	
-			<div class="CSSTableGenerator" >
-			
-			<h3>Course Pool</h3>
-						<table>
+	
+		if(isset($_GET['action']) && $_GET['action'] == 'addAssignment'){
+			echo'
+			<div class="CSSTableGenerator">
+				<h3>Private Pool</h3>
+					<table>
+						<tr>
+							<td>Name</td>
+							<td>Method Name</td>
+							<td>Type</td>
+							<td></td>
+						</tr>';
+						if ($coursePoolSQLResult > 0) {
+							while($row=mysql_fetch_array($coursePoolSQLResult)) {
+								echo'<form method="POST" action="addProblemFromPool.php">';	
+								echo'<input style="z-index:-1; position:relative;" type="text" name="problemId" value="'.$row['problemId'].'">';						
+								echo'<tr><td name="privateTitle">'.$row['title'].'</td>';		
+								echo'<td name="privateMethodName">'.$row['methodname'].'</td>';
+								echo'<td name="privateResultType">'.$row['resulttype'].'</td>';
+								//echo'<td><a href="?action=addToAssignmentFromPrivate&problemId='.$row['problemId'].'">Add to Assignment</a></td></tr>';
+								echo'<td><input type="submit" value="Add To Assignment"></td></tr>';
+								echo'</form>';
+							}
+						} else echo'You have no problems in your Private Pool';
+					echo'
+					</table>
+					<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
+			</div>';
+		} else {
+			echo'<div class="CSSTableGenerator" >
+			<h3>Private Pool</h3>
+						<table >
 							<tr>
 								<td>Name</td>
-								<td>Category</td>
-								<td>Course</td>
+								<td>Method Name</td>
+								<td>Type</td>
 								<td></td>
-							</tr>
-							<tr>
-								<td><a href="">Problem 1</a></td>
-								<td>String</td>
-								<td>CSIS-225</td>
-								<td><a href="">Add to Assignment</a></td>
-							</tr>
-							<tr>
-								<td><a href="">Problem 2</a></td>
-								<td>Recursion</td>
-								<td>CSIS-225</td>
-								<td><a href="">Add to Assignment</a></td>
-							</tr>
-							<tr>
-								<td><a href="">Problem 3</a></td>
-								<td>Array</td>
-								<td>CSIS-225</td>
-								<td><a href="">Add to Assignment</a></td>
-							</tr>
-							<tr>
-								<td><a href="">Problem 4</a></td>
-								<td>Logic</td>
-								<td>CSIS-225</td>
-								<td><a href="">Add to Assignment</a></td>
-							</tr>
-						</table>
+								<td></td>
+							</tr>';
+							if ($coursePoolSQLResult > 0) {
+								while($row=mysql_fetch_array($coursePoolSQLResult)) {
+									echo'<tr><td>'.$row['title'].'</td>';
+									echo'<td>'.$row['methodname'].'</td>';
+									echo'<td>'.$row['resulttype'].'</td>';
+									echo'<td><a href="">Edit</a></td>';
+									if ($row['active'] == 1) echo'<td><a href="?action=disable&id='.$row['problemId'].'">Remove</a></td></tr>';
+									else echo'<td><a href="?action=activate&id='.$row['problemId'].'">Activate</a></td></tr>';
+								}
+							} else echo'You have no problems in your Private Pool';
+						echo'</table>
 						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 					</div>';
-				} else {
-					echo'	
-			<div class="CSSTableGenerator" >
-			
-			<h3>Course Pool</h3>
-						<table>
-							<tr>
-								<td>Name</td>
-								<td>Category</td>
-								<td>Course</td>
-								<td></td>
-							</tr>
-							<tr>
-								<td><a href="">Problem 1</a></td>
-								<td>String</td>
-								<td>CSIS-225</td>
-								<td><a href="">Add to Assignment</a></td>
-							</tr>
-							<tr>
-								<td><a href="">Problem 2</a></td>
-								<td>Recursion</td>
-								<td>CSIS-225</td>
-								<td><a href="">Add to Assignment</a></td>
-							</tr>
-							<tr>
-								<td><a href="">Problem 3</a></td>
-								<td>Array</td>
-								<td>CSIS-225</td>
-								<td><a href="">Add to Assignment</a></td>
-							</tr>
-							<tr>
-								<td><a href="">Problem 4</a></td>
-								<td>Logic</td>
-								<td>CSIS-225</td>
-								<td><a href="">Add to Assignment</a></td>
-							</tr>
-						</table>
-						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
-					</div>';
-				}
-			} else {
-				if ($currentrole=="f") {
-		echo'	
-			<div class="CSSTableGenerator" >
-			
-			<h3>Course Pool</h3>
-						<table>
-							<tr>
-								<td>Name</td>
-								<td>Category</td>
-								<td>Course</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>Problem 1</td>
-								<td>String</td>
-								<td>CSIS-225</td>
-								<td><a href="">Add to Private Pool</a></td>
-								<td><a href="">Edit</a></td>
-							</tr>
-							<tr>
-								<td>Problem 2</td>
-								<td>Recursion</td>
-								<td>CSIS-225</td>
-								<td><a href="">Add to Private Pool</a></td>
-								<td><a href="">Edit</a></td>
-							</tr>
-							<tr>
-								<td>Problem 3</td>
-								<td>Array</td>
-								<td>CSIS-225</td>
-								<td><a href="">Add to Private Pool</a></td>
-								<td><a href="">Edit</a></td>
-							</tr>
-							<tr>
-								<td>Problem 4</td>
-								<td>Logic</td>
-								<td>CSIS-225</td>
-								<td><a href="">Add to Private Pool</a></td>
-								<td><a href="">Edit</a></td>
-							</tr>
-						</table>
-						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
-					</div>';
-				} else {
-					echo'	
-			<div class="CSSTableGenerator" >
-			
-			<h3>Course Pool</h3>
-						<table>
-							<tr>
-								<td>Name</td>
-								<td>Category</td>
-								<td>Course</td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td>Problem 1</td>
-								<td>String</td>
-								<td>CSIS-225</td>
-								<td><a href="">Edit</a></td>
-								<td><a href="">Remove</a></td>
-							</tr>
-							<tr>
-								<td>Problem 2</td>
-								<td>Recursion</td>
-								<td>CSIS-225</td>
-								<td><a href="">Edit</a></td>
-								<td><a href="">Remove</a></td>
-							</tr>
-							<tr>
-								<td>Problem 3</td>
-								<td>Array</td>
-								<td>CSIS-225</td>
-								<td><a href="">Edit</a></td>
-								<td><a href="">Remove</a></td>
-							</tr>
-							<tr>
-								<td>Problem 4</td>
-								<td>Logic</td>
-								<td>CSIS-225</td>
-								<td><a href="">Edit</a></td>
-								<td><a href="">Remove</a></td>
-							</tr>
-						</table>
-						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
-					</div>';
-				}
-			}
-			
-		
+		}	
 		#<!-- Gradebook tab -->
 		
 			include 'display_grades.php';
@@ -234,10 +113,3 @@
 	footerLayout();
 	?>
 </html>
-
-
-
-
-
-		
- 

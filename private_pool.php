@@ -42,18 +42,14 @@
 				activateUser();
 			} else {
 				displayManageAccounts();
-			}
-											
+			}									
 		#<!-- Question Pool tab -->
-		
 		$privatePoolSQL = 'SELECT * FROM Problem WHERE poolid="private_'.$email.'"';
 		$privatePoolSQLResult = mysql_query($privatePoolSQL, $conn);
-		
 		if(isset($_GET['action']) && $_GET['action'] == 'addAssignment'){
 			echo'
 			<div class="CSSTableGenerator">
 				<h3>Private Pool</h3>
-					
 					<table>
 						<tr>
 							<td>Name</td>
@@ -76,7 +72,6 @@
 					echo'
 					</table>
 					<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
-					
 			</div>';
 		} else {
 			echo'<div class="CSSTableGenerator" >
@@ -102,24 +97,13 @@
 						echo'</table>
 						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 					</div>';
-		}
-		//include 'addProblemFromPool.php';
-		//if(isset($_GET['action']) and $_GET['action'] = 'addToAssignmentFromPrivate')
-		//{
-		//	addProblem();
-		//}
-		
-					
+		}		
 		#<!-- Gradebook tab -->
-		
 			include 'display_grades.php';
 			displayGrades($currentrole);
-		
 		#<!-- Profile tab -->
-		
 			include 'display_profile.php';
 			displayProfile($currentrole);
-	
 	footerLayout();
 	?>
 </html>
