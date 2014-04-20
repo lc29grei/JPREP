@@ -89,8 +89,9 @@
 		{
 			if(!isset($_SESSION['assignmentProblemArray']))
 			{
-			$_SESSION['assignmentProblemArray'] = array();
-			array_push($_SESSION['assignmentProblemArray'], $problemId);
+				
+				$_SESSION['assignmentProblemArray'] = array();
+				array_push($_SESSION['assignmentProblemArray'], $problemId);
 			}
 			else
 			{

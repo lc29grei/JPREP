@@ -116,9 +116,10 @@
 					</tr>';
 					if(isset($_SESSION['assignmentProblemArray'])){
 						print_r(array_values($_SESSION['assignmentProblemArray']));
+						
 						//pointer for array
 						$arrayPointer = current($_SESSION['assignmentProblemArray']);
-					
+						
 						//problem counter
 						$currProblemCount=1;
 						//while new problems are still in the array

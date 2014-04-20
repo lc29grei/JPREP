@@ -50,26 +50,34 @@
 		$privatePoolSQLResult = mysql_query($privatePoolSQL, $conn);
 		
 		if(isset($_GET['action']) && $_GET['action'] == 'addAssignment'){
-			echo'<div class="CSSTableGenerator">
-			<h3>Private Pool</h3>
-						<table>
-							<tr>
-								<td>Name</td>
-								<td>Method Name</td>
-								<td>Type</td>
-								<td></td>
-							</tr>';
-							if ($privatePoolSQLResult > 0) {
-								while($row=mysql_fetch_array($privatePoolSQLResult)) {
-									echo'<tr><td>'.$row['title'].'</td>';
-									echo'<td>'.$row['methodname'].'</td>';
-									echo'<td>'.$row['resulttype'].'</td>';
-									echo'<td><a href="?action=addToAssignmentFromPrivate&problemId='.$row['problemId'].'">Add to Assignment</a></td></tr>';
-								}
-							} else echo'You have no problems in your Private Pool';
-						echo'</table>
-						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
-					</div>';
+			echo'
+			<div class="CSSTableGenerator">
+				<h3>Private Pool</h3>
+					
+					<table>
+						<tr>
+							<td>Name</td>
+							<td>Method Name</td>
+							<td>Type</td>
+							<td></td>
+						</tr>';
+						if ($privatePoolSQLResult > 0) {
+							while($row=mysql_fetch_array($privatePoolSQLResult)) {
+								echo'<form method="POST" action="addProblemFromPool.php">';	
+								echo'<input style="z-index:-1; position:relative;" type="text" name="problemId" value="'.$row['problemId'].'">';						
+								echo'<tr><td name="privateTitle">'.$row['title'].'</td>';		
+								echo'<td name="privateMethodName">'.$row['methodname'].'</td>';
+								echo'<td name="privateResultType">'.$row['resulttype'].'</td>';
+								//echo'<td><a href="?action=addToAssignmentFromPrivate&problemId='.$row['problemId'].'">Add to Assignment</a></td></tr>';
+								echo'<td><input type="submit" value="Add To Assignment"></td></tr>';
+								echo'</form>';
+							}
+						} else echo'You have no problems in your Private Pool';
+					echo'
+					</table>
+					<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
+					
+			</div>';
 		} else {
 			echo'<div class="CSSTableGenerator" >
 			<h3>Private Pool</h3>
@@ -95,11 +103,11 @@
 						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 					</div>';
 		}
-		include 'addProblemFromPool.php';
-		if(isset($_GET['action']) and $_GET['action'] = 'addToAssignmentFromPrivate')
-		{
-			addProblem();
-		}
+		//include 'addProblemFromPool.php';
+		//if(isset($_GET['action']) and $_GET['action'] = 'addToAssignmentFromPrivate')
+		//{
+		//	addProblem();
+		//}
 		
 					
 		#<!-- Gradebook tab -->
