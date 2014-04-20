@@ -28,10 +28,21 @@
 			Method Name   <input type="text" name="methodName">
 			Course   <select name="selectedCourse">
 			<?php
-				if (mysql_num_rows($activeCourseResult) > 0) {
-					while($row=mysql_fetch_array($activeCourseResult)) {
-						if ($_GET['id'] == $row['courseId']) echo'<option value="'.$row['sectionId'].$row['courseId'].'" selected="selected">'.$row['courseId'].' '.$row['coursename'].'</option>';							
-						else echo'<option value="'.$row['sectionId'].$row['courseId'].'">'.$row['courseId'].' '.$row['coursename'].'</option>';
+				if($currentrole!="c")
+				{
+					if (mysql_num_rows($activeCourseResult) > 0) {
+						while($row=mysql_fetch_array($activeCourseResult)) {
+							if ($_GET['id'] == $row['courseId']) echo'<option value="'.$row['sectionId'].$row['courseId'].'" selected="selected">'.$row['courseId'].' '.$row['coursename'].'</option>';							
+							else echo'<option value="'.$row['sectionId'].$row['courseId'].'">'.$row['courseId'].' '.$row['coursename'].'</option>';
+						}
+					}
+				} else
+				{
+					if (mysql_num_rows($activeCourseResult) > 0) {
+						while($row=mysql_fetch_array($activeCourseResult)) {
+							if ($_GET['id'] == $row['courseId']) echo'<option value="'.$row['courseId'].'" selected="selected">'.$row['courseId'].'</option>';							
+							else echo'<option value="'.$row['courseId'].'">'.$row['courseId'].'</option>';
+						}
 					}
 				}
 			?>
@@ -39,7 +50,6 @@
 			
 			Question/Description<br><textarea name="description" rows="5" cols="150" style="resize:none;"></textarea>
 			<br>
-			
 			<table border="0" id="paramTable" name="paramTable">
 				<tbody>
 					<tr>

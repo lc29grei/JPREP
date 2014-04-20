@@ -98,7 +98,7 @@
 			</form><br>
 			<a href="./create_new_problem.php?action=addAssignment" style="font-size:13px;padding-right:20px;">Create and Add New Problem</a>
 			<a href="./private_pool.php?action=addAssignment#tab3" style="font-size:13px;padding-right:20px;">Add Problem from Private Question Pool</a>
-			<a href="./course_pool.php?action=addAssignment" style="font-size:13px;">Add Problem from Global Question Pool</a><br><br>
+			<a href="./course_pool.php?action=addAssignment#tab3" style="font-size:13px;">Add Problem from Global Question Pool</a><br><br>
 			<table border="0" id="paramTable" style="text-align:center;">
 				<tbody>
 					<tr>

@@ -1,6 +1,6 @@
 <?php
   session_start();
-  
+  $currentrole=$_SESSION['currentrole'];
   $dbhost = 'localhost';
   $dbuser = 'root';
   $dbpass = '';
@@ -16,7 +16,7 @@
 		
 		$title = mysql_real_escape_string($_POST['title']);
 		$methodName = mysql_real_escape_string($_POST['methodName']);
-		$selecctedCourse = mysql_real_escape_string($_POST['selectedCourse']);
+		$selectedCourse = mysql_real_escape_string($_POST['selectedCourse']);
 		$description = mysql_real_escape_string($_POST['description']);
 		$param1name = mysql_real_escape_string($_POST['param1name']);
 		$starterCode = mysql_real_escape_string($_POST['starter']);
@@ -55,9 +55,14 @@
 		
 		$resultType= mysql_real_escape_string($_POST['resultType']);
 		$solution= mysql_real_escape_string($_POST['solution']);
-		
-		$sql = "INSERT INTO Problem VALUES('".$problemId."','private_".$email."','',1,'".$title."','".$methodName."','".$resultType."','".$solution."','".$param1name."','".$param2name."','".$param3name."','".$param4name."','".$param5name."','".$starterCode."','','".$param1type."','".$param2type."','".$param3type."','".$param4type."','".$param5type."')";
-	
+		if($currentrole!='c')
+		{
+			$sql = "INSERT INTO Problem VALUES('".$problemId."','private_".$email."','',1,'".$title."','".$methodName."','".$resultType."','".$solution."','".$param1name."','".$param2name."','".$param3name."','".$param4name."','".$param5name."','".$starterCode."','','".$param1type."','".$param2type."','".$param3type."','".$param4type."','".$param5type."')";
+		}
+		else
+		{
+			$sql = "INSERT INTO Problem VALUES('".$problemId."','".$selectedCourse."','',1,'".$title."','".$methodName."','".$resultType."','".$solution."','".$param1name."','".$param2name."','".$param3name."','".$param4name."','".$param5name."','".$starterCode."','','".$param1type."','".$param2type."','".$param3type."','".$param4type."','".$param5type."')";
+		}
 		$retval = mysql_query( $sql, $conn );
 		if(! $retval ) {
 	  		die('Could not update data: ' . mysql_error());
