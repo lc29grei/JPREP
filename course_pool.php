@@ -46,8 +46,10 @@
 			}
 		
 		#<!-- Question Pool tab -->
+	
 		$coursePoolSQL = 'SELECT * FROM Problem WHERE poolid="'.$_GET['courseNumber'].'"';
 		$coursePoolSQLResult = mysql_query($coursePoolSQL, $conn);
+		
 	
 		if(isset($_GET['action']) && $_GET['action'] == 'addAssignment'){
 			echo'

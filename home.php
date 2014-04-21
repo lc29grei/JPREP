@@ -4,6 +4,8 @@
 	if (!(isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']!='')) {
 		header ("Location: login.php");
 	}
+	$_SESSION['assignmentProblemArray']=array();
+	
 	$currentrole=$_SESSION['currentrole'];
 	$firstname=$_SESSION['first_name'];
    	

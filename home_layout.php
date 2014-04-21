@@ -1,7 +1,6 @@
 <?php
 function headerLayout($currentrole, $firstname) {
 $role2=$_SESSION['role2'];
-
 echo'
 	<head>
 		<title>Welcome to JPREP</title>
@@ -9,6 +8,9 @@ echo'
 		<script language="javascript" src="list.js"></script>
 		<script language="javascript" src="script.js"></script>
 		<link href="./css/style_home.css" rel="stylesheet" type="text/css">	
+		
+
+
 		<script>
 			function goBack() {
 				window.history.back();

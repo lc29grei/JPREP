@@ -4,7 +4,6 @@
 	if (!(isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']!='')) {
 		header ("Location: login.php");
 	}
-	
 	$dbhost = 'localhost';
   	$dbuser = 'root';
   	$dbpass = '';
@@ -20,6 +19,7 @@
    	include 'home_layout.php';
    	headerLayout($currentrole,$firstname);
 		#<!-- Courses tab -->
+		print_r($_POST);
 		?>
 			<div>
 			<p style="font-size:18px;"><u>Create New Problem</u></p>

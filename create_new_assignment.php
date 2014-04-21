@@ -20,16 +20,27 @@
    	include 'home_layout.php';
 	headerLayout($currentrole, $firstname);
 		#<!-- Courses tab -->
+			if(!isset($_SESSION['currCourseNumber'])){
+				$_SESSION['currCourseNumber']=$_GET['courseNumber'];
+			}
+			if(isset($_GET['courseNumber']))$_SESSION['currCourseNumber']=$_GET['courseNumber'];
 			echo'
 			<div>
 			<p style="font-size:18px;"><u>Create New Assignment</u></p>
-			
+			<form method="POST" action="check_create_assignment.php?id='.$_GET['id'].'">
 			<table style="display:inline;text-align:center;">
 								<tr>
 									<td>Title:</td>
-									<td><input type="text" name="title"></td><td>&nbsp;</td>
+									<td><input type="text" name="assignmentTitle"></td><td>&nbsp;</td>
 									<td>Category:</td>
-									<td><select><option value="">Select Category</option></select></td><td>&nbsp;</td>
+									<td><select name="assignmentCategory">
+										<option value="string" name="string">String</option>
+										<option value="recursion" name="recursion">Recursion</option>
+										</select>
+									</td>
+									<td>
+										&nbsp;
+									</td>
 									<td>Course:</td>
 									<td>';
 									if (mysql_num_rows($activeCourseResult) > 0) {
@@ -41,64 +52,72 @@
 									echo'
 									</td><td>&nbsp;</td>
 									<td>&nbsp;</td>
-									<td>Due Date:</td>
-									<td><select id="month"><option value="jan">January</option>
-															<option value="feb">February</option>
-															<option value="march">March</option>
-															<option value="april">April</option>
-															<option value="may">May</option>
-															<option value="june">June</option>
-															<option value="july">July</option>
-															<option value="aug">August</option>
-															<option value="sep">September</option>
-															<option value="oct">October</option>
-															<option value="nov">November</option>
-															<option value="dec">December</option>
+									<td>Due Date: </td>
+									
+									
+									<td><select name="month" id="month"><option value="01">January</option>
+															<option value="02">February</option>
+															<option value="03">March</option>
+															<option value="04">April</option>
+															<option value="05">May</option>
+															<option value="06">June</option>
+															<option value="07">July</option>
+															<option value="08">August</option>
+															<option value="09">September</option>
+															<option value="10">October</option>
+															<option value="11">November</option>
+															<option value="12">December</option>
 															</select></td>
 									<td>/</td>
-									<td><select id="day">';
+									<td><select name="day" id="day">';
 										$i=1;
 										while ($i<32) {
 											if ($i < 10) echo'<option value="0'.$i.'">0'.$i.'</option>';
 											else echo'<option value="'.$i.'">'.$i.'</option>';
 											$i = $i+1;
 										}
-									echo'</select></td>
+									 echo'</select></td>
 									<td>/</td>
-									<td><select id="year"><option value="2013">2013</option>
+									<td><select name="year" id="year"><option value="13">2013</option>
 															<option value="2014">2014</option>
 															<option value="2015">2015</option>
 															</select></td>
 									<td>&nbsp;</td>
-									<td><select id="hour">';
-									$h=1;
-									while ($h<13) {
-										if($h<10) echo'<option value="0'.$h.'">0'.$h.'</option>';
-										else echo'<option value="'.$h.'">'.$h.'</option>';
-										$h=$h+1;
-									}
-									echo'</select></td>
-									<td>:</td>
-									<td><select id="minute">';
-									$m=0;
-									while ($m<60) {
-										if($m<10) echo'<option value="0'.$m.'">0'.$m.'</option>';
-										else echo'<option value="'.$m.'">'.$m.'</option>';
-										$m=$m+1;
-									}
-									echo'</select></td>
-									<td><select id=""><option value="am">AM</option>
-														<option value="pm">PM</option>
-														</select></td>
+									<td>Total Grade: <input type="text" name="grade"></td>
+									
+									';
+									// <td><select id="hour">
+									// $h=1;
+									// while ($h<13) {
+										// if($h<10) echo'<option value="0'.$h.'">0'.$h.'</option>';
+										// else echo'<option value="'.$h.'">'.$h.'</option>';
+										// $h=$h+1;
+									// }
+									// echo'</select></td>
+									// <td>:</td>
+									// <td><select id="minute">';
+									// $m=0;
+									// while ($m<60) {
+										// if($m<10) echo'<option value="0'.$m.'">0'.$m.'</option>';
+										// else echo'<option value="'.$m.'">'.$m.'</option>';
+										// $m=$m+1;
+									// }
+									// echo'</select></td>
+									// <td><select id=""><option value="am">AM</option>
+														// <option value="pm">PM</option>
+														// </select></td>
+									
+								echo '	
 								</tr>
 								</table>
 			
-			<form method="post">
+			
 			Description<br><textarea name="description" rows="5" cols="150" style="resize:none;"></textarea>
-			</form><br>
-			<a href="./create_new_problem.php?action=addAssignment" style="font-size:13px;padding-right:20px;">Create and Add New Problem</a>
+			<br>
+			<a href="./create_new_problem.php?action=addAssignment&assignmentTitle" style="font-size:13px;padding-right:20px;">Create and Add New Problem</a>
 			<a href="./private_pool.php?action=addAssignment#tab3" style="font-size:13px;padding-right:20px;">Add Problem from Private Question Pool</a>
-			<a href="./course_pool.php?action=addAssignment&courseNumber='.$_GET['courseNumber'].'#tab3" style="font-size:13px;">Add Problem from Global Question Pool</a><br><br>
+			<a href="./course_pool.php?action=addAssignment&courseNumber='.$_SESSION['currCourseNumber'].'#tab3" style="font-size:13px;">Add Problem from Global Question Pool</a><br><br>
+			
 			<table border="0" id="paramTable" style="text-align:center;">
 				<tbody>
 					<tr>
@@ -115,7 +134,6 @@
 						<th>&nbsp;</th>
 					</tr>';
 					if(isset($_SESSION['assignmentProblemArray'])){
-						print_r(array_values($_SESSION['assignmentProblemArray']));
 						
 						//pointer for array
 						$arrayPointer = current($_SESSION['assignmentProblemArray']);
@@ -184,9 +202,9 @@
 			</table>
 			
 			<br><br>
-			<input type="button" value="Create Assignment" style="float:right;">
+			<input type="submit" value="Create Assignment" style="float:right;">
 			<input type="button" value="Cancel" onClick="cancelConfirm()" style="float:right;">
-			
+			</form>
 			</div>';
 			
 		#<!-- Manage Accounts tab -->
