@@ -83,7 +83,7 @@
 															<option value="2015">2015</option>
 															</select></td>
 									<td>&nbsp;</td>
-									<td>Total Grade: <input type="text" name="grade"></td>
+									
 									
 									';
 									// <td><select id="hour">
@@ -114,9 +114,9 @@
 			
 			Description<br><textarea name="description" rows="5" cols="150" style="resize:none;"></textarea>
 			<br>
-			<a href="./create_new_problem.php?action=addAssignment&assignmentTitle" style="font-size:13px;padding-right:20px;">Create and Add New Problem</a>
-			<a href="./private_pool.php?action=addAssignment#tab3" style="font-size:13px;padding-right:20px;">Add Problem from Private Question Pool</a>
-			<a href="./course_pool.php?action=addAssignment&courseNumber='.$_SESSION['currCourseNumber'].'#tab3" style="font-size:13px;">Add Problem from Global Question Pool</a><br><br>
+			<a href="./create_new_problem.php?action=addAssignment&assignmentTitle=nothing&id='.$_GET['id'].'" style="font-size:13px;padding-right:20px;">Create and Add New Problem</a>
+			<a href="./private_pool.php?action=addAssignment&id='.$_GET['id'].'#tab3" style="font-size:13px;padding-right:20px;">Add Problem from Private Question Pool</a>
+			<a href="./course_pool.php?action=addAssignment&id='.$_GET['id'].'&courseNumber='.$_SESSION['currCourseNumber'].'#tab3" style="font-size:13px;">Add Problem from Global Question Pool</a><br><br>
 			
 			<table border="0" id="paramTable" style="text-align:center;">
 				<tbody>
@@ -156,8 +156,7 @@
 							 
 							 //fetches values
 							 $currProblemTitle="";
-							 $currProblemType="";
-							 
+							 $currProblemType="";							 
 							 while($row=mysql_fetch_assoc($problemResult))
 							 {
 								$currProblemTitle = $row['title'];
@@ -172,7 +171,7 @@
 							<td>&nbsp;</td>
 							<td>'.$currProblemType.'</td>
 							<td>&nbsp;</td>
-							<td><input type="text" name="pointValue"></td>
+							<td><input type="text" name="pointValue'.$currProblemCount.'"></td>
 							<td>&nbsp;</td>
 							<td><a href="">Edit</a></td>
 							<td>&nbsp;</td>

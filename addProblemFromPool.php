@@ -9,6 +9,6 @@
 		{
 			array_push($_SESSION['assignmentProblemArray'], $_POST['problemId']);
 		}
-		// print_r($_POST);
-		header("location: create_new_assignment.php?id=4");
+		// print_r($_GET['id']);
+		header("location: create_new_assignment.php?id=".$_GET['id']."");
 ?>

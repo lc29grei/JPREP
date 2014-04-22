@@ -89,7 +89,11 @@
 		}
 	
 		mysql_close($conn);
-		if(!$_SESSION["isAddToAssignment"]) header("location: private_pool.php#tab3");
+		if(!$_SESSION["isAddToAssignment"]) 
+		{
+			if($_SESSION['currentrole']!= 'c') header("location: private_pool.php#tab3");
+			else header("location: course_pool.php?courseNumber=".$_GET['id']."#tab3");
+		}
 		else
 		{
 			if(!isset($_SESSION['assignmentProblemArray']))
@@ -102,7 +106,7 @@
 			{
 				array_push($_SESSION['assignmentProblemArray'], $problemId);
 			}
-			header("location: create_new_assignment.php?id=4");
+			header("location: create_new_assignment.php?id=".$_GET['id']."");
 		}
 	}
 	

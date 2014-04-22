@@ -19,11 +19,10 @@
    	include 'home_layout.php';
    	headerLayout($currentrole,$firstname);
 		#<!-- Courses tab -->
-		print_r($_POST);
 		?>
 			<div>
 			<p style="font-size:18px;"><u>Create New Problem</u></p>
-			<form method="POST" action="check_create_problem.php">
+			<form method="POST" action="check_create_problem.php?<?php echo'id='.$_GET['id'].'';?>">
 			Title   <input type="text" name="title">
 			Method Name   <input type="text" name="methodName">
 			Course   <select name="selectedCourse">

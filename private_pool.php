@@ -59,7 +59,7 @@
 						</tr>';
 						if ($privatePoolSQLResult > 0) {
 							while($row=mysql_fetch_array($privatePoolSQLResult)) {
-								echo'<form method="POST" action="addProblemFromPool.php">';	
+								echo'<form method="POST" action="addProblemFromPool.php?id='.$_GET['id'].'">';	
 								echo'<input style="z-index:-1; position:relative;" type="text" name="problemId" value="'.$row['problemId'].'">';						
 								echo'<tr><td name="privateTitle">'.$row['title'].'</td>';		
 								echo'<td name="privateMethodName">'.$row['methodname'].'</td>';

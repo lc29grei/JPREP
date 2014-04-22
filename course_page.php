@@ -46,8 +46,10 @@
 							while($row=mysql_fetch_array($courseAssignmentSQLResult)) {
 								if($row['dueDate']>=date("Y-m-d"))
 								{
-								echo'<form method="POST" action="addProblemFromPool.php">';	
-								echo'<input style="z-index:-1; position:relative;" type="text" name="assignmentId" value="'.$row['assignmentId'].'">';						
+								echo'<form method="POST" action="view_Assignment.php?id='.$_GET['num'].'">';	
+								echo'<input style="z-index:-1; position:relative;" type="text" name="assignmentId" value="'.$row['assignmentId'].'">';
+								echo'<input style="z-index:-1; position:relative;" type="text" name="assignmentTitle" value="'.$row['assignmentTitle'].'">';	
+								echo'<input style="z-index:-1; position:relative;" type="text" name="dueDate" value="'.$row['dueDate'].'">';														
 								echo'<tr><td name="assignmentTitle">'.$row['assignmentTitle'].'</td>';		
 								echo'<td name="dueDate">'.$row['dueDate'].'</td>';
 								if($row['isComplete']==0)
@@ -79,21 +81,21 @@
 								while($row=mysql_fetch_array($courseAssignmentSQLResult1)) {
 									if($row['dueDate']<date("Y-m-d"))
 									{
-									echo'<form method="POST" action="addProblemFromPool.php">';	
+									
 									echo'<input style="z-index:-1; position:relative;" type="text" name="assignmentId" value="'.$row['assignmentId'].'">';						
 									echo'<tr><td name="assignmentTitle">'.$row['assignmentTitle'].'</td>';		
 									echo'<td name="dueDate">'.$row['dueDate'].'</td>';
 									if($row['isComplete']==0)
 									{									
 										echo'<td name="status">Not Complete</td>';
-										echo'<td><input type="submit" value="Too Late to Complete"></td></tr>';
+										echo'<td>Too Late To Complete</td></tr>';
 									}
 									else
 									{ 
 									echo'<td name="status">Complete</td>';
 									echo'<td>Assignment Completed</td></tr>';
 									}
-									echo'</form>';
+									
 									}
 								}
 							}

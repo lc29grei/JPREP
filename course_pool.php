@@ -54,7 +54,7 @@
 		if(isset($_GET['action']) && $_GET['action'] == 'addAssignment'){
 			echo'
 			<div class="CSSTableGenerator">
-				<h3>Private Pool</h3>
+				<h3>Course Pool</h3>
 					<table>
 						<tr>
 							<td>Name</td>
@@ -64,7 +64,7 @@
 						</tr>';
 						if ($coursePoolSQLResult > 0) {
 							while($row=mysql_fetch_array($coursePoolSQLResult)) {
-								echo'<form method="POST" action="addProblemFromPool.php">';	
+								echo'<form method="POST" action="addProblemFromPool.php?id='.$_GET['id'].'">';	
 								echo'<input style="z-index:-1; position:relative;" type="text" name="problemId" value="'.$row['problemId'].'">';						
 								echo'<tr><td name="privateTitle">'.$row['title'].'</td>';		
 								echo'<td name="privateMethodName">'.$row['methodname'].'</td>';
@@ -80,7 +80,7 @@
 			</div>';
 		} else {
 			echo'<div class="CSSTableGenerator" >
-			<h3>Private Pool</h3>
+			<h3>Course Pool</h3>
 						<table >
 							<tr>
 								<td>Name</td>
