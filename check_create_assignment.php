@@ -39,7 +39,7 @@
 		}
 		
 
-		$sql = "INSERT INTO assignment VALUES('".$assignmentId."','".$sectionId."','".$email."','".$dueDate."','".$pointValue."','".$otherinfo."','0','".$problem0."','".$problem1."','".$problem2."','".$problem3."','".$problem4."','".$problem5."','".$problem6."','".$problem7."','".$problem8."','".$problem9."','".$assignmentCategory."')";
+		$sql = "INSERT INTO assignment VALUES('".$assignmentId."','".$sectionId."','".$email."','".$dueDate."','".$pointValue."','".$otherinfo."','0','".$problem0."','".$problem1."','".$problem2."','".$problem3."','".$problem4."','".$problem5."','".$problem6."','".$problem7."','".$problem8."','".$problem9."','".$assignmentCategory."','".$assignmentTitle."')";
 		$retval = mysql_query( $sql, $conn );
 		if(! $retval ) {
 	  		die('Could not update data: ' . mysql_error());
