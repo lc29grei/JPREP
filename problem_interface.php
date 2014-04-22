@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <?php
 session_start();
-if (!(isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']!='')) {
+
+/*if (!(isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']!='')) {
 		header ("Location: login.php");
-	}
+	}*/
 if (!isset($_SESSION['answer'])) $_SESSION['answer'] = "N,,N,,N,,";
 $cmdOutput = $_SESSION['answer'];
 if (strpos($cmdOutput, 'Error') !== false) {
@@ -17,15 +18,48 @@ else {
 function displayPage()
 {
 	global $cmdOutput;
+
+	// DB Info
+	$dbhost = 'localhost';
+	$dbuser = 'root';
+	$dbpass = '';
+	$conn = mysql_connect($dbhost, $dbuser, $dbpass);
+	mysql_select_db('jprep');
+
+	// REALTIME QUERY
+	//$coursePoolSQL = 'SELECT * FROM problem WHERE problemId="'.$_GET['problemId'].'"';
+	// LOCALQUERY
+	$coursePoolSQL = 'SELECT * FROM problem WHERE problemId="1"';
+	$coursePoolSQLResult = mysql_query($coursePoolSQL, $conn);
+	$row=mysql_fetch_array($coursePoolSQLResult);
+	
+	$paramString = "";
+	if ($row['param1'] != null and $row['param1'] != "") {
+		$paramString = $paramString . $row['param1type'] . " " . $row['param1'];
+	}
+	if ($row['param2'] != null and $row['param2'] != "") {
+		$paramString = $paramString . ", " . $row['param2type'] . " " . $row['param2'];
+	}
+	if ($row['param3'] != null and $row['param3'] != "") {
+		$paramString = $paramString . ", " . $row['param3type'] . " " . $row['param3'];
+	}
+	if ($row['param4'] != null and $row['param4'] != "") {
+		$paramString = $paramString . ", " . $row['param4type'] . " " . $row['param4'];
+	}
+	if ($row['param5'] != null and $row['param5'] != "") {
+		$paramString = $paramString . ", " . $row['param5type'] . " " . $row['param5'];
+	}
+	/*
 	$currentrole=$_SESSION['currentrole'];
 	$firstname=$_SESSION['first_name'];
 	include 'home_layout.php';
-	headerLayout($currentrole, $firstname);
+	headerLayout($currentrole, $firstname);*/
 	echo'
 				<div>
-					<h1>Source Code Input</h1>
+					<h1>' . $row['title'] . '</h1>
+					<p>' . $row['starterText'] . '</p>
 					<form method="post" action="./codeinput.php">
-					<textarea name="source" rows="10" cols="70" style="resize:none;">public int sum(int a, int b) {
+					<textarea name="source" rows="10" cols="70" style="resize:none;">public ' . $row['resulttype'] . ' ' . $row['methodname'] . '(' . $paramString . ') {
     
 }</textarea>
 				</br>
@@ -59,6 +93,7 @@ function displayPage()
 					</tr>
 				</table>
 				</div>';
+				/*
 			#<!-- Manage Accounts tab -->
 			include 'display_manage_accounts.php';
 			if(isset($_GET['action']) && $_GET['action'] == 'manageCC'){
@@ -95,7 +130,7 @@ function displayPage()
 			include 'display_profile.php';
 			displayProfile($currentrole);
 	
-		footerLayout();
+		footerLayout();*/
 }
 /*
  * To automate this with a database have a function that makes calls to a database
