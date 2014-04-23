@@ -27,9 +27,9 @@ function displayPage()
 	mysql_select_db('jprep');
 
 	// REALTIME QUERY
-	//$coursePoolSQL = 'SELECT * FROM problem WHERE problemId="'.$_GET['problemId'].'"';
+	$coursePoolSQL = 'SELECT * FROM problem WHERE problemId="'.$_GET['problemId'].'"';
 	// LOCALQUERY
-	$coursePoolSQL = 'SELECT * FROM problem WHERE problemId="1"';
+	//$coursePoolSQL = 'SELECT * FROM problem WHERE problemId="1"';
 	$coursePoolSQLResult = mysql_query($coursePoolSQL, $conn);
 	$row=mysql_fetch_array($coursePoolSQLResult);
 	
