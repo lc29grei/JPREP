@@ -44,10 +44,10 @@
 		
 		#<!-- Question Pool tab -->
 	
-		$coursePoolSQL = 'SELECT * FROM Problem WHERE poolid="'.$_GET['courseNumber'].'"';
+		$coursePoolSQL = 'SELECT * FROM Problem WHERE poolid="'.$_GET['id'].'"';
 		$coursePoolSQLResult = mysql_query($coursePoolSQL, $conn);
 		
-	
+		if (mysql_num_rows($coursePoolSQLResult) > 0) {
 		if(isset($_GET['action']) && $_GET['action'] == 'addAssignment'){
 			echo'
 			<div class="CSSTableGenerator">
@@ -59,7 +59,6 @@
 							<td>Type</td>
 							<td></td>
 						</tr>';
-						if ($coursePoolSQLResult > 0) {
 							while($row=mysql_fetch_array($coursePoolSQLResult)) {
 								echo'<form method="POST" action="addProblemFromPool.php?id='.$_GET['id'].'">';	
 								echo'<input style="z-index:-1; position:relative;" type="text" name="problemId" value="'.$row['problemId'].'">';						
@@ -70,7 +69,6 @@
 								echo'<td><input type="submit" value="Add To Assignment"></td></tr>';
 								echo'</form>';
 							}
-						} else echo'You have no problems in your Private Pool';
 					echo'
 					</table>
 					<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
@@ -83,23 +81,29 @@
 								<td>Name</td>
 								<td>Method Name</td>
 								<td>Type</td>
-								<td></td>
-								<td></td>
-							</tr>';
-							if ($coursePoolSQLResult > 0) {
+								<td></td>';
+								if ($currentrole == 'c' or $currentrole == 'a') echo'<td></td>';
+							echo'</tr>';
 								while($row=mysql_fetch_array($coursePoolSQLResult)) {
 									echo'<tr><td>'.$row['title'].'</td>';
 									echo'<td>'.$row['methodname'].'</td>';
 									echo'<td>'.$row['resulttype'].'</td>';
 									echo'<td><a href="">Edit</a></td>';
-									if ($row['active'] == 1) echo'<td><a href="?action=disable&id='.$row['problemId'].'">Remove</a></td></tr>';
-									else echo'<td><a href="?action=activate&id='.$row['problemId'].'">Activate</a></td></tr>';
+									if ($currentrole == 'c' or $currentrole == 'a') {
+										if ($row['active'] == 1) echo'<td><a href="?action=disable&id='.$row['problemId'].'">Remove</a></td></tr>';
+										else echo'<td><a href="?action=activate&id='.$row['problemId'].'">Activate</a></td></tr>';
+									}
 								}
-							} else echo'You have no problems in your Private Pool';
 						echo'</table>
 						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 					</div>';
-		}	
+		}
+		} else echo'<div>
+					<h3>Course Pool</h3>
+					<p style="text-align: center;">There are no questions to display in this course pool</p>
+					<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
+					</div>'; 
+					
 		#<!-- Gradebook tab -->
 		
 			include 'display_grades.php';

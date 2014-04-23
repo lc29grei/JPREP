@@ -131,22 +131,42 @@ function addParam() {
 	if (document.getElementById('param2name').disabled) {
 		document.getElementById('param2name').disabled=false;
 		document.getElementById('param2type').disabled=false;
-		document.getElementById('case1param2').disabled=false;
+		var table = document.getElelementById('paramTable');
+		var rowCount = table.rows.length;
+		for (var i=rowCount-6;i>=6;i--) {
+			var name = "case" + i + "param2";
+			document.getElementById(name).disabled=false;
+		}
 		return;
 	} else if (document.getElementById('param3name').disabled) {
 		document.getElementById('param3name').disabled=false;
 		document.getElementById('param3type').disabled=false;
-		document.getElementById('case1param3').disabled=false;
+		var table = document.getElelementById('paramTable');
+		var rowCount = table.rows.length;
+		for (var i=rowCount-6;i>=6;i--) {
+			var name = "case" + i + "param3";
+			document.getElementById(name).disabled=false;
+		}
 		return;
 	} else if (document.getElementById('param4name').disabled) {
 		document.getElementById('param4name').disabled=false;
 		document.getElementById('param4type').disabled=false;
-		document.getElementById('case1param4').disabled=false;
+		var table = document.getElelementById('paramTable');
+		var rowCount = table.rows.length;
+		for (var i=rowCount-6;i>=6;i--) {
+			var name = "case" + i + "param4";
+			document.getElementById(name).disabled=false;
+		}
 		return;
 	} else if (document.getElementById('param5name').disabled) {
 		document.getElementById('param5name').disabled=false;
 		document.getElementById('param5type').disabled=false;
-		document.getElementById('case1param5').disabled=false;
+		var table = document.getElelementById('paramTable');
+		var rowCount = table.rows.length;
+		for (var i=rowCount-6;i>=6;i--) {
+			var name = "case" + i + "param5";
+			document.getElementById(name).disabled=false;
+		}
 		return;
 	} else {
 		alert('Sorry, you can only have up to 5 parameters');
@@ -158,24 +178,48 @@ function removeParam(tableId) {
 	var r = confirm("Are you sure you want to remove a parameter?");
 	if (r==true) {
 	if (document.getElementById('param5name').disabled === false) {
+		document.getElementById('param5name').value='';
 		document.getElementById('param5name').disabled=true;
 		document.getElementById('param5type').disabled=true;
-		document.getElementById('case1param5').disabled=true;
+		var table = document.getElelementById('paramTable');
+		var rowCount = table.rows.length;
+		for (var i=rowCount-6;i>=6;i--) {
+			var name = "case" + i + "param5";
+			document.getElementById(name).disabled=true;
+		}
 		return;
 	} else if (document.getElementById('param4name').disabled === false) {
+		document.getElementById('param4name').value='';
 		document.getElementById('param4name').disabled=true;
 		document.getElementById('param4type').disabled=true;
-		document.getElementById('case1param4').disabled=true;
+		var table = document.getElelementById('paramTable');
+		var rowCount = table.rows.length;
+		for (var i=rowCount-6;i>=6;i--) {
+			var name = "case" + i + "param4";
+			document.getElementById(name).disabled=true;
+		}
 		return;
 	} else if (document.getElementById('param3name').disabled === false) {
+		document.getElementById('param3name').value='';
 		document.getElementById('param3name').disabled=true;
 		document.getElementById('param3type').disabled=true;
-		document.getElementById('case1param3').disabled=true;
+		var table = document.getElelementById('paramTable');
+		var rowCount = table.rows.length;
+		for (var i=rowCount-6;i>=6;i--) {
+			var name = "case" + i + "param3";
+			document.getElementById(name).disabled=true;
+		}
 		return;
 	} else if (document.getElementById('param2name').disabled === false) {
+		document.getElementById('param2name').value='';
 		document.getElementById('param2name').disabled=true;
 		document.getElementById('param2type').disabled=true;
-		document.getElementById('case1param2').disabled=true;
+		var table = document.getElelementById('paramTable');
+		var rowCount = table.rows.length;
+		for (var i=rowCount-6;i>=6;i--) {
+			var name = "case" + i + "param2";
+			document.getElementById(name).disabled=true;
+		}
 		return;
 	} else {
 		alert('You must have at least 1 parameter!');

@@ -22,28 +22,19 @@
 			<form method="POST" action="check_create_problem.php?<?php echo'id='.$_GET['id'].'';?>">
 			Title   <input type="text" name="title">
 			Method Name   <input type="text" name="methodName">
-			Course   <select name="selectedCourse">
 			<?php
-				if($currentrole!="c")
-				{
-					if (mysql_num_rows($activeCourseResult) > 0) {
-						while($row=mysql_fetch_array($activeCourseResult)) {
-							if ($_GET['id'] == $row['courseId']) echo'<option value="'.$row['sectionId'].$row['courseId'].'" selected="selected">'.$row['courseId'].' '.$row['coursename'].'</option>';							
-							else echo'<option value="'.$row['sectionId'].$row['courseId'].'">'.$row['courseId'].' '.$row['coursename'].'</option>';
-						}
-					}
-				} else
-				{
-					if (mysql_num_rows($activeCourseResult) > 0) {
-						while($row=mysql_fetch_array($activeCourseResult)) {
-							if ($_GET['id'] == $row['courseId']) echo'<option value="'.$row['courseId'].'" selected="selected">'.$row['courseId'].'</option>';							
-							else echo'<option value="'.$row['courseId'].'">'.$row['courseId'].'</option>';
-						}
-					}
+			if ($currentrole == "c") {
+			echo'Course   <select name="selectedCourse">';
+			if (mysql_num_rows($activeCourseResult) > 0) {
+				while($row=mysql_fetch_array($activeCourseResult)) {
+					if ($_GET['id'] == $row['courseId']) echo'<option value="'.$row['courseId'].'" selected="selected">'.$row['courseId'].' '.$row['coursename'].'</option>';							
+					else echo'<option value="'.$row['courseId'].'">'.$row['courseId'].' '.$row['coursename'].'</option>';
 				}
+			}
+			echo'</select>';
+			}
 			?>
-			</select><br><br>
-			
+			<br><br>
 			Question/Description<br><textarea name="description" rows="5" cols="150" style="resize:none;"></textarea>
 			<br>
 			<table border="0" id="paramTable" name="paramTable">
@@ -76,62 +67,62 @@
 												 <option value="char">char</option>
 												 <option value="boolean">boolean</option>
 												 <option value="string">String</option>
-												 <option value="float">double</option>
+												 <option value="double">double</option>
 												 <option value="intArray">int[]</option>
 												 <option value="charArray">char[]</option>
 												 <option value="booleanArray">boolean[]</option>
 												 <option value="stringArray">String[]</option>
-												 <option value="floatArray">double[]</option></select></td>
+												 <option value="doubleArray">double[]</option></select></td>
 						<td class="col3"><select name="param2type" id="param2type" disabled="disabled"><option value="int">int</option>
 												 <option value="char">char</option>
 												 <option value="boolean">boolean</option>
 												 <option value="string">String</option>
-												 <option value="float">double</option>
+												 <option value="double">double</option>
 												 <option value="intArray">int[]</option>
 												 <option value="charArray">char[]</option>
 												 <option value="booleanArray">boolean[]</option>
 												 <option value="stringArray">String[]</option>
-												 <option value="floatArray">double[]</option></select></td>
+												 <option value="doubleArray">double[]</option></select></td>
 						<td class="col4"><select name="param3type" id="param3type" disabled="disabled"><option value="int">int</option>
 												 <option value="char">char</option>
 												 <option value="boolean">boolean</option>
 												 <option value="string">String</option>
-												 <option value="float">double</option>
+												 <option value="double">double</option>
 												 <option value="intArray">int[]</option>
 												 <option value="charArray">char[]</option>
 												 <option value="booleanArray">boolean[]</option>
 												 <option value="stringArray">String[]</option>
-												 <option value="floatArray">double[]</option></select></td>
+												 <option value="doubleArray">double[]</option></select></td>
 						<td class="col5"><select name="param4type" id="param4type" disabled="disabled"><option value="int">int</option>
 												 <option value="char">char</option>
 												 <option value="boolean">boolean</option>
 												 <option value="string">String</option>
-												 <option value="float">double</option>
+												 <option value="double">double</option>
 												 <option value="intArray">int[]</option>
 												 <option value="charArray">char[]</option>
 												 <option value="booleanArray">boolean[]</option>
 												 <option value="stringArray">String[]</option>
-												 <option value="floatArray">double[]</option></select></td>
+												 <option value="doubleArray">double[]</option></select></td>
 						<td class="col6"><select name="param5type" id="param5type" disabled="disabled"><option value="int">int</option>
 												 <option value="char">char</option>
 												 <option value="boolean">boolean</option>
 												 <option value="string">String</option>
-												 <option value="float">double</option>
+												 <option value="double">double</option>
 												 <option value="intArray">int[]</option>
 												 <option value="charArray">char[]</option>
 												 <option value="booleanArray">boolean[]</option>
 												 <option value="stringArray">String[]</option>
-												 <option value="floatArray">double[]</option></select></td>
+												 <option value="doubleArray">double[]</option></select></td>
 						<td class="col7"><select id="resultType" name="resultType"><option value="int">int</option>
 												 <option value="char">char</option>
 												 <option value="boolean">boolean</option>
 												 <option value="string">String</option>
-												 <option value="float">double</option>
+												 <option value="double">double</option>
 												 <option value="intArray">int[]</option>
 												 <option value="charArray">char[]</option>
 												 <option value="booleanArray">boolean[]</option>
 												 <option value="stringArray">String[]</option>
-												 <option value="floatArray">double[]</option></select></td>
+												 <option value="doubleArray">double[]</option></select></td>
 						<td class="col8">&nbsp;</td>
 						<td class="col9">&nbsp;</td>
 					</tr>

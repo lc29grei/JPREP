@@ -3,7 +3,6 @@
 	session_start();
 	
 	include 'dbInfo.php';
-	
   	
 	if (!(isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']!='')) {
 		header ("Location: login.php");
@@ -86,9 +85,9 @@
 									echo'<tr><td>'.$row['title'].'</td>';
 									echo'<td>'.$row['methodname'].'</td>';
 									echo'<td>'.$row['resulttype'].'</td>';
-									echo'<td><a href="">Edit</a></td>';
-									if ($row['active'] == 1) echo'<td><a href="?action=disable&id='.$row['problemId'].'">Remove</a></td></tr>';
-									else echo'<td><a href="?action=activate&id='.$row['problemId'].'">Activate</a></td></tr>';
+									echo'<td><a href="edit_problem.php?id='.$row['problemId'].'">Edit</a></td>';
+									if ($row['active'] == 1) echo'<td><a href="check_create_problem.php?action=disable&id='.$row['problemId'].'">Remove</a></td></tr>';
+									else echo'<td><a href="check_create_problem.php?action=activate&id='.$row['problemId'].'">Activate</a></td></tr>';
 								}
 							} else echo'You have no problems in your Private Pool';
 						echo'</table>
