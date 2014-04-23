@@ -86,8 +86,8 @@
 									echo'<td>'.$row['methodname'].'</td>';
 									echo'<td>'.$row['resulttype'].'</td>';
 									echo'<td><a href="edit_problem.php?id='.$row['problemId'].'">Edit</a></td>';
-									if ($row['active'] == 1) echo'<td><a href="check_create_problem.php?action=disable&id='.$row['problemId'].'">Remove</a></td></tr>';
-									else echo'<td><a href="check_create_problem.php?action=activate&id='.$row['problemId'].'">Activate</a></td></tr>';
+									if ($row['active'] == 1) echo'<td><a href="check_create_problem.php?action=disable&id='.$row['problemId'].'&role='.$currentrole.'">Remove</a></td></tr>';
+									else echo'<td><a href="check_create_problem.php?action=activate&id='.$row['problemId'].'&role='.$currentrole.'">Activate</a></td></tr>';
 								}
 							} else echo'You have no problems in your Private Pool';
 						echo'</table>

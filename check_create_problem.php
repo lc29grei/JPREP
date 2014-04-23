@@ -131,8 +131,8 @@
 			}
 			echo "Updated data successfully\n";
 		} else {
-			if($currentrole!='c') $sql = "INSERT INTO Problem VALUES('".$problemId."','private_".$email."','',1,'".$title."','".$methodName."','','".$resultType."','".$solutionCode."','".$param1name."','".$param2name."','".$param3name."','".$param4name."','".$param5name."','".$starterCode."','','".$param1type."','".$param2type."','".$param3type."','".$param4type."','".$param5type."')";
-			else $sql = "INSERT INTO Problem VALUES('".$problemId."','".$selectedCourse."','',1,'".$title."','".$methodName."','','".$resultType."','".$solutionCode."','".$param1name."','".$param2name."','".$param3name."','".$param4name."','".$param5name."','".$starterCode."','','".$param1type."','".$param2type."','".$param3type."','".$param4type."','".$param5type."')";
+			if($currentrole!='c') $sql = "INSERT INTO Problem VALUES('".$problemId."','private_".$email."','',1,'".$title."','".$methodName."','".$description."','".$resultType."','".$solutionCode."','".$param1name."','".$param2name."','".$param3name."','".$param4name."','".$param5name."','".$starterCode."','','".$param1type."','".$param2type."','".$param3type."','".$param4type."','".$param5type."')";
+			else $sql = "INSERT INTO Problem VALUES('".$problemId."','".$selectedCourse."','',1,'".$title."','".$methodName."','".$description."','".$resultType."','".$solutionCode."','".$param1name."','".$param2name."','".$param3name."','".$param4name."','".$param5name."','".$starterCode."','','".$param1type."','".$param2type."','".$param3type."','".$param4type."','".$param5type."')";
 			$retval = mysql_query( $sql, $conn );
 			if(! $retval ) {
 	  			die('Could not update data: ' . mysql_error());
@@ -184,11 +184,20 @@
 	if(isset($_GET['action']) && $_GET['action'] == 'disable'){
 		$id = $_GET['id'];
 		mysql_query("UPDATE Problem SET active=0 WHERE problemId='".$id."'");
-		header("location: private_pool.php#tab3");
+		if($_GET['role'] == "c") {
+			header("location: course_pool.php?courseNumber=".$_GET['poolid']."&#tab3");
+		} else {
+			header("location: private_pool.php#tab3");
+		}
+		
 	} else if(isset($_GET['action']) && $_GET['action'] == 'activate'){
 		$id = $_GET['id'];
 		mysql_query("UPDATE Problem SET active=1 WHERE problemId='".$id."'");
-		header("location: private_pool.php#tab3");
+		if($_GET['role'] == "c") {
+			header("location: course_pool.php?courseNumber=".$_GET['poolid']."&#tab3");
+		} else {
+			header("location: private_pool.php#tab3");
+		}
 	}
 	
 ?>

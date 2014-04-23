@@ -44,7 +44,7 @@
 		
 		#<!-- Question Pool tab -->
 	
-		$coursePoolSQL = 'SELECT * FROM Problem WHERE poolid="'.$_GET['id'].'"';
+		$coursePoolSQL = 'SELECT * FROM Problem WHERE poolid="'.$_GET['courseNumber'].'"';
 		$coursePoolSQLResult = mysql_query($coursePoolSQL, $conn);
 		
 		if (mysql_num_rows($coursePoolSQLResult) > 0) {
@@ -88,10 +88,10 @@
 									echo'<tr><td>'.$row['title'].'</td>';
 									echo'<td>'.$row['methodname'].'</td>';
 									echo'<td>'.$row['resulttype'].'</td>';
-									echo'<td><a href="">Edit</a></td>';
+									echo'<td><a href="edit_problem.php?id='.$row['problemId'].'">Edit</a></td>';
 									if ($currentrole == 'c' or $currentrole == 'a') {
-										if ($row['active'] == 1) echo'<td><a href="?action=disable&id='.$row['problemId'].'">Remove</a></td></tr>';
-										else echo'<td><a href="?action=activate&id='.$row['problemId'].'">Activate</a></td></tr>';
+										if ($row['active'] == 1) echo'<td><a href="check_create_problem.php?action=disable&id='.$row['problemId'].'&role='.$currentrole.'&poolid='.$row['poolId'].'">Remove</a></td></tr>';
+										else echo'<td><a href="check_create_problem.php?action=activate&id='.$row['problemId'].'&role='.$currentrole.'&poolid='.$row['poolId'].'">Activate</a></td></tr>';
 									}
 								}
 						echo'</table>

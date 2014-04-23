@@ -17,7 +17,7 @@
 				<p><b><u>Current Courses</u></b></p>';
 				if (mysql_num_rows($facultySQLResult) > 0) {
 					while($row=mysql_fetch_array($facultySQLResult)) {
-						echo'<a href="./course_pool.php?id='.$row['courseId'].'&#tab3"><u>'.$row['coursename'].'</u></a><br>';
+						echo'<a href="./course_pool.php?courseNumber='.$row['courseId'].'&#tab3"><u>'.$row['coursename'].'</u></a><br>';
 					}
 				}
 				echo'<p><b><u>Previous Courses</u></b></p>
@@ -47,7 +47,7 @@
 				<p><b><u>Current Courses</u></b></p>';
 				if (mysql_num_rows($adminSQLResult) > 0) {
 					while($row=mysql_fetch_array($adminSQLResult)) {
-						echo'<a href="./course_pool.php?id='.$row['courseId'].'&#tab3"><u>'.$row['coursename'].'</u></a><br>';
+						echo'<a href="./course_pool.php?courseNumber='.$row['courseId'].'&#tab3"><u>'.$row['coursename'].'</u></a><br>';
 					}
 				}
 				echo'<p><b><u>Previous Courses</u></b></p>
