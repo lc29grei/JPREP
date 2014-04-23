@@ -31,6 +31,7 @@ function displayPage()
 	//$problemSQL = 'SELECT * FROM problem WHERE problemId="1"';
 	$problemSQLResult = mysql_query($problemSQL, $conn);
 	$row=mysql_fetch_array($problemSQLResult);
+
 	
 	$paramString = "";
 	if ($row['param1'] != null and $row['param1'] != "") {

@@ -56,7 +56,7 @@
 										echo'<tr><form>';
 											echo'<td>'.$row1['title'].'</td>';
 											echo'<td>'.$row['problem'.$i.'Value'].'</td>';
-											echo'<td><a href="">Complete</a></td>';
+											echo'<td><a href="problem_interface.php?problemId='.$row['problem'.$i.''].'">Complete</a></td>';
 										echo'</form></tr>';
 									}
 								
