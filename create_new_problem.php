@@ -7,7 +7,7 @@
 	include 'dbInfo.php';
 	
 	
-	$activeCourseQuery = "SELECT DISTINCT(courseId), coursename, sectionId FROM section GROUP BY courseId";
+	$activeCourseQuery = "SELECT DISTINCT(courseId), coursename, sectionId FROM Section GROUP BY courseId";
 	$activeCourseResult = mysql_query($activeCourseQuery);
 			
 			

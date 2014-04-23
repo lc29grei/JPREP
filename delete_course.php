@@ -7,7 +7,7 @@
 	include 'dbInfo.php';
 	
 	
-	$sectionCountQuery = "SELECT * FROM section";
+	$sectionCountQuery = "SELECT * FROM Section";
 	$sectionCountResult = mysql_query($sectionCountQuery);
 	$sectionCountResultRows = mysql_num_rows($sectionCountResult);
 	

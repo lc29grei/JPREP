@@ -18,11 +18,11 @@
 	$courseAssignmentSQLResult = mysql_query($courseAssignmentSQL, $conn);
 	$courseAssignmentSQLResult1 = mysql_query($courseAssignmentSQL, $conn);
 	
-	$courseNameSQL = 'SELECT coursename FROM section WHERE sectionId="'.$_GET['num'].'" AND courseId="'.$_GET['courseNumber'].'"';
+	$courseNameSQL = 'SELECT coursename FROM Section WHERE sectionId="'.$_GET['num'].'" AND courseId="'.$_GET['courseNumber'].'"';
 	$courseNameSQLResult = mysql_query($courseNameSQL, $conn);
 	$courseNameResult = mysql_fetch_array($courseNameSQLResult);
 	
-	$courseProfessorSQL = 'SELECT faculty FROM section WHERE sectionId="'.$_GET['num'].'" AND courseId="'.$_GET['courseNumber'].'"';
+	$courseProfessorSQL = 'SELECT faculty FROM Section WHERE sectionId="'.$_GET['num'].'" AND courseId="'.$_GET['courseNumber'].'"';
 	$courseProfessorSQLResult = mysql_query($courseProfessorSQL, $conn);
 	$courseProfessorResult = mysql_fetch_array($courseProfessorSQLResult);
 	

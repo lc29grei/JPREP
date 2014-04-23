@@ -11,7 +11,7 @@
 	$firstname=$_SESSION['first_name'];
 	$email=$_SESSION['username'];
 	
-	$activeCourseQuery = 'SELECT * FROM section WHERE faculty="'.$email.'"';
+	$activeCourseQuery = 'SELECT * FROM Section WHERE faculty="'.$email.'"';
 	$activeCourseResult = mysql_query($activeCourseQuery);
 	
    	include 'home_layout.php';
@@ -140,7 +140,7 @@
 						//while new problems are still in the array
 						while($arrayPointer!= false)
 						{
-							$problemQuery = "SELECT title, resulttype FROM problem WHERE problemId = ".$arrayPointer."";
+							$problemQuery = "SELECT title, resulttype FROM Problem WHERE problemId = ".$arrayPointer."";
 							$problemResult = mysql_query($problemQuery);
 							
 							//makes sure query runs properly, dies otherwise

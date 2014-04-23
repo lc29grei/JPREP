@@ -48,7 +48,7 @@
 								$row=mysql_fetch_array($currentAssignmentSQLResult);
 									for($i=1;$i<=$problemCount;$i++)
 									{
-										$getProblemIdSQL = 'SELECT * FROM problem WHERE problemId="'.$row['problem'.$i.''].'"';
+										$getProblemIdSQL = 'SELECT * FROM Problem WHERE problemId="'.$row['problem'.$i.''].'"';
 										$getProblemIdSQLResult = mysql_query($getProblemIdSQL, $conn);
 										$row1=mysql_fetch_array($getProblemIdSQLResult);
 										//$problemIdFromResult=$row1[''.$row['problem'.$i.''].''];

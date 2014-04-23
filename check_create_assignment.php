@@ -4,7 +4,7 @@
   include 'dbInfo.php';
 	
   
-  $assignmentCountQuery = "SELECT * FROM assignment";
+  $assignmentCountQuery = "SELECT * FROM Assignment";
   $assignmentCountResult = mysql_query($assignmentCountQuery);
   $assignmentId = mysql_num_rows($assignmentCountResult)+1;
   $email = $_SESSION['username'];
