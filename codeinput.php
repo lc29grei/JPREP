@@ -6,9 +6,9 @@ include 'dbInfo.php';
 	
 
 // REALTIME QUERY
-//$coursePoolSQL = 'SELECT * FROM problem WHERE problemId="' . $_GET['problemId'] . '"';
+$coursePoolSQL = 'SELECT * FROM problem WHERE problemId="' . $_GET['problemId'] . '"';
 // LOCALQUERY
-$coursePoolSQL = 'SELECT * FROM problem WHERE problemId="1"';
+//$coursePoolSQL = 'SELECT * FROM problem WHERE problemId="1"';
 $coursePoolSQLResult = mysql_query($coursePoolSQL, $conn);
 $row=mysql_fetch_array($coursePoolSQLResult);
 
@@ -17,8 +17,8 @@ $userInput = $_POST["source"];
 
 // User info
 // This is db call when live
-//$userName  = "" . $_SESSION['first_name'] . $_SESSION['last_name'];
-$userName  = "deniskalic";
+$userName  = "" . $_SESSION['first_name'] . $_SESSION['last_name'];
+//$userName  = "deniskalic";
 $fileName  = $userName . date("mdyhis");
 
 // DB calls for necessary compilation
@@ -48,8 +48,8 @@ if ($row['param5'] != null and $row['param5'] != "") {
 
 // Test case work here
 $testArray = "int[] testArray = {";
-//$testCaseSQL = 'SELECT * FROM testcase WHERE problemId="'.$_GET['problemId'].'"';
-$testCaseSQL = 'SELECT * FROM testcase WHERE problemId="1"';
+$testCaseSQL = 'SELECT * FROM testcase WHERE problemId="'.$_GET['problemId'].'"';
+//$testCaseSQL = 'SELECT * FROM testcase WHERE problemId="1"';
 $testCaseSQLResult = mysql_query($testCaseSQL, $conn);
 if (mysql_num_rows($testCaseSQLResult) > 0) {
 	$fakeBoolean = 0;
@@ -107,5 +107,5 @@ $_SESSION['answer'] = implode("", $cmdOutput);
 exec("del " . $fileName . ".class");
 exec("del " . $fileName . ".java");
 
-header("Location: problem_interface.php");
+header("Location: problem_interface.php?problemId=" . $_GET['problemId']);
 ?>

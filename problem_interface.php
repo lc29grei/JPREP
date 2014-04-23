@@ -2,9 +2,9 @@
 <?php
 session_start();
 // TODO: problemId needs to be passed in so when a $_GET['problemId'] is done it should work!!!!
-/*if (!(isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']!='')) {
+if (!(isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']!='')) {
 		header ("Location: login.php");
-}*/
+}
 $emptyTestCases = "N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,";
 if (!isset($_SESSION['answer'])) $_SESSION['answer'] = $emptyTestCases;
 $cmdOutput = $_SESSION['answer'];
@@ -26,9 +26,9 @@ function displayPage()
 	
 
 	// REALTIME QUERY
-	//$problemSQL = 'SELECT * FROM problem WHERE problemId="'.$_GET['problemId'].'"';
+	$problemSQL = 'SELECT * FROM problem WHERE problemId="'.$_GET['problemId'].'"';
 	// LOCALQUERY
-	$problemSQL = 'SELECT * FROM problem WHERE problemId="1"';
+	//$problemSQL = 'SELECT * FROM problem WHERE problemId="1"';
 	$problemSQLResult = mysql_query($problemSQL, $conn);
 	$row=mysql_fetch_array($problemSQLResult);
 	
@@ -48,22 +48,24 @@ function displayPage()
 	if ($row['param5'] != null and $row['param5'] != "") {
 		$paramString = $paramString . ", " . $row['param5type'] . " " . $row['param5'];
 	}
-	/*
+
 	$currentrole=$_SESSION['currentrole'];
 	$firstname=$_SESSION['first_name'];
 	include 'home_layout.php';
-	headerLayout($currentrole, $firstname);*/
+	headerLayout($currentrole, $firstname);
 	echo'
 				<div>
 					<h1>' . $row['title'] . '</h1>
 					<p>' . $row['starterText'] . '</p>
-					<form method="post" action="./codeinput.php">
+					<form method="post" action="./codeinput.php?problemId=' . $_GET['problemId'] . '">
 					<textarea name="source" rows="10" cols="70" style="resize:none;">public ' . $row['resulttype'] . ' ' . $row['methodname'] . '(' . $paramString . ') {
     
 }</textarea></br><input type="submit" /></form>';
 	// Do test case work here
-	//$testCaseSQL = 'SELECT * FROM testcase WHERE problemId="'.$_GET['problemId'].'"';
-	$testCaseSQL = 'SELECT * FROM testcase WHERE problemId="1"';
+	// REALQUERY
+	$testCaseSQL = 'SELECT * FROM testcase WHERE problemId="'.$_GET['problemId'].'"';
+	// LOCALQUERY
+	//$testCaseSQL = 'SELECT * FROM testcase WHERE problemId="1"';
 	$testCaseSQLResult = mysql_query($testCaseSQL, $conn);
 	if (mysql_num_rows($testCaseSQLResult) > 0) {
 		echo'<p>' . $errorHolder . '</p>
@@ -104,7 +106,7 @@ function displayPage()
 		}
 		echo'</table></div>';
 	}
-	/*
+
 			#<!-- Manage Accounts tab -->
 			include 'display_manage_accounts.php';
 			if(isset($_GET['action']) && $_GET['action'] == 'manageCC'){
@@ -141,7 +143,7 @@ function displayPage()
 			include 'display_profile.php';
 			displayProfile($currentrole);
 	
-		footerLayout();*/
+		footerLayout();
 }
 /*
  * To automate this with a database have a function that makes calls to a database
