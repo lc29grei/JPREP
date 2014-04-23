@@ -26,7 +26,7 @@ function displayPage()
 	
 
 	// REALTIME QUERY
-	$problemSQL = 'SELECT * FROM problem WHERE problemId="'.$_GET['problemId'].'"';
+	$problemSQL = 'SELECT * FROM Problem WHERE problemId="'.$_GET['problemId'].'"';
 	// LOCALQUERY
 	//$problemSQL = 'SELECT * FROM problem WHERE problemId="1"';
 	$problemSQLResult = mysql_query($problemSQL, $conn);
@@ -64,7 +64,7 @@ function displayPage()
 }</textarea></br><input type="submit" /></form>';
 	// Do test case work here
 	// REALQUERY
-	$testCaseSQL = 'SELECT * FROM testcase WHERE problemId="'.$_GET['problemId'].'"';
+	$testCaseSQL = 'SELECT * FROM TestCase WHERE problemId="'.$_GET['problemId'].'"';
 	// LOCALQUERY
 	//$testCaseSQL = 'SELECT * FROM testcase WHERE problemId="1"';
 	$testCaseSQLResult = mysql_query($testCaseSQL, $conn);

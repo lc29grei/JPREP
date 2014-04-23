@@ -6,7 +6,7 @@ include 'dbInfo.php';
 	
 
 // REALTIME QUERY
-$coursePoolSQL = 'SELECT * FROM problem WHERE problemId="' . $_GET['problemId'] . '"';
+$coursePoolSQL = 'SELECT * FROM Problem WHERE problemId="' . $_GET['problemId'] . '"';
 // LOCALQUERY
 //$coursePoolSQL = 'SELECT * FROM problem WHERE problemId="1"';
 $coursePoolSQLResult = mysql_query($coursePoolSQL, $conn);
@@ -48,7 +48,7 @@ if ($row['param5'] != null and $row['param5'] != "") {
 
 // Test case work here
 $testArray = "int[] testArray = {";
-$testCaseSQL = 'SELECT * FROM testcase WHERE problemId="'.$_GET['problemId'].'"';
+$testCaseSQL = 'SELECT * FROM TestCase WHERE problemId="'.$_GET['problemId'].'"';
 //$testCaseSQL = 'SELECT * FROM testcase WHERE problemId="1"';
 $testCaseSQLResult = mysql_query($testCaseSQL, $conn);
 if (mysql_num_rows($testCaseSQLResult) > 0) {
