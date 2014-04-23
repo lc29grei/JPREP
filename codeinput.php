@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+// TODO: problemId needs to be passed in so when a $_GET['problemId'] is done it should work!!!! AND lastname and firstname must be available
 // DB Info
 include 'dbInfo.php';
 	

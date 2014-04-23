@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <?php
 session_start();
-
+// TODO: problemId needs to be passed in so when a $_GET['problemId'] is done it should work!!!!
 /*if (!(isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']!='')) {
 		header ("Location: login.php");
-	}*/
-if (!isset($_SESSION['answer'])) $_SESSION['answer'] = "N,,N,,N,,";
+}*/
+$emptyTestCases = "N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,";
+if (!isset($_SESSION['answer'])) $_SESSION['answer'] = $emptyTestCases;
 $cmdOutput = $_SESSION['answer'];
+$errorHolder = "";
 if (strpos($cmdOutput, 'Error') !== false) {
-	$cmdOutput = "N,,N,,N,,Compilation Error";
-	$cmdOutput = split(",", $cmdOutput);
+	$errorHolder = "Compilation Error! Please check syntax and code logic!";
+	$cmdOutput = split(",", $emptyTestCases);
 }
 else {
 	$cmdOutput = split(",", $_SESSION['answer']);
@@ -17,7 +19,7 @@ else {
 // Create the page template
 function displayPage()
 {
-	global $cmdOutput;
+	global $cmdOutput, $errorHolder;
 
 	// DB Info
 	include 'dbInfo.php';
@@ -64,7 +66,7 @@ function displayPage()
 	$testCaseSQL = 'SELECT * FROM testcase WHERE problemId="1"';
 	$testCaseSQLResult = mysql_query($testCaseSQL, $conn);
 	if (mysql_num_rows($testCaseSQLResult) > 0) {
-		echo'
+		echo'<p>' . $errorHolder . '</p>
 				<table border="1" style="width:300px">
 					<tr>
 						<td> Input </td>
