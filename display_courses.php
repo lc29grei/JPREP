@@ -2,11 +2,8 @@
 	
 	function displayCourses($currentrole)
 	{
-		$dbhost = 'localhost';
-  		$dbuser = 'root';
-  		$dbpass = '';
-  		$conn = mysql_connect($dbhost, $dbuser, $dbpass);
-		mysql_select_db("jprep");
+		include 'dbInfo.php';
+	
 	
 		$email = $_SESSION['username'];	
 

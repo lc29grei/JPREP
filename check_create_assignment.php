@@ -1,11 +1,8 @@
 <?php
   session_start();
   $currentrole=$_SESSION['currentrole'];
-  $dbhost = 'localhost';
-  $dbuser = 'root';
-  $dbpass = '';
-  $conn = mysql_connect($dbhost, $dbuser, $dbpass);
-  mysql_select_db('jprep');
+  include 'dbInfo.php';
+	
   
   $assignmentCountQuery = "SELECT * FROM assignment";
   $assignmentCountResult = mysql_query($assignmentCountQuery);

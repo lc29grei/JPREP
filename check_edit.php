@@ -1,10 +1,8 @@
 <?php
   session_start();
   
-  $dbhost = 'localhost';
-  $dbuser = 'root';
-  $dbpass = '';
-  $conn = mysql_connect($dbhost, $dbuser, $dbpass);
+  include 'dbInfo.php';
+	
   
   if($_SERVER['REQUEST_METHOD'] == "POST") {
     
@@ -58,7 +56,7 @@
 			email="'.$new_username.'",
 			password="'.$new_password.'"
 			WHERE email="'.$_SESSION['username'].'"';
-	mysql_select_db('jprep');
+	
 	$retval = mysql_query( $sql, $conn );
 	if(! $retval )
 	{

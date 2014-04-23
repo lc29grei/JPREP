@@ -1,10 +1,8 @@
 <?php
   session_start();
   
-  $dbhost = 'localhost';
-  $dbuser = 'root';
-  $dbpass = '';
-  $conn = mysql_connect($dbhost, $dbuser, $dbpass);
+ include 'dbInfo.php';
+	
   
   	$currentrole=$_SESSION['currentrole'];
   	$role2=$_SESSION['role2'];
@@ -17,7 +15,7 @@
 							SET 
 							currentrole="c"
 							WHERE email="'.$username.'"';
-				mysql_select_db('jprep');
+				
 				$retval = mysql_query( $sql, $conn );
 				if(! $retval )
 				{
@@ -35,7 +33,7 @@
 							SET 
 							currentrole="f"
 							WHERE email="'.$_SESSION['username'].'"';
-				mysql_select_db('jprep');
+				
 				$retval = mysql_query( $sql, $conn );
 				if(! $retval )
 				{

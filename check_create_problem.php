@@ -1,11 +1,8 @@
 <?php
   session_start();
   $currentrole=$_SESSION['currentrole'];
-  $dbhost = 'localhost';
-  $dbuser = 'root';
-  $dbpass = '';
-  $conn = mysql_connect($dbhost, $dbuser, $dbpass);
-  mysql_select_db('jprep');
+ include 'dbInfo.php';
+	
   
   $problemCountQuery = "SELECT * FROM problem";
   $problemCountResult = mysql_query($problemCountQuery);
