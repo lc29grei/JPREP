@@ -27,11 +27,11 @@ function displayPage()
 	mysql_select_db('jprep');
 
 	// REALTIME QUERY
-	//$coursePoolSQL = 'SELECT * FROM problem WHERE problemId="'.$_GET['problemId'].'"';
+	//$problemSQL = 'SELECT * FROM problem WHERE problemId="'.$_GET['problemId'].'"';
 	// LOCALQUERY
-	$coursePoolSQL = 'SELECT * FROM problem WHERE problemId="1"';
-	$coursePoolSQLResult = mysql_query($coursePoolSQL, $conn);
-	$row=mysql_fetch_array($coursePoolSQLResult);
+	$problemSQL = 'SELECT * FROM problem WHERE problemId="1"';
+	$problemSQLResult = mysql_query($problemSQL, $conn);
+	$row=mysql_fetch_array($problemSQLResult);
 	
 	$paramString = "";
 	if ($row['param1'] != null and $row['param1'] != "") {
@@ -61,39 +61,51 @@ function displayPage()
 					<form method="post" action="./codeinput.php">
 					<textarea name="source" rows="10" cols="70" style="resize:none;">public ' . $row['resulttype'] . ' ' . $row['methodname'] . '(' . $paramString . ') {
     
-}</textarea>
-				</br>
-				<input type="submit" />
-				</form>
-				' . $cmdOutput[6] . '
+}</textarea></br><input type="submit" /></form>';
+	// Do test case work here
+	//$testCaseSQL = 'SELECT * FROM testcase WHERE problemId="'.$_GET['problemId'].'"';
+	$testCaseSQL = 'SELECT * FROM testcase WHERE problemId="1"';
+	$testCaseSQLResult = mysql_query($testCaseSQL, $conn);
+	if (mysql_num_rows($testCaseSQLResult) > 0) {
+		echo'
 				<table border="1" style="width:300px">
 					<tr>
 						<td> Input </td>
-						<td> Output </td>
 						<td> Expect </td>
 						<td> Correct </td>
-					</tr>
-					<tr>
-						<td> 5 + 4 </td>
-						<td> ' . $cmdOutput[1] . '</td>
-						<td> 9 </td>
-						<td> ' . $cmdOutput[0] . '</td>
-					</tr>
-					<tr>
-						<td> 1 + 1 </td>
-						<td> ' . $cmdOutput[3] . '</td>
-						<td> 2 </td>
-						<td> ' . $cmdOutput[2] . '</td>
-					</tr>
-					<tr>
-						<td> 2 + 8 </td>
-						<td> ' . $cmdOutput[5] . '</td>
-						<td> 10 </td>
-						<td> ' . $cmdOutput[4] . '</td>
-					</tr>
-				</table>
-				</div>';
-				/*
+						<td> Output </td>
+					</tr>';
+		// update rows for each testcase set
+		$cmdOutputCount = 0;
+		while($testCaseRow=mysql_fetch_array($testCaseSQLResult)) {
+			echo'<tr>';
+			echo'<td>';
+			if ($testCaseRow['param1value'] != null and $testCaseRow['param1value'] != "") {
+				echo'' . $testCaseRow['param1value'] . '';
+			}
+			if ($testCaseRow['param2value'] != null and $testCaseRow['param2value'] != "") {
+				echo', ' . $testCaseRow['param2value'] . '';
+			}
+			if ($testCaseRow['param3value'] != null and $testCaseRow['param3value'] != "") {
+				echo', ' . $testCaseRow['param3value'] . '';
+			}
+			if ($testCaseRow['param4value'] != null and $testCaseRow['param4value'] != "") {
+				echo', ' . $testCaseRow['param4value'] . '';
+			}
+			if ($testCaseRow['param5value'] != null and $testCaseRow['param5value'] != "") {
+				echo', ' . $testCaseRow['param5value'] . '';
+			}
+			echo'</td>';
+			echo'<td> ' . $testCaseRow['result'] . ' </td>';
+			echo'<td> ' . $cmdOutput[$cmdOutputCount] . ' </td>';
+			$cmdOutputCount += 1;
+			echo'<td> ' . $cmdOutput[$cmdOutputCount] . ' </td>';
+			$cmdOutputCount += 1;
+			echo'</tr>';
+		}
+		echo'</table></div>';
+	}
+	/*
 			#<!-- Manage Accounts tab -->
 			include 'display_manage_accounts.php';
 			if(isset($_GET['action']) && $_GET['action'] == 'manageCC'){
