@@ -7,11 +7,8 @@
 	$currentrole=$_SESSION['currentrole'];
 	$firstname=$_SESSION['first_name'];
 	
-	$dbhost = 'localhost';
-  	$dbuser = 'root';
-  	$dbpass = '';
-  	$conn = mysql_connect($dbhost, $dbuser, $dbpass);
-  	mysql_select_db('jprep');
+	include 'dbInfo.php';
+	
 	
    	include 'home_layout.php';
 	headerLayout($currentrole, $firstname);	

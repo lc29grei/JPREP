@@ -4,11 +4,8 @@
 	if (!(isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']!='')) {
 		header ("Location: login.php");
 	}
-	$dbhost = 'localhost';
-  	$dbuser = 'root';
-  	$dbpass = '';
-  	$conn = mysql_connect($dbhost, $dbuser, $dbpass);
-	mysql_select_db("jprep");
+	include 'dbInfo.php';
+	
 	
 	$currentrole=$_SESSION['currentrole'];
 	$firstname=$_SESSION['first_name'];

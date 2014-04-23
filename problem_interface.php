@@ -20,11 +20,8 @@ function displayPage()
 	global $cmdOutput;
 
 	// DB Info
-	$dbhost = 'localhost';
-	$dbuser = 'root';
-	$dbpass = '';
-	$conn = mysql_connect($dbhost, $dbuser, $dbpass);
-	mysql_select_db('jprep');
+	include 'dbInfo.php';
+	
 
 	// REALTIME QUERY
 	//$problemSQL = 'SELECT * FROM problem WHERE problemId="'.$_GET['problemId'].'"';

@@ -5,11 +5,8 @@
 <!--[if IE 8]> <html class="lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--><html lang="en"> <!--<![endif]-->
 <?php 
-	$dbhost = 'localhost';
-  	$dbuser = 'root';
-  	$dbpass = '';
-  	$conn = mysql_connect($dbhost, $dbuser, $dbpass);
-  	mysql_select_db('jprep');
+	include 'dbInfo.php';
+	
 ?>
 <head>
   <meta charset="utf-8">

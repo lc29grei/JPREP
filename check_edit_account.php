@@ -1,11 +1,8 @@
 <?php
   session_start();
   
-  $dbhost = 'localhost';
-  $dbuser = 'root';
-  $dbpass = '';
-  $conn = mysql_connect($dbhost, $dbuser, $dbpass);
-  mysql_select_db('jprep');
+  include 'dbInfo.php';
+	
   
   if (isset($_GET['action']) && $_GET['action'] == 'edit'){
   $selectedUser = $_GET['id'];
