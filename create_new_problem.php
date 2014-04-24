@@ -9,8 +9,7 @@
 	
 	$activeCourseQuery = "SELECT DISTINCT(courseId), coursename, sectionId FROM Section GROUP BY courseId";
 	$activeCourseResult = mysql_query($activeCourseQuery);
-			
-			
+					
 	$currentrole=$_SESSION['currentrole'];
 	$firstname=$_SESSION['first_name'];
    	include 'home_layout.php';
@@ -19,11 +18,13 @@
 		?>
 			<div>
 			<p style="font-size:18px;"><u>Create New Problem</u></p>
-			<form method="POST" action="check_create_problem.php?<?php echo'id='.$_GET['id'].'';?>">
+<?php		
+			echo'<form method="POST" action="check_create_problem.php?role='.$currentrole.'&id='.$_GET['id'].'">';
+?>
 			Title   <input type="text" name="title">
 			Method Name   <input type="text" name="methodName">
 			<?php
-			if ($currentrole == "c") {
+			if (($currentrole == "c") or ($currentrole == "a")){
 			echo'Course   <select name="selectedCourse">';
 			if (mysql_num_rows($activeCourseResult) > 0) {
 				while($row=mysql_fetch_array($activeCourseResult)) {
@@ -128,7 +129,7 @@
 					</tr>
 					<tr></tr>
 					<tr>
-						<td class="col1"><input type="button" value="Add Parameter" onClick="addParam()"></td>
+						<td class="col1"><input type="button" value="Add Parameter" onClick="addParam('paramTable')"></td>
 						<td class="col2"><input type="button" value="Remove Parameter" onClick="removeParam('paramTable')"></td>
 						<td class="col3">&nbsp;</td>
 						<td class="col4">&nbsp;</td>

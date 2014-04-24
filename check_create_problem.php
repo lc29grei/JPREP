@@ -37,7 +37,7 @@
  
 	if($_SERVER['REQUEST_METHOD'] == "POST") {
 		
-		if ($currentrole == "c") $selectedCourse = mysql_real_escape_string($_POST['selectedCourse']);
+		if (($currentrole == "c") or ($currentrole == "a")) $selectedCourse = mysql_real_escape_string($_POST['selectedCourse']);
 		if (!empty($_POST["title"])) $title = mysql_real_escape_string($_POST['title']);
 		if (!empty($_POST["methodName"])) $methodName = mysql_real_escape_string($_POST['methodName']);
 		if (!empty($_POST["description"])) $description = mysql_real_escape_string($_POST['description']);
@@ -88,7 +88,7 @@
 		}
 		
 		if (isset($_GET['action']) && $_GET['action'] == 'edit'){
-			if($currentrole!='c') $sql = "UPDATE Problem 
+			if(($currentrole=='c') or ($currentrole=='a')) $sql = "UPDATE Problem 
 											SET poolId='".$selectedCourse."',
 												title='".$title."',
 												methodname='".$methodName."',
@@ -131,7 +131,7 @@
 			}
 			echo "Updated data successfully\n";
 		} else {
-			if($currentrole!='c') $sql = "INSERT INTO Problem VALUES('".$problemId."','private_".$email."','',1,'".$title."','".$methodName."','".$description."','".$resultType."','".$solutionCode."','".$param1name."','".$param2name."','".$param3name."','".$param4name."','".$param5name."','".$starterCode."','','".$param1type."','".$param2type."','".$param3type."','".$param4type."','".$param5type."')";
+			if(($currentrole!='c') and ($currentrole!='a')) $sql = "INSERT INTO Problem VALUES('".$problemId."','private_".$email."','',1,'".$title."','".$methodName."','".$description."','".$resultType."','".$solutionCode."','".$param1name."','".$param2name."','".$param3name."','".$param4name."','".$param5name."','".$starterCode."','','".$param1type."','".$param2type."','".$param3type."','".$param4type."','".$param5type."')";
 			else $sql = "INSERT INTO Problem VALUES('".$problemId."','".$selectedCourse."','',1,'".$title."','".$methodName."','".$description."','".$resultType."','".$solutionCode."','".$param1name."','".$param2name."','".$param3name."','".$param4name."','".$param5name."','".$starterCode."','','".$param1type."','".$param2type."','".$param3type."','".$param4type."','".$param5type."')";
 			$retval = mysql_query( $sql, $conn );
 			if(! $retval ) {
@@ -145,16 +145,16 @@
 			if (isset($_POST['case'.$i.'param1'])) {
 				$param1 = $param2 = $param3 = $param4 = $param5 = "";
 				$param1=$_POST['case'.$i.'param1'];
-				if (!empty($_POST["param2name"])) $param2=$_POST['case'.$i.'param2'];
-				if (!empty($_POST["param3name"])) $param3=$_POST['case'.$i.'param3'];
-				if (!empty($_POST["param4name"])) $param4=$_POST['case'.$i.'param4'];
-				if (!empty($_POST["param5name"])) $param5=$_POST['case'.$i.'param5'];
+				if (isset($_POST["param2name"])) $param2=$_POST['case'.$i.'param2'];
+				if (isset($_POST["param3name"])) $param3=$_POST['case'.$i.'param3'];
+				if (isset($_POST["param4name"])) $param4=$_POST['case'.$i.'param4'];
+				if (isset($_POST["param5name"])) $param5=$_POST['case'.$i.'param5'];
 				$result = $_POST['case'.$i.'result'];
 				if(isset($_POST['case'.$i.'hidden'])) {
 					$hidden=1;
 				} else $hidden=0;
 				
-				$runQuery = mysql_query('INSERT INTO TestCase VALUES ('.$i.',"'.$problemId.'",'.$hidden.',"","'.$param1type.'","'.$param1.'","","'.$param2type.'","'.$param2.'","","'.$param3type.'","'.$param3.'","","'.$param4type.'","'.$param4.'","","'.$param5type.'","'.$param5.'","","")',$conn);
+				$runQuery = mysql_query('INSERT INTO TestCase VALUES ('.$i.',"'.($problemId-1).'",'.$hidden.',"'.$param1.'","'.$param2.'","'.$param3.'","'.$param4.'","'.$param5.'","'.$result.'")',$conn);
 			}
 			$i = $i+1;
 		}
@@ -162,8 +162,8 @@
 		mysql_close($conn);
 		if(!$_SESSION["isAddToAssignment"]) 
 		{
-			if($_SESSION['currentrole']!= 'c') header("location: private_pool.php#tab3");
-			else header("location: course_pool.php?courseNumber=".$_GET['id']."#tab3");
+			if(($_SESSION['currentrole']!= 'c') and ($_SESSION['currentrole']!='a')) header("location: private_pool.php#tab3");
+			else header("location: course_pool.php?courseNumber=".$selectedCourse."#tab3");
 		}
 		else
 		{
@@ -184,7 +184,7 @@
 	if(isset($_GET['action']) && $_GET['action'] == 'disable'){
 		$id = $_GET['id'];
 		mysql_query("UPDATE Problem SET active=0 WHERE problemId='".$id."'");
-		if($_GET['role'] == "c") {
+		if(($_GET['role'] == "c") or ($_GET['role']=="a")) {
 			header("location: course_pool.php?courseNumber=".$_GET['poolid']."&#tab3");
 		} else {
 			header("location: private_pool.php#tab3");
@@ -193,7 +193,7 @@
 	} else if(isset($_GET['action']) && $_GET['action'] == 'activate'){
 		$id = $_GET['id'];
 		mysql_query("UPDATE Problem SET active=1 WHERE problemId='".$id."'");
-		if($_GET['role'] == "c") {
+		if(($_GET['role'] == "c") or ($_GET['role']=="a")) {
 			header("location: course_pool.php?courseNumber=".$_GET['poolid']."&#tab3");
 		} else {
 			header("location: private_pool.php#tab3");

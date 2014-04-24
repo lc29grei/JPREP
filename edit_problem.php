@@ -37,10 +37,10 @@
 		echo'
 			<div>
 			<p style="font-size:18px;"><u>Edit A Problem</u></p>
-			<form method="POST" action="check_create_problem.php?action=edit&id='.$probId.'">
+			<form method="POST" action="check_create_problem.php?action=edit&id='.$probId.'&role='.$currentrole.'">
 			Title   <input type="text" name="title" placeholder="'.$title.'">
 			Method Name   <input type="text" name="methodName" placeholder="'.$methodname.'">';
-			if ($currentrole == "c") {
+			if (($currentrole == "c") or ($currentrole=="a")) {
 			echo'Course   <select name="selectedCourse">';
 			if (mysql_num_rows($activeCourseResult) > 0) {
 				while($row=mysql_fetch_array($activeCourseResult)) {
@@ -203,23 +203,27 @@
 						<td class="col8" style="font-size:11px;">Hidden</td>
 						<td class="col9" style="font-size:11px;">Remove</td>
 					</tr>
-					<tr>
-						<td class="col1">Test Case 1</td>
-						<td class="col2"><input type="text" id="case1param1" name="case1param1"></td>
+					';
+					$testCasesSQL = mysql_query('SELECT * FROM TestCase WHERE problemId="'.$_GET['id'].'"');
+					while ($row=mysql_fetch_array($testCasesSQL)) {
+						echo'<tr><td class="col1">Test Case '.$row['testid'].'</td>
+						<td class="col2"><input type="text" id="case'.$row['testid'].'param1" name="case'.$row['testid'].'param1" placeholder="'.$row['param1value'].'"></td>
 						<td class="col3">';
-						if ($param2name == "") echo'<input type="text" id="case1param2" name="case1param2" disabled="disabled"></td>';
-						else echo'<input type="text" id="case1param2" name="case1param2"></td>';
-						if ($param3name == "") echo'<td class="col4"><input type="text" id="case1param3" name="case1param3" disabled="disabled"></td>';
-						else echo'<td class="col4"><input type="text" id="case1param3" name="case1param3"></td>';
-						if ($param4name == "") echo'<td class="col5"><input type="text" id="case1param4" name="case1param4" disabled="disabled"></td>';
-						else echo'<td class="col5"><input type="text" id="case1param4" name="case1param4"></td>';
-						if ($param5name == "") echo'<td class="col6"><input type="text" id="case1param5" name="case1param5" disabled="disabled"></td>';
-						else echo'<td class="col6"><input type="text" id="case1param5" name="case1param5"></td>';
-						echo'<td class="col7"><input type="text" id="case1result" name="case1result"></td>
-						<td class="col8"><input type="checkbox" name="case1hidden" id="case1hidden"></td>
-						<td class="col9"><input type="checkbox" name="case1remove" id="case1remove"></td>
-					</tr>
-					<tr>';
+						if ($param2name == "") echo'<input type="text" id="case'.$row['testid'].'param2" name="case'.$row['testid'].'param2" disabled="disabled"></td>';
+						else echo'<input type="text" id="case'.$row['testid'].'param2" name="case'.$row['testid'].'param2" placeholder="'.$row['param2value'].'"></td>';
+						if ($param3name == "") echo'<td class="col4"><input type="text" id="case'.$row['testid'].'param3" name="case'.$row['testid'].'param3" disabled="disabled"></td>';
+						else echo'<td class="col4"><input type="text" id="case'.$row['testid'].'param3" name="case'.$row['testid'].'param3" placeholder="'.$row['param3value'].'"></td>';
+						if ($param4name == "") echo'<td class="col5"><input type="text" id="case'.$row['testid'].'param4" name="case'.$row['testid'].'param4" disabled="disabled"></td>';
+						else echo'<td class="col5"><input type="text" id="case'.$row['testid'].'param4" name="case'.$row['testid'].'param4" placeholder="'.$row['param4value'].'"></td>';
+						if ($param5name == "") echo'<td class="col6"><input type="text" id="case'.$row['testid'].'param5" name="case'.$row['testid'].'param5" disabled="disabled"></td>';
+						else echo'<td class="col6"><input type="text" id="case'.$row['testid'].'param5" name="case'.$row['testid'].'param5" placeholder="'.$row['param5value'].'"></td>';
+						echo'<td class="col7"><input type="text" id="case'.$row['testid'].'result" name="case'.$row['testid'].'result" placeholder="'.$row['result'].'"></td>';
+						if ($row['hidden'] == 1) echo'<td class="col8"><input type="checkbox" name="case'.$row['testid'].'hidden" id="case'.$row['testid'].'hidden" checked></td>';
+						else echo'<td class="col8"><input type="checkbox" name="case'.$row['testid'].'hidden" id="case'.$row['testid'].'hidden"></td>';
+						echo'<td class="col9"><input type="checkbox" name="case'.$row['testid'].'remove" id="case'.$row['testid'].'remove"></td>
+						</tr>';
+					}
+					echo'<tr>';
 	?>
 						<td class="col1"><input type="button" value="Add Test Case" onClick="addRow('paramTable')"></td>
 						<td class="col2"><input type="button" value="Remove Test Case(s)" onClick="deleteRow('paramTable')"></td>
