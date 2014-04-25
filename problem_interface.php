@@ -7,10 +7,15 @@ if (!(isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in']!='')) {
 }
 $emptyTestCases = "N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,N,,";
 if (!isset($_SESSION['answer'])) $_SESSION['answer'] = $emptyTestCases;
+if (!isset($_SESSION['error']) or strpos($_SESSION['error'], 'Error') !== false) $_SESSION['error'] = "";
 $cmdOutput = $_SESSION['answer'];
-$errorHolder = "";
-if (strpos($cmdOutput, 'Error') !== false) {
+$errorHolder = $_SESSION['error'];
+if (strpos($errorHolder, 'Error') !== false or strpos($cmdOutput, 'Error') !== false) {
 	$errorHolder = "Compilation Error! Please check syntax and code logic!";
+	$cmdOutput = split(",", $emptyTestCases);
+}
+else if (strpos($cmdOutput, 'Your code') !== false) {
+	$errorHolder = $cmdOutput;
 	$cmdOutput = split(",", $emptyTestCases);
 }
 else {

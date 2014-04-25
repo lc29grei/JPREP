@@ -100,9 +100,11 @@ $finalSource = "public class " . $fileName . " implements Runnable {\nString res
 file_put_contents($fileName . ".java", $finalSource);
 
 // Compile and run the Java program
-exec("javac " . $fileName . ".java & java " . $fileName . " 2>&1", $cmdOutput);
+exec("javac " . $fileName . ".java", $errorOutput);
+exec("chmod 777 " . $fileName);
+exec("java " . $fileName . " 2>&1", $cmdOutput);
 $_SESSION['answer'] = implode("", $cmdOutput);
-
+$_SESSION['error'] = $errorOutput;
 // Clean up
 exec("del " . $fileName . ".class");
 exec("del " . $fileName . ".java");
