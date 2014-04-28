@@ -40,9 +40,10 @@
 				displayManageAccounts();
 			}									
 		#<!-- Question Pool tab -->
-		$privatePoolSQL = 'SELECT * FROM Problem WHERE poolid="private_'.$email.'"';
-		$privatePoolSQLResult = mysql_query($privatePoolSQL, $conn);
+		
 		if(isset($_GET['action']) && $_GET['action'] == 'addAssignment'){
+			$privatePoolSQL = 'SELECT * FROM Problem WHERE poolid="private_'.$email.'" AND active=1';
+			$privatePoolSQLResult = mysql_query($privatePoolSQL, $conn);
 			echo'
 			<div class="CSSTableGenerator">
 				<h3>Private Pool</h3>
@@ -70,6 +71,8 @@
 					<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 			</div>';
 		} else {
+			$privatePoolSQL = 'SELECT * FROM Problem WHERE poolid="private_'.$email.'"';
+			$privatePoolSQLResult = mysql_query($privatePoolSQL, $conn);
 			echo'<div class="CSSTableGenerator" >
 			<h3>Private Pool</h3>
 						<table >

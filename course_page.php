@@ -62,7 +62,7 @@
 								echo'</form>';
 								}
 							}
-						} else echo'You have no current assignments in your Private Pool';
+						} else echo'You have no current assignments';
 						echo'
 						</table><br>
 						<p style="font-size:12px;"><u>Past Assignments</u></p>
@@ -102,55 +102,47 @@
 					</div>';
 			} else {
 				echo'<div class="CSSTableGenerator" >
-				<h3><a href="./create_new_assignment.php">Create New Assignment</a></h3>
-				<h3 style="padding-left:150px;">Course</h3>
-				<h3 style="padding-left:150px;">Semester: Spring 2014</h3><br>
+				<h3><a href="./create_new_assignment.php?id='.$_GET['num'].'&courseNumber='.$_GET['courseNumber'].'">Create New Assignment</a></h3>
+				<h3 style="padding-left:150px;">Course: '.$courseNameResult['0'].'-'.$_GET['num'].'</h3>
+				<br>
 				<p style="font-size:12px;"><u>Pending Assignments</u></p>
 						<table>
 							<tr>
 								<td>Assignment</td>
 								<td>Due Date</td>
 								<td></td>
-							</tr>
-							<tr>
-								<td>Assignment 1</td>
-								<td>3/10/14	11:59 PM</td>
-								<td><a href="">Edit</a></td>
-							</tr>
-							<tr>
-								<td>Assignment 2</td>
-								<td>3/11/14	11:59 PM</td>
-								<td><a href="">Edit</a></td>
-							</tr>
-							<tr>
-								<td>Assignment 3</td>
-								<td>3/12/14	11:59 PM</td>
-								<td><a href="">Edit</a></td>
-							</tr>
-						</table><br>
+							</tr>';
+							if ($courseAssignmentSQLResult > 0) {
+							while($row=mysql_fetch_array($courseAssignmentSQLResult)) {
+								if($row['dueDate']>=date("Y-m-d")) {
+									echo'<input style="z-index:-1; position:relative;" type="text" name="assignmentId" value="'.$row['assignmentId'].'">';						
+									echo'<tr><td name="assignmentTitle">'.$row['assignmentTitle'].'</td>';		
+									echo'<td name="dueDate">'.$row['dueDate'].'</td>';
+									echo'<td><a href="">Edit</a></td></tr>';
+								}
+							}
+							} else echo'You have no current assignments';
+						echo'</table><br>
 						<p style="font-size:12px;"><u>Past Assignments</u></p>
 							<table>
 							<tr>
 								<td>Assignment</td>
 								<td>Due Date</td>
 								<td></td>
-							</tr>
-							<tr>
-								<td>Assignment 4</td>
-								<td>1/10/14	11:59 PM</td>
-								<td><a href="">Edit</a></td>
-							</tr>
-							<tr>
-								<td>Assignment 5</td>
-								<td>1/11/14	11:59 PM</td>
-								<td><a href="">Edit</a></td>
-							</tr>
-							<tr>
-								<td>Assignment 6</td>
-								<td>1/12/14	11:59 PM</td>
-								<td><a href="">Edit</a></td>
-							</tr>
-							</table>
+							</tr>';
+							if ($courseAssignmentSQLResult1 > 0) {
+								while($row=mysql_fetch_array($courseAssignmentSQLResult1)) {
+									if($row['dueDate']<date("Y-m-d"))
+									{
+									
+									echo'<input style="z-index:-1; position:relative;" type="text" name="assignmentId" value="'.$row['assignmentId'].'">';						
+									echo'<tr><td name="assignmentTitle">'.$row['assignmentTitle'].'</td>';		
+									echo'<td name="dueDate">'.$row['dueDate'].'</td>';
+									echo'<td><a href="">Edit</a></td></tr>';
+									}
+								}
+							} else echo'You have no past assignments';
+							echo'</table>
 							<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 					</div>';
 			}

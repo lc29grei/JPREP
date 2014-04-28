@@ -37,7 +37,7 @@
    					<div ID="'.$row['sectionId'].'" style="display:none; margin-left:2em;">
    					<a href="./create_new_problem.php?id='.$row['courseId'].'">Create New Problem</a><br>
   					<a href="./create_new_assignment.php?id='.$row['sectionId'].'&courseNumber='.$row['courseId'].'">Create New Assignment</a><br>
-   					<a href="./course_page.php?id='.$row['sectionId'].'">Manage Assignments</a><br>
+   					<a href="./course_page.php?num='.$row['sectionId'].'&id='.$email.'&courseNumber='.$row['courseId'].'">Manage Assignments</a><br>
    					<a href="./course_pool.php?id='.$row['sectionId'].'&courseNumber='.$row['courseId'].'&#tab3">View Question Pool</a><br>
    					<a href="./course_assignments_gradebook.php?id='.$row['sectionId'].'&courseNumber='.$row['courseId'].'&#tab4">View Gradebook</a>
    				</div>';

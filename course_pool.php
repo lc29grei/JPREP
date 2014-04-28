@@ -44,11 +44,12 @@
 		
 		#<!-- Question Pool tab -->
 	
-		$coursePoolSQL = 'SELECT * FROM Problem WHERE poolid="'.$_GET['courseNumber'].'"';
-		$coursePoolSQLResult = mysql_query($coursePoolSQL, $conn);
-		
-		if (mysql_num_rows($coursePoolSQLResult) > 0) {
+		$coursePool = 'SELECT * FROM Problem WHERE poolid="'.$_GET['courseNumber'].'"';
+		$coursePoolResult = mysql_query($coursePool, $conn);
+		if (mysql_num_rows($coursePoolResult) > 0) {
 		if(isset($_GET['action']) && $_GET['action'] == 'addAssignment'){
+			$coursePoolSQL = 'SELECT * FROM Problem WHERE poolid="'.$_GET['courseNumber'].'" AND active=1';
+			$coursePoolSQLResult = mysql_query($coursePoolSQL, $conn);
 			echo'
 			<div class="CSSTableGenerator">
 				<h3>Course Pool</h3>
@@ -74,6 +75,8 @@
 					<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 			</div>';
 		} else {
+			$coursePoolSQL = 'SELECT * FROM Problem WHERE poolid="'.$_GET['courseNumber'].'"';
+			$coursePoolSQLResult = mysql_query($coursePoolSQL, $conn);
 			echo'<div class="CSSTableGenerator" >
 			<h3>Course Pool</h3>
 						<table >

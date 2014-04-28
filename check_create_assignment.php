@@ -56,13 +56,13 @@
 			$pointValue+=${'problem'.$i.'Value'};
 		}
 
-		$sql = "INSERT INTO assignment VALUES('".$assignmentId."','".$sectionId."','".$email."','".$dueDate."','".$pointValue."','".$otherinfo."','0','".$problem0."','".$problem1."','".$problem2."','".$problem3."','".$problem4."','".$problem5."','".$problem6."','".$problem7."','".$problem8."','".$problem9."','".$assignmentCategory."','".$assignmentTitle."','0','".$problem1Value."','".$problem2Value."','".$problem3Value."','".$problem4Value."','".$problem5Value."','".$problem6Value."','".$problem7Value."','".$problem8Value."','".$problem9Value."','".$problem10Value."')";
+		$sql = "INSERT INTO Assignment VALUES('".$assignmentId."','".$sectionId."','".$email."','".$dueDate."','".$pointValue."','".$otherinfo."','0','".$problem0."','".$problem1."','".$problem2."','".$problem3."','".$problem4."','".$problem5."','".$problem6."','".$problem7."','".$problem8."','".$problem9."','".$assignmentCategory."','".$assignmentTitle."','0','".$problem1Value."','".$problem2Value."','".$problem3Value."','".$problem4Value."','".$problem5Value."','".$problem6Value."','".$problem7Value."','".$problem8Value."','".$problem9Value."','".$problem10Value."')";
 		$retval = mysql_query( $sql, $conn );
 		if(! $retval ) {
 	  		die('Could not update data: ' . mysql_error());
 		}
 		echo "Updated data successfully\n";
 		mysql_close($conn);
-		header("location: home.php");
+		header("location: course_page.php?num=".$_GET['id']."&id=faculty&courseNumber=".$_GET['courseNumber']."");
 	}
 ?>
