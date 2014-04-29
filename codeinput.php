@@ -109,5 +109,8 @@ $_SESSION['error'] = $errorOutput;
 exec("del " . $fileName . ".class");
 exec("del " . $fileName . ".java");
 
-header("Location: problem_interface.php?problemId=" . $_GET['problemId']);
+
+header("Location: problem_interface.php?problemId=" . $_GET['problemId']."&assignmentId=".$_GET['assignmentId']);
+
+
 ?>

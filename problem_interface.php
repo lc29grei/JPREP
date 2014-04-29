@@ -63,17 +63,32 @@ function displayPage()
 				<div>
 					<h1>' . $row['title'] . '</h1>
 					<p>' . $row['starterText'] . '</p>
-					<form method="post" action="./codeinput.php?problemId=' . $_GET['problemId'] . '">
+					<form method="post" action="./codeinput.php?problemId=' . $_GET['problemId'] . '&assignmentId='.$_GET['assignmentId'].'">
 					<textarea name="source" rows="10" cols="70" style="resize:none;">public ' . $row['resulttype'] . ' ' . $row['methodname'] . '(' . $paramString . ') {
     
 }</textarea></br><input type="submit" /></form>';
 	// Do test case work here
-	// REALQUERY
 	$testCaseSQL = 'SELECT * FROM TestCase WHERE problemId="'.$_GET['problemId'].'"';
-	// LOCALQUERY
-	//$testCaseSQL = 'SELECT * FROM testcase WHERE problemId="1"';
+
+
+	
+	$problemSolvedQuery='SELECT * FROM Gradebook WHERE studentId="'.$_SESSION['username'].'" and problemId='.$_GET['problemId'].' and assignmentId='.$_GET['assignmentId'].'';
+	$problemSolvedResult = mysql_query($problemSolvedQuery, $conn);
+	#$finishedProb=mysql_num_rows($problemSolvedResult);
+	
 	$testCaseSQLResult = mysql_query($testCaseSQL, $conn);
-	if (mysql_num_rows($testCaseSQLResult) > 0) {
+	$rowCount=mysql_num_rows($testCaseSQLResult);
+	if ($rowCount > 0) {
+		$correctCounter = 0;
+		
+		for($i = 0; $i < count($cmdOutput); $i++) {
+			if ($cmdOutput[$i] == "Y") $correctCounter++;
+		}
+		
+		if($correctCounter == $rowCount &&  mysql_num_rows($problemSolvedResult)==0) {
+			header("Location: check_gradebook.php?problemId=".$_GET['problemId']."&assignmentId=".$_GET['assignmentId']."");
+		}
+		
 		echo'<p>' . $errorHolder . '</p>
 				<table border="1" style="width:300px">
 					<tr>
