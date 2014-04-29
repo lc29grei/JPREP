@@ -40,51 +40,44 @@ function addRow(tableID) {
             	var cell1 = row.insertCell(0);
             	cell1.innerHTML = 'Test Case ' + (rowCount - 6);
             	
-            	var x = false;
             	for (var i=1;i<6;i++) {
             		var cell2 = row.insertCell(i);
-            		if (x === false) {
+            		
             			if ((document.getElementById('param2name').disabled) && (i == 2)) {
             				var element1 = document.createElement("input");
             				element1.type = "text";
             				element1.name = "case" + (rowCount - 6) + "param2";
             				element1.disabled = true;
             				cell2.appendChild(element1);
-            				x = true;
+            				
             			} else if ((document.getElementById('param3name').disabled) && (i == 3)) {
             				var element1 = document.createElement("input");
             				element1.type = "text";
             				element1.name = "case" + (rowCount - 6) + "param3";
             				element1.disabled = true;
             				cell2.appendChild(element1);
-            				x = true;
+            				
             			} else if ((document.getElementById('param4name').disabled) && (i == 4)) {
             				var element1 = document.createElement("input");
             				element1.type = "text";
             				element1.name = "case" + (rowCount - 6) + "param4";
             				element1.disabled = true;
             				cell2.appendChild(element1);
-            				x = true;
+            				
             			} else if ((document.getElementById('param5name').disabled) && (i == 5)) {
             				var element1 = document.createElement("input");
             				element1.type = "text";
             				element1.name = "case" + (rowCount - 6) + "param5";
             				element1.disabled = true;
             				cell2.appendChild(element1);
-            				x = true;
+            				
             			} else {
             				var element1 = document.createElement("input");
             				element1.type = "text";
-            				element1.name = "case" + (rowCount - 6) + "param1";
+            				element1.name = "case" + (rowCount - 6) + "param" + i;
             				cell2.appendChild(element1);
             			}
-            		} else {
-            			var element1 = document.createElement("input");
-            			element1.type = "text";
-            			element1.name = "txtbox[]";
-            			element1.disabled = true;
-            			cell2.appendChild(element1);
-            		}
+            		
             	}
             	
             	var cell3 = row.insertCell(6);
