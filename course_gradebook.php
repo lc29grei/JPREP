@@ -54,15 +54,6 @@
 			$courseProfessorSQLResult = mysql_query($courseProfessorSQL, $conn);
 			$courseProfessorResult = mysql_fetch_array($courseProfessorSQLResult);
 
-			
-			
-			
-			
-			
-			
-			
-			
-			
 	if ($currentrole=="s") {
 		echo'<div class="CSSTableGenerator" >
 			<h3>Course: '.$courseNameResult['0'].'</h3>
@@ -79,24 +70,20 @@
 							if ($courseAssignmentSQLResult > 0) {
 							while($row=mysql_fetch_array($courseAssignmentSQLResult)) {
 							
-							
-							
 								$assignmentId=$row['assignmentId'];
 								$currentAssignmentSQL = 'SELECT * FROM Assignment WHERE assignmentId="'.$assignmentId.'"';
 								$currentAssignmentSQLProblemCountResult = mysql_query($currentAssignmentSQL, $conn);
 								
-								
 								$assignmentproblemSQL = 'SELECT count(*) FROM Gradebook WHERE assignmentId="'.$assignmentId.'"';
 								$assignmentproblemResult = mysql_fetch_array(mysql_query($assignmentproblemSQL, $conn));
-								
 								
 								$problemCount=0;
 								if ($currentAssignmentSQLProblemCountResult > 0)
 								{
-									$row=mysql_fetch_array($currentAssignmentSQLProblemCountResult);
+									$rows=mysql_fetch_array($currentAssignmentSQLProblemCountResult);
 									for($i=1;$i<=10;$i++)
 									{
-										if($row['problem'.$i.'']!=null) $problemCount++;
+										if($rows['problem'.$i.'']!=null) $problemCount++;
 									}
 								}
 								
@@ -104,7 +91,7 @@
 								if($row['dueDate']>=date("Y-m-d"))
 								{
 																				
-								echo'<tr><td name="assignmentTitle">'.$row['assignmentTitle'].'</td>';		
+								echo'<tr><td name="assignmentTitle"><a href="view_Assignment.php?id='.$row['assignmentId'].'&action=grade">'.$row['assignmentTitle'].'</a></td>';		
 								echo'<td name="dueDate">'.$row['dueDate'].'</td>';
 								if($row['isComplete']==0)
 								{
@@ -157,9 +144,8 @@
 								
 									if($row['dueDate']<date("Y-m-d"))
 									{
-									
-									echo'<input style="z-index:-1; position:relative;" type="text" name="assignmentId" value="'.$row['assignmentId'].'">';						
-									echo'<tr><td name="assignmentTitle">'.$row['assignmentTitle'].'</td>';		
+															
+									echo'<tr><td name="assignmentTitle"><a href="view_Assignment.php?id='.$row['assignmentId'].'&action=grade">'.$row['assignmentTitle'].'</a></td>';		
 									echo'<td name="dueDate">'.$row['dueDate'].'</td>';
 									if($row['isComplete']==0)
 									{									

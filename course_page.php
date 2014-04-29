@@ -22,14 +22,14 @@
 	$courseNameSQLResult = mysql_query($courseNameSQL, $conn);
 	$courseNameResult = mysql_fetch_array($courseNameSQLResult);
 	
-	$courseProfessorSQL = 'SELECT faculty FROM Section WHERE sectionId="'.$_GET['num'].'" AND courseId="'.$_GET['courseNumber'].'"';
+	$courseProfessorSQL = 'SELECT prefix,first,last FROM Section,users WHERE users.email=Section.faculty AND Section.sectionId="'.$_GET['num'].'" AND Section.courseId="'.$_GET['courseNumber'].'"';
 	$courseProfessorSQLResult = mysql_query($courseProfessorSQL, $conn);
 	$courseProfessorResult = mysql_fetch_array($courseProfessorSQLResult);
 	
 	if ($currentrole=="s") {
 		echo'<div class="CSSTableGenerator" >
 			<h3>Course: '.$courseNameResult['0'].'</h3>
-			<h3 style="padding-left:150px;">Professor: '.$courseProfessorResult['0'].'</h3>
+			<h3 style="padding-left:150px;">Professor: '.$courseProfessorResult['0'].' '.$courseProfessorResult['1'].' '.$courseProfessorResult['2'].'</h3>
 			<h3 style="padding-left:150px;">Semester: Spring 2014</h3><br>
 			<p style="font-size:12px;"><u>Pending Assignments</u></p>
 						<table>
@@ -42,24 +42,20 @@
 							if ($courseAssignmentSQLResult > 0) {
 							while($row=mysql_fetch_array($courseAssignmentSQLResult)) {
 								if($row['dueDate']>=date("Y-m-d"))
-								{
-								echo'<form method="POST" action="view_Assignment.php?id='.$_GET['num'].'">';	
-								echo'<input style="z-index:-1; position:relative;" type="text" name="assignmentId" value="'.$row['assignmentId'].'">';
-								echo'<input style="z-index:-1; position:relative;" type="text" name="assignmentTitle" value="'.$row['assignmentTitle'].'">';	
-								echo'<input style="z-index:-1; position:relative;" type="text" name="dueDate" value="'.$row['dueDate'].'">';														
+								{															
 								echo'<tr><td name="assignmentTitle">'.$row['assignmentTitle'].'</td>';		
 								echo'<td name="dueDate">'.$row['dueDate'].'</td>';
 								if($row['isComplete']==0)
 								{									
 									echo'<td name="status">Not Complete</td>';
-									echo'<td><input type="submit" value="Complete Assignment"></td></tr>';
+									echo'<td><a href="view_Assignment.php?id='.$row['assignmentId'].'">Complete Assignment</a></td></tr>';
 								}
 								else
 								{ 
 								echo'<td name="status">Complete</td>';
-								echo'<td>Assignment Completed</td></tr>';
+								echo'<td><a href="view_Assignment.php?id='.$row['assignmentId'].'&action=grade">View Grade</a></td></tr>';
 								}
-								echo'</form>';
+								
 								}
 							}
 						} else echo'You have no current assignments';
@@ -90,7 +86,7 @@
 									else
 									{ 
 									echo'<td name="status">Complete</td>';
-									echo'<td>Assignment Completed</td></tr>';
+									echo'<td><a href="view_Assignment.php?id='.$row['assignmentId'].'&action=grade">View Grade</a></td></tr>';
 									}
 									
 									}

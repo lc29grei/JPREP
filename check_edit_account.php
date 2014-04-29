@@ -68,15 +68,17 @@
 		$adminEmail = mysql_result(mysql_query('SELECT email FROM users WHERE role1="a"',$conn),0)."";
 		$subject = "Account created on JPREP";
 		if (isset($_GET['role']) && $_GET['role'] == 'f'){
-			$CCprivs = mysql_result(mysql_query('COUNT (*) FROM users WHERE email="'.$new_username.'" AND (role1="c" OR role2="c")',$conn),0)."";
-			if($CCprivs==1) $message = "Dear ".$new_firstname.",\n\nWelcome to JPREP! An administrator has successfully created an account for you with both faculty and course coordinator privileges.\nYou can login to JPREP and access your account by clicking the following link and entering your login information found below: <a href='http://oraserv.cs.siena.edu/~perm_deltatech/jprep/login.php'>http://oraserv.cs.siena.edu/~perm_deltatech/jprep/login.php</a>\nYour username is ".$new_username." and your temporary password is ".$password.". You can change your password from the change password page under the Profile tab once you've logged in.\nWe hope you enjoy using JPREP!\n\n\nRegards,\n\nDelta Tech";
-			else $message = "Dear ".$new_firstname.",\n\nWelcome to JPREP! An administrator has successfully created an account for you with faculty privileges.\nYou can login to JPREP and access your account by clicking the following link and entering your login information found below: <a href='http://oraserv.cs.siena.edu/~perm_deltatech/jprep/login.php'>http://oraserv.cs.siena.edu/~perm_deltatech/jprep/login.php</a>\nYour username is ".$new_username." and your temporary password is ".$password.". You can change your password from the change password page under the Profile tab once you've logged in.\nWe hope you enjoy using JPREP!\n\n\nRegards,\n\nDelta Tech";
+			$CCprivs = mysql_query('SELECT * FROM users WHERE email="'.$new_username.'" AND (role1="c" OR role2="c")',$conn);
+			$CCprivsRows = mysql_num_rows($CCprivs);
+			if($CCprivsRows==1) $message = "Dear ".$new_firstname.",\n\nWelcome to JPREP! An administrator has successfully created an account for you with both faculty and course coordinator privileges.\n\nYou can login to JPREP and access your account by clicking the following link and entering your login information found below: http://oraserv.cs.siena.edu/~perm_deltatech/jprep/login.php\n\nYour username is ".$new_username." and your temporary password is ".$password.". You can change your password from the Change Password page under the Profile tab once you've logged in.\nWe hope you enjoy using JPREP!\n\n\nRegards,\n\nDelta Tech";
+			else $message = "Dear ".$new_firstname.",\n\nWelcome to JPREP! An administrator has successfully created an account for you with faculty privileges.\n\nYou can login to JPREP and access your account by clicking the following link and entering your login information found below: http://oraserv.cs.siena.edu/~perm_deltatech/jprep/login.php\n\nYour username is ".$new_username." and your temporary password is ".$password.". You can change your password from the Change Password page under the Profile tab once you've logged in.\nWe hope you enjoy using JPREP!\n\n\nRegards,\n\nDelta Tech";
 		} else if (isset($_GET['role']) && $_GET['role'] == 'cc'){
-			$facultyprivs = mysql_result(mysql_query('COUNT (*) FROM users WHERE email="'.$new_username.'" AND (role1="f" OR role2="f")',$conn),0)."";
-			if($facultyprivs==1) $message = "Dear ".$new_firstname.",\n\nWelcome to JPREP! An administrator has successfully created an account for you with both faculty and course coordinator privileges.\nYou can login to JPREP and access your account by clicking the following link and entering your login information found below: <a href='http://oraserv.cs.siena.edu/~perm_deltatech/jprep/login.php'>http://oraserv.cs.siena.edu/~perm_deltatech/jprep/login.php</a>\nYour username is ".$new_username." and your temporary password is ".$password.". You can change your password from the change password page under the Profile tab once you've logged in.\nWe hope you enjoy using JPREP!\n\n\nRegards,\n\nDelta Tech";
-			else $message = "Dear ".$new_firstname.",\n\nWelcome to JPREP! An administrator has successfully created an account for you with course coordinator privileges.\nYou can login to JPREP and access your account by clicking the following link and entering your login information found below: <a href='http://oraserv.cs.siena.edu/~perm_deltatech/jprep/login.php'>http://oraserv.cs.siena.edu/~perm_deltatech/jprep/login.php</a>\nYour username is ".$new_username." and your temporary password is ".$password.". You can change your password from the change password page under the Profile tab once you've logged in.\nWe hope you enjoy using JPREP!\n\n\nRegards,\n\nDelta Tech";
+			$facultyprivs = mysql_query('SELECT * FROM users WHERE email="'.$new_username.'" AND (role1="f" OR role2="f")',$conn);
+			$facultyprivsRows = mysql_num_rows($facultyprivs);
+			if($facultyprivsRows==1) $message = "Dear ".$new_firstname.",\n\nWelcome to JPREP! An administrator has successfully created an account for you with both faculty and course coordinator privileges.\n\nYou can login to JPREP and access your account by clicking the following link and entering your login information found below: http://oraserv.cs.siena.edu/~perm_deltatech/jprep/login.php\n\nYour username is ".$new_username." and your temporary password is ".$password.". You can change your password from the Change Password page under the Profile tab once you've logged in.\nWe hope you enjoy using JPREP!\n\n\nRegards,\n\nDelta Tech";
+			else $message = "Dear ".$new_firstname.",\n\nWelcome to JPREP! An administrator has successfully created an account for you with course coordinator privileges.\n\nYou can login to JPREP and access your account by clicking the following link and entering your login information found below: http://oraserv.cs.siena.edu/~perm_deltatech/jprep/login.php\n\nYour username is ".$new_username." and your temporary password is ".$password.". You can change your password from the Change Password page under the Profile tab once you've logged in.\nWe hope you enjoy using JPREP!\n\n\nRegards,\n\nDelta Tech";
 		} else {
-			$message = "Dear ".$new_firstname.",\n\nWelcome to JPREP! An administrator has successfully created a student account for you.\nYou can login to JPREP and access your account by clicking the following link and entering your login information found below: <a href='http://oraserv.cs.siena.edu/~perm_deltatech/jprep/login.php'>http://oraserv.cs.siena.edu/~perm_deltatech/jprep/login.php</a>\nYour username is ".$new_username." and your temporary password is ".$password.". You can change your password from the change password page under the Profile tab once you've logged in.\nWe hope you enjoy using JPREP!\n\n\nRegards,\n\nDelta Tech";
+			$message = "Dear ".$new_firstname.",\n\nWelcome to JPREP! An administrator has successfully created a student account for you.\n\nYou can login to JPREP and access your account by clicking the following link and entering your login information found below: http://oraserv.cs.siena.edu/~perm_deltatech/jprep/login.php\n\nYour username is ".$new_username." and your temporary password is ".$password.". You can change your password from the Change Password page under the Profile tab once you've logged in.\nWe hope you enjoy using JPREP!\n\n\nRegards,\n\nDelta Tech";
 		}
 		$msg = wordwrap($message, 70);
 		mail($new_username, $subject, $msg, "From: ".$adminEmail."\n");
@@ -104,10 +106,10 @@
 				} else {
 					if($rows['coursecoordinator'] == $selectedUser) {
 						$retval1 = mysql_query('UPDATE Section SET coursecoordinator="'.$_POST['listOfCC'].'" WHERE courseId="'.$rows['courseId'].'"', $conn);
-						$message = "Dear ".$new_firstname.",\n\nWe are writing to inform you that you have been unassigned as the course coordinator for ".$rows['coursename'].".\nIf you believe there has been a mistake please contact the JPREP administrator immediately.\n\n\nRegards,\n\nDelta Tech";
+						$message = "Dear ".$new_firstname.",\n\nWe are writing to inform you that you have been unassigned as the course coordinator for ".$rows['coursename'].".\n\nIf you believe there has been a mistake please contact the JPREP administrator immediately.\n\nRegards,\n\nDelta Tech";
 						$msg = wordwrap($message, 70);
 						mail($new_username, "Unassigned from course in JPREP", $msg, "From: ".$adminEmail."\n");
-						$message1 = "Dear ".$new_firstname.",\n\nWe are writing to inform you that you have been assigned as the course coordinator for ".$rows['coursename'].".\nIf you believe there has been a mistake please contact the JPREP administrator immediately.\n\n\nRegards,\n\nDelta Tech";
+						$message1 = "Dear ".$new_firstname.",\n\nWe are writing to inform you that you have been assigned as the course coordinator for ".$rows['coursename'].".\n\nIf you believe there has been a mistake please contact the JPREP administrator immediately.\n\nRegards,\n\nDelta Tech";
 						$msg1 = wordwrap($message, 70);
 						mail($new_username, "Assigned to course in JPREP", $msg1, "From: ".$adminEmail."\n");
 					}
@@ -125,10 +127,10 @@
 				} else {
 					if($rows['faculty'] == $selectedUser) {
 						$retval2 = mysql_query('UPDATE Section SET faculty="'.$_POST['listOfFaculty'].'" WHERE sectionId="'.$rows['sectionId'].'"', $conn);
-						$message = "Dear ".$new_firstname.",\n\nWe are writing to inform you that you have been unassigned as the professor for ".$rows['coursename']." section ".$rows['sectionId'].".\nIf you believe there has been a mistake please contact the JPREP administrator immediately.\n\n\nRegards,\n\nDelta Tech";
+						$message = "Dear ".$new_firstname.",\n\nWe are writing to inform you that you have been unassigned as the professor for ".$rows['coursename']." section ".$rows['sectionId'].".\n\nIf you believe there has been a mistake please contact the JPREP administrator immediately.\n\nRegards,\n\nDelta Tech";
 						$msg = wordwrap($message, 70);
 						mail($new_username, "Unassigned from course in JPREP", $msg, "From: ".$adminEmail."\n");
-						$message1 = "Dear ".$new_firstname.",\n\nWe are writing to inform you that you have been assigned as the professor for ".$rows['coursename']." section ".$rows['sectionId'].".\nIf you believe there has been a mistake please contact the JPREP administrator immediately.\n\n\nRegards,\n\nDelta Tech";
+						$message1 = "Dear ".$new_firstname.",\n\nWe are writing to inform you that you have been assigned as the professor for ".$rows['coursename']." section ".$rows['sectionId'].".\n\nIf you believe there has been a mistake please contact the JPREP administrator immediately.\n\nRegards,\n\nDelta Tech";
 						$msg1 = wordwrap($message, 70);
 						mail($new_username, "Assigned to course in JPREP", $msg1, "From: ".$adminEmail."\n");
 					}
@@ -144,12 +146,12 @@
 					$query1 = mysql_query('SELECT * FROM Roster WHERE sectionId="'.$rows['sectionId'].'" AND studentId="'.$selectedUser.'"');
 					if(mysql_num_rows($query1)==0) {
 						$retval2 = mysql_query('INSERT INTO Roster VALUES("'.$rows['sectionId'].'","'.$new_username.'",1)', $conn );
-						$message = "Dear ".$new_firstname.",\n\nWe are writing to inform you that you have been enrolled in the course ".$rows['coursename']."-".$rows['sectionId'].".\nIf you believe there has been a mistake please contact the JPREP administrator immediately.\n\n\nRegards,\n\nDelta Tech";
+						$message = "Dear ".$new_firstname.",\n\nWe are writing to inform you that you have been enrolled in the course ".$rows['coursename']."-".$rows['sectionId'].".\n\nIf you believe there has been a mistake please contact the JPREP administrator immediately.\n\nRegards,\n\nDelta Tech";
 						$msg = wordwrap($message, 70);
 						mail($new_username, "Enrolled in course on JPREP", $msg, "From: ".$adminEmail."\n");
 					} else {
 						$retval2 = mysql_query('UPDATE Roster SET active=1 WHERE sectionId="'.$rows['sectionId'].'" AND studentId="'.$selectedUser.'"', $conn);
-						$message = "Dear ".$new_firstname.",\n\nWe are writing to inform you that you have been enrolled in the course ".$rows['coursename']."-".$rows['sectionId'].".\nIf you believe there has been a mistake please contact the JPREP administrator immediately.\n\n\nRegards,\n\nDelta Tech";
+						$message = "Dear ".$new_firstname.",\n\nWe are writing to inform you that you have been enrolled in the course ".$rows['coursename']."-".$rows['sectionId'].".\n\nIf you believe there has been a mistake please contact the JPREP administrator immediately.\n\nRegards,\n\nDelta Tech";
 						$msg = wordwrap($message, 70);
 						mail($new_username, "Enrolled in course on JPREP", $msg, "From: ".$adminEmail."\n");
 					}
@@ -157,7 +159,7 @@
 					$query1 = mysql_query('SELECT * FROM Roster WHERE sectionId="'.$rows['sectionId'].'" AND studentId="'.$selectedUser.'"', $conn);
 					if(mysql_num_rows($query1)==1) {
 						$retval2 = mysql_query('UPDATE Roster SET active=0 WHERE sectionId="'.$rows['sectionId'].'" AND studentId="'.$selectedUser.'"', $conn);
-						$message = "Dear ".$new_firstname.",\n\nWe are writing to inform you that you have been unenrolled from the course ".$rows['coursename']."-".$rows['sectionId'].".\nIf you believe there has been a mistake please contact the JPREP administrator immediately.\n\n\nRegards,\n\nDelta Tech";
+						$message = "Dear ".$new_firstname.",\n\nWe are writing to inform you that you have been unenrolled from the course ".$rows['coursename']."-".$rows['sectionId'].".\n\nIf you believe there has been a mistake please contact the JPREP administrator immediately.\n\nRegards,\n\nDelta Tech";
 						$msg = wordwrap($message, 70);
 						mail($new_username, "Unenrolled in course on JPREP", $msg, "From: ".$adminEmail."\n");
 					}

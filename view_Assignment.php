@@ -10,25 +10,20 @@
 	$firstname=$_SESSION['first_name'];
 	$email=$_SESSION['username'];
 	
-	$assignmentTitle=$_POST['assignmentTitle'];
-	$assignmentId=$_POST['assignmentId'];
-	$assignmentDueDate=$_POST['dueDate'];
-	$assignmentSectionId=$_GET['id'];
+	$currentAssignmentSQLResult = mysql_query('SELECT * FROM Assignment WHERE assignmentId="'.$_GET['id'].'"', $conn);
+	$currentAssignmentSQLArray = mysql_fetch_array($currentAssignmentSQLResult);
 	
-	$currentAssignmentSQL = 'SELECT * FROM Assignment WHERE assignmentId="'.$assignmentId.'"';
-	$currentAssignmentSQLResult = mysql_query($currentAssignmentSQL, $conn);
-	$currentAssignmentSQLProblemCountResult = mysql_query($currentAssignmentSQL, $conn);
-	
+	$assignmentTitle = $currentAssignmentSQLArray['assignmentTitle'];
+	$assignmentDueDate = $currentAssignmentSQLArray['dueDate'];
+	$assignmentSectionId = $currentAssignmentSQLArray['sectionId'];
 	
 	$problemCount=0;
-	if ($currentAssignmentSQLProblemCountResult > 0)
+	if (mysql_num_rows($currentAssignmentSQLResult) > 0)
 	{
-		$row=mysql_fetch_array($currentAssignmentSQLProblemCountResult);
 			for($i=1;$i<=10;$i++)
 			{
-				if($row['problem'.$i.'']!=null) $problemCount++;
+				if($currentAssignmentSQLArray[$i+6]!=null) $problemCount++;
 			}
-		
 	}
 
 	
@@ -38,30 +33,53 @@
 		echo'<div class="CSSTableGenerator" >
 			<h3>Assignment: '.$assignmentTitle.'</h3>
 			<h3 style="padding-left:150px;">Due Date: '.$assignmentDueDate.'</h3>
-			<h3 style="padding-left:150px;"></h3><br>
-						<table>
+			<h3 style="padding-left:150px;"></h3><br>';
+			if(isset($_GET['action']) && $_GET['action'] == 'grade'){
+				echo'<table>
 							<tr>
 								<td>Problem</td>
-								<td>Points</td>
-								<td>Status</td>
+								<td>Points Earned</td>
+								<td>Possible Points</td>
 							</tr>';
-							if ($currentAssignmentSQLResult > 0) {
-								$row=mysql_fetch_array($currentAssignmentSQLResult);
-									for($i=1;$i<=$problemCount;$i++)
+									for($j=1;$j<=$problemCount;$j++)
 									{
-										$getProblemIdSQL = 'SELECT * FROM Problem WHERE problemId="'.$row['problem'.$i.''].'"';
+										$getProblemIdSQL = 'SELECT * FROM Problem WHERE problemId="'.$currentAssignmentSQLArray[$j+6].'"';
 										$getProblemIdSQLResult = mysql_query($getProblemIdSQL, $conn);
 										$row1=mysql_fetch_array($getProblemIdSQLResult);
-										echo'<tr><form>';
-											echo'<td>'.$row1['title'].'</td>';
-											echo'<td>'.$row['problem'.$i.'Value'].'</td>';
-											echo'<td><a href="problem_interface.php?problemId='.$row['problem'.$i.''].'&assignmentId='.$assignmentId.'">Complete</a></td>';
-										echo'</form></tr>';
+										
+										echo'<tr><td>'.$row1['title'].'</td>';
+										$pointsEarnedSQL = mysql_result(mysql_query('SELECT status FROM Gradebook WHERE studentId="'.$email.'" AND problemId="'.$currentAssignmentSQLArray[$j+6].'" AND assignmentId="'.$_GET['id'].'"',$conn),0);
+										if ($pointsEarnedSQL==1) echo'<td>'.$currentAssignmentSQLArray[$j+19].'</td>';
+										else echo'<td>0</td>';
+										echo'<td>'.$currentAssignmentSQLArray[$j+19].'</td></tr>';
 									}
-								
-							}
-						echo'</table>
-						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>';
+						echo'</table>';
+			} else {
+				echo'<table>
+							<tr>
+								<td>Problem</td>
+								<td>Points Earned</td>
+								<td>Possible Points</td>
+								<td>Status</td>
+							</tr>';
+								$row=mysql_fetch_array($currentAssignmentSQLResult);
+									for($j=1;$j<=$problemCount;$j++)
+									{
+										$getProblemIdSQL = 'SELECT * FROM Problem WHERE problemId="'.$currentAssignmentSQLArray[$j+6].'"';
+										$getProblemIdSQLResult = mysql_query($getProblemIdSQL, $conn);
+										$row1=mysql_fetch_array($getProblemIdSQLResult);
+
+										echo'<tr><td>'.$row1['title'].'</td>';
+										$pointsEarnedSQL = mysql_result(mysql_query('SELECT status FROM Gradebook WHERE studentId="'.$email.'" AND problemId="'.$currentAssignmentSQLArray[$j+6].'" AND assignmentId="'.$_GET['id'].'"',$conn),0);
+										if ($pointsEarnedSQL==1) echo'<td>'.$currentAssignmentSQLArray[$j+19].'</td>';
+										else echo'<td>0</td>';
+										echo'<td>'.$currentAssignmentSQLArray[$j+19].'</td>';
+										echo'<td><a href="problem_interface.php?problemId='.$currentAssignmentSQLArray[$j+6].'&assignmentId='.$_GET['id'].'">Complete</a></td></tr>';
+									}
+						echo'</table>';
+			}
+						echo'<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
+			</div>';
 			
 		#<!-- Manage Accounts tab -->
 			include 'display_manage_accounts.php';

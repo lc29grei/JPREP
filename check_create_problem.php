@@ -4,7 +4,7 @@
  include 'dbInfo.php';
 	
   
-  $problemCountQuery = "SELECT * FROM problem";
+  $problemCountQuery = "SELECT * FROM Problem";
   $problemCountResult = mysql_query($problemCountQuery);
   $problemId = mysql_num_rows($problemCountResult)+1;
   $email = $_SESSION['username'];
@@ -154,7 +154,7 @@
 					$hidden=1;
 				} else $hidden=0;
 				
-				$runQuery = mysql_query('INSERT INTO TestCase VALUES ('.$i.',"'.($problemId-1).'",'.$hidden.',"'.$param1.'","'.$param2.'","'.$param3.'","'.$param4.'","'.$param5.'","'.$result.'")',$conn);
+				$runQuery = mysql_query('INSERT INTO TestCase VALUES ('.$i.',"'.$problemId.'",'.$hidden.',"'.$param1.'","'.$param2.'","'.$param3.'","'.$param4.'","'.$param5.'","'.$result.'")',$conn);
 			}
 			$i = $i+1;
 		}
