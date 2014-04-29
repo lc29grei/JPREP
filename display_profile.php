@@ -56,7 +56,7 @@ function editProfile($currentrole) {
 					<p>Username:<input type="text" name="email" placeholder="'.$_SESSION['username'].'"></p>		
 					<p>Security Question:<input type="text" name="secQ" placeholder="'.$_SESSION['secQ'].'"></p>
 					<p>Security Answer:<input type="text" name="secA" placeholder="'.$_SESSION['secA'].'"></p>
-					<p class="submit"><input type="submit" name="commit" value="Submit"></p>
+					<p class="submit"><input type="button" value="Cancel" onClick="goBack()"><input type="submit" name="commit" value="Submit"></p>
 				</form>
 			</div>';
 		} else {
@@ -69,7 +69,7 @@ function editProfile($currentrole) {
 					<p>Username:<input type="text" name="email" placeholder="'.$_SESSION['username'].'"></p>
 					<p>Security Question:<input type="text" name="secQ" placeholder="'.$_SESSION['secQ'].'"></p>
 					<p>Security Answer:<input type="text" name="secA" placeholder="'.$_SESSION['secA'].'"></p>
-					<p class="submit"><input type="submit" name="commit" value="Submit"></p>
+					<p class="submit"><input type="button" value="Cancel" onClick="goBack()"><input type="submit" name="commit" value="Submit"></p>
 				</form>
 			</div>';
 		}

@@ -174,12 +174,12 @@
 				</tbody>
 			</table>
 			<br>
-			Starter Code<br><textarea id ="starter" name="starter" rows="15" cols="150" style="resize:none;">Starter Code Here</textarea>
+			Starter Code<br><textarea id ="starter" name="starter" rows="15" cols="150" style="resize:none;"></textarea>
 			<br>
 			
 			<br>
 			
-			Solution Code<br><textarea id ="solution" name="solution" rows="15" cols="150" style="resize:none;">Solution Code Here</textarea>
+			Solution Code<br><textarea id ="solution" name="solution" rows="15" cols="150" style="resize:none;"></textarea>
 			<br>
 <?php
 			if(isset($_GET['action']) && $_GET['action'] == 'addAssignment'){

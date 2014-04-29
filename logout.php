@@ -29,7 +29,7 @@
     </div>
 
     <div class="login-help">
-      <p><a href="./forgot_password.php">Forgot your password?</a></p>
+      <p><a href="./forgot_password_security.php">Forgot your password?</a></p>
     </div>
   </section>
 </body>

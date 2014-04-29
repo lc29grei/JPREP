@@ -18,7 +18,7 @@
 					echo'<b><a ID="x'.$row['sectionId'].'" style="text-decoration:none;" href="javascript:Toggle(\''.$row['sectionId'].'\');">[+]</a> <a ID="x'.$row['sectionId'].'" style="text-decoration:none;color:black;" href="javascript:Toggle(\''.$row['sectionId'].'\');">'.$row['coursename'].'-'.$row['sectionId'].'</a></b><br>
    						<div ID="'.$row['sectionId'].'" style="display:none; margin-left:2em;">
    							<a href="./course_page.php?num='.$row['sectionId'].'&id='.$email.'&courseNumber='.$row['courseId'].'">View Assignments</a><br>
-  							<a href="./course_gradebook.php?num='.$row['sectionId'].'&id='.$email.'&#tab4">View Gradebook</a>
+  							<a href="./course_gradebook.php?num='.$row['sectionId'].'&id='.$email.'&courseNumber='.$row['courseId'].'&#tab4">View Gradebook</a>
    						</div>';
 				}
 			} else echo'You are not currently enrolled in any courses';
