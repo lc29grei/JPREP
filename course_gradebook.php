@@ -41,68 +41,147 @@
 			
 	?>	
 		<!-- Gradebook tab -->
+			<?php	
+			$courseAssignmentSQL = 'SELECT * FROM Assignment WHERE sectionId="'.$_GET['num'].'"';
+			$courseAssignmentSQLResult = mysql_query($courseAssignmentSQL, $conn);
+			$courseAssignmentSQLResult1 = mysql_query($courseAssignmentSQL, $conn);
 			
-			<div class="CSSTableGenerator" >
-			<h3>Course</h3>
-			<h3 style="padding-left:150px;">Semester: Spring 2014</h3>
-			<br><br>
+			$courseNameSQL = 'SELECT coursename FROM Section WHERE sectionId="'.$_GET['num'].'" AND courseId="'.$_GET['courseNumber'].'"';
+			$courseNameSQLResult = mysql_query($courseNameSQL, $conn);
+			$courseNameResult = mysql_fetch_array($courseNameSQLResult);
+			
+			$courseProfessorSQL = 'SELECT faculty FROM Section WHERE sectionId="'.$_GET['num'].'" AND courseId="'.$_GET['courseNumber'].'"';
+			$courseProfessorSQLResult = mysql_query($courseProfessorSQL, $conn);
+			$courseProfessorResult = mysql_fetch_array($courseProfessorSQLResult);
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
+	if ($currentrole=="s") {
+		echo'<div class="CSSTableGenerator" >
+			<h3>Course: '.$courseNameResult['0'].'</h3>
+			<h3 style="padding-left:150px;">Professor: '.$courseProfessorResult['0'].'</h3>
+			<h3 style="padding-left:150px;">Semester: Spring 2014</h3><br>
+			<p style="font-size:12px;"><u>Pending Assignments</u></p>
 						<table>
 							<tr>
 								<td>Assignment</td>
 								<td>Due Date</td>
-								<td>Grade</td>
-								<td>Percentage</td>
-								<td>Comments</td>
-							</tr>
+								<td>Status</td>
+								<td>Total Problems Completed</td>
+							</tr>';
+							if ($courseAssignmentSQLResult > 0) {
+							while($row=mysql_fetch_array($courseAssignmentSQLResult)) {
+							
+							
+							
+								$assignmentId=$row['assignmentId'];
+								$currentAssignmentSQL = 'SELECT * FROM Assignment WHERE assignmentId="'.$assignmentId.'"';
+								$currentAssignmentSQLProblemCountResult = mysql_query($currentAssignmentSQL, $conn);
+								
+								
+								$assignmentproblemSQL = 'SELECT count(*) FROM Gradebook WHERE assignmentId="'.$assignmentId.'"';
+								$assignmentproblemResult = mysql_fetch_array(mysql_query($assignmentproblemSQL, $conn));
+								
+								
+								$problemCount=0;
+								if ($currentAssignmentSQLProblemCountResult > 0)
+								{
+									$row=mysql_fetch_array($currentAssignmentSQLProblemCountResult);
+									for($i=1;$i<=10;$i++)
+									{
+										if($row['problem'.$i.'']!=null) $problemCount++;
+									}
+								}
+								
+								
+								if($row['dueDate']>=date("Y-m-d"))
+								{
+																				
+								echo'<tr><td name="assignmentTitle">'.$row['assignmentTitle'].'</td>';		
+								echo'<td name="dueDate">'.$row['dueDate'].'</td>';
+								if($row['isComplete']==0)
+								{
+									echo'<td name="status">Not Complete</td>';
+									echo'<td><p>'.$assignmentproblemResult[0].' out of '.$problemCount.' completed</p></td></tr>';
+								}
+								else
+								{
+								echo'<td name="status">Complete</td>';
+								echo'<td>Assignment Completed</td></tr>';
+								}
+								echo'</form>';
+								}
+							}
+						} else echo'You have no current assignments';
+						echo'
+						</table><br>
+						<p style="font-size:12px;"><u>Past Assignments</u></p>
+							<table>
 							<tr>
-								<td><a href="">Assignment 1</a></td>
-								<td>5/1/2014 11:59 PM</td>
-								<td>90/100</td>
-								<td>90%</td>
-								<td>Great job!</td>
-							</tr>
-							<tr>
-								<td><a href="">Assignment 2</a></td>
-								<td>5/2/2014 11:59 PM</td>
-								<td>100/100</td>
-								<td>100%</td>
-								<td>&nbsp;</td>
-							</tr>
-							<tr>
-								<td><a href="">Assignment 3</a></td>
-								<td>5/3/2014 11:59 PM</td>
-								<td>75/100</td>
-								<td>75%</td>
-								<td>&nbsp;</td>
-							</tr>
-							<tr>
-								<td ><a href="">Assignment 4</a></td>
-								<td>5/4/2014 11:59 PM</td>
-								<td>84/100</td>
-								<td>84%</td>
-								<td>&nbsp;</td>
-							</tr>
-							<tr>
-								<td ><a href="">Assignment 5</a></td>
-								<td>5/5/2014 11:59 PM</td>
-								<td>80/100</td>
-								<td>80%</td>
-								<td>&nbsp;</td>
-							</tr>
-							<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-							<tr>
-								<td>Total</td>
-								<td>&nbsp;</td>
-								<td>429/500</td>
-								<td>85%</td>
-								<td>&nbsp;</td>
-							</tr>
-						</table>
-						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
-					</div>
+								<td>Assignment</td>
+								<td>Due Date</td>
+								<td>Status</td>
+								<td>Total Problems Completed</td>
+							</tr>';
+							
+							if ($courseAssignmentSQLResult1 > 0) {
+								while($row=mysql_fetch_array($courseAssignmentSQLResult1)) {
+								
+								
+									$assignmentId=$row['assignmentId'];
+									$currentAssignmentSQL = 'SELECT * FROM Assignment WHERE assignmentId="'.$assignmentId.'"';
+									$currentAssignmentSQLProblemCountResult = mysql_query($currentAssignmentSQL, $conn);
+									
+									
+									$assignmentproblemSQL = 'SELECT count(*) FROM Gradebook WHERE assignmentId="'.$assignmentId.'"';
+									$assignmentproblemResult = mysql_fetch_array(mysql_query($assignmentproblemSQL, $conn));
+									
+									
+									$problemCount=0;
+									if ($currentAssignmentSQLProblemCountResult > 0)
+									{
+										$row=mysql_fetch_array($currentAssignmentSQLProblemCountResult);
+										for($i=1;$i<=10;$i++)
+										{
+											if($row['problem'.$i.'']!=null) $problemCount++;
+										}
+									}
+								
+								
+									if($row['dueDate']<date("Y-m-d"))
+									{
+									
+									echo'<input style="z-index:-1; position:relative;" type="text" name="assignmentId" value="'.$row['assignmentId'].'">';						
+									echo'<tr><td name="assignmentTitle">'.$row['assignmentTitle'].'</td>';		
+									echo'<td name="dueDate">'.$row['dueDate'].'</td>';
+									if($row['isComplete']==0)
+									{									
+										echo'<td name="status">Not Complete</td>';
+										echo'<td><p>'.$assignmentproblemResult[0].' out of '.$problemCount.' completed</p></td></tr>';
+									}
+									else
+									{ 
+									echo'<td name="status">Complete</td>';
+									echo'<td>Assignment Completed</td></tr>';
+									}
+									
+									}
+								}
+							}
+							echo'
+							</table>
+							<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
+					</div>';
+			}
 				
-			
-	<?php	
+				
 		#<!-- Profile tab -->
 		
 			include 'display_profile.php';

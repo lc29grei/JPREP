@@ -21,7 +21,8 @@
 	
 	
 	$problemCount=0;
-	if ($currentAssignmentSQLProblemCountResult > 0) {
+	if ($currentAssignmentSQLProblemCountResult > 0)
+	{
 		$row=mysql_fetch_array($currentAssignmentSQLProblemCountResult);
 			for($i=1;$i<=10;$i++)
 			{
@@ -51,8 +52,6 @@
 										$getProblemIdSQL = 'SELECT * FROM Problem WHERE problemId="'.$row['problem'.$i.''].'"';
 										$getProblemIdSQLResult = mysql_query($getProblemIdSQL, $conn);
 										$row1=mysql_fetch_array($getProblemIdSQLResult);
-										//$problemIdFromResult=$row1[''.$row['problem'.$i.''].''];
-										//$row['problem'.$i.'']
 										echo'<tr><form>';
 											echo'<td>'.$row1['title'].'</td>';
 											echo'<td>'.$row['problem'.$i.'Value'].'</td>';

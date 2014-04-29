@@ -17,7 +17,7 @@ function displayGrades($currentrole)
 				<p><b><u>Current Courses</u></b></p>';
 				if (mysql_num_rows($studentSQLResult) > 0) {
 					while($row=mysql_fetch_array($studentSQLResult)) {
-						echo'<a href="./course_gradebook.php?num='.$row['sectionId'].'&id='.$email.'&#tab4"><u>'.$row['coursename'].'-'.$row['sectionId'].'</u></a><br>';
+						echo'<a href="./course_gradebook.php?num='.$row['sectionId'].'&courseNumber='.$row['courseId'].'&id='.$email.'&#tab4"><u>'.$row['coursename'].'-'.$row['sectionId'].'</u></a><br>';
 					}
 				}
 				echo'<p><b><u>Previous Courses</u></b></p>

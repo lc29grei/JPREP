@@ -89,7 +89,7 @@ function displayPage()
 			header("Location: check_gradebook.php?problemId=".$_GET['problemId']."&assignmentId=".$_GET['assignmentId']."");
 		}
 		
-		echo'<p>' . $errorHolder . '</p>
+		echo'
 				<table border="1" style="width:300px">
 					<tr>
 						<td> Input </td>
