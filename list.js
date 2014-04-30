@@ -34,7 +34,7 @@ function addRow(tableID) {
  
             var rowCount = table.rows.length;
             
-            if ((rowCount-6) <= 25) {
+            if ((rowCount-6) <= 10) {
             	var row = table.insertRow(rowCount-1);
             
             	var cell1 = row.insertCell(0);
@@ -99,7 +99,7 @@ function addRow(tableID) {
             	cell9.appendChild(element8);
             	
             } else {
-            	alert('Sorry, you can only have up to 25 test cases');
+            	alert('Sorry, you can only have up to 10 test cases');
             }
  
 }

@@ -56,9 +56,10 @@
 
 	if ($currentrole=="s") {
 		echo'<div class="CSSTableGenerator" >
-			<h3>Course: '.$courseNameResult['0'].'</h3>
-			<h3 style="padding-left:150px;">Professor: '.$courseProfessorResult['0'].'</h3>
-			<h3 style="padding-left:150px;">Semester: Spring 2014</h3><br>
+			<h3>Course: '.$courseNameResult['0'].'</h3>';
+			$facultyInfo = mysql_fetch_array(mysql_query('SELECT * FROM users WHERE email="'.$courseProfessorResult['0'].'"',$conn));
+			echo'<h3 style="padding-left:150px;">Professor: '.$facultyInfo['prefix'].' '.$facultyInfo['first'].' '.$facultyInfo['last'].'</h3>
+			<br>
 			<p style="font-size:12px;"><u>Pending Assignments</u></p>
 						<table>
 							<tr>

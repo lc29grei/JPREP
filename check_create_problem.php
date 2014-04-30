@@ -203,4 +203,22 @@
 		}
 	}
 	
+	if(isset($_GET['action']) && $_GET['action'] == 'add'){
+		$id = $_GET['id'];
+		$problemInfo = mysql_fetch_array(mysql_query('SELECT * FROM Problem WHERE problemId="'.$id.'"',$conn));
+		mysql_query('INSERT INTO Problem VALUES ("'.$problemId.'","private_'.$email.'","'.$id.'",1,"'.$problemInfo['title'].'","'.$problemInfo['methodname'].'","'.$problemInfo['description'].'","'.$problemInfo['resulttype'].'","'.$problemInfo['solutionCode'].'","'.$problemInfo['param1'].'","'.$problemInfo['param2'].'","'.$problemInfo['param3'].'","'.$problemInfo['param4'].'","'.$problemInfo['param5'].'","'.$problemInfo['starterText'].'","'.$problemInfo['storageloc'].'","'.$problemInfo['param1type'].'","'.$problemInfo['param2type'].'","'.$problemInfo['param3type'].'","'.$problemInfo['param4type'].'","'.$problemInfo['param5type'].'")',$conn);
+		$testCaseInfo = mysql_query('SELECT * FROM TestCase WHERE problemId="'.$id.'"',$conn);
+		while ($row=mysql_fetch_array($testCaseInfo)) {
+			mysql_query('UPDATE TestCase SET hidden="'.$row['hidden'].'",
+											param1value="'.$row['param1value'].'",
+											param2value="'.$row['param2value'].'",
+											param3value="'.$row['param3value'].'",
+											param4value="'.$row['param4value'].'",
+											param5value="'.$row['param5value'].'",
+											result="'.$row['result'].'"
+										WHERE testid="'.$row['testid'].'" AND problemId="'.$problemId.'"',$conn);
+		}
+		header("location: course_pool.php?courseNumber=".$problemInfo['poolId']."&#tab3");
+	}
+	
 ?>

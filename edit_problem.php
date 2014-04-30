@@ -236,15 +236,8 @@
 						<td class="col8">&nbsp;</td>
 					</tr>
 				</tbody>
-			</table>
-			<br>
-			Starter Code<br><textarea id ="starter" name="starter" rows="15" cols="150" style="resize:none;" placeholder="'.$starterCode.'"></textarea>
-			<br>
+			</table><br>
 			
-			<br>
-			
-			Solution Code<br><textarea id ="solution" name="solution" rows="15" cols="150" style="resize:none;" placeholder="'.$solutionCode.'"></textarea>
-			<br>
 			<input type="button" value="Cancel" onClick="cancelConfirm()">
 			<input type="submit" value="Save Changes">
 			</form></div>';

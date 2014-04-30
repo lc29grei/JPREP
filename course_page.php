@@ -6,7 +6,7 @@
 	} 
 	$currentrole=$_SESSION['currentrole'];
 	$firstname=$_SESSION['first_name'];
-	
+	$email = $_SESSION['username'];
 	include 'dbInfo.php';
 	
 	
@@ -30,7 +30,7 @@
 		echo'<div class="CSSTableGenerator" >
 			<h3>Course: '.$courseNameResult['0'].'</h3>
 			<h3 style="padding-left:150px;">Professor: '.$courseProfessorResult['0'].' '.$courseProfessorResult['1'].' '.$courseProfessorResult['2'].'</h3>
-			<h3 style="padding-left:150px;">Semester: Spring 2014</h3><br>
+			<br>
 			<p style="font-size:12px;"><u>Pending Assignments</u></p>
 						<table>
 							<tr>
@@ -45,7 +45,13 @@
 								{															
 								echo'<tr><td name="assignmentTitle">'.$row['assignmentTitle'].'</td>';		
 								echo'<td name="dueDate">'.$row['dueDate'].'</td>';
-								if($row['isComplete']==0)
+								$complete = true;
+								for ($i=1;$i<=10;$i++) {
+									$problemsList = mysql_result(mysql_query('SELECT status FROM Gradebook WHERE studentId="'.$email.'" AND assignmentId="'.$row['assignmentId'].'" AND problemId="'.$row[$i+6].'"',$conn),0);
+									if (($problemsList!=1) and ($row[$i+6]!=null)) $complete=false;
+								}
+								
+								if($complete==false)
 								{									
 									echo'<td name="status">Not Complete</td>';
 									echo'<td><a href="view_Assignment.php?id='.$row['assignmentId'].'">Complete Assignment</a></td></tr>';

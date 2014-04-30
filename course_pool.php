@@ -75,7 +75,8 @@
 					<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 			</div>';
 		} else {
-			$coursePoolSQL = 'SELECT * FROM Problem WHERE poolid="'.$_GET['courseNumber'].'"';
+			if ($currentrole == 'c' or $currentrole == 'a') $coursePoolSQL = 'SELECT * FROM Problem WHERE poolid="'.$_GET['courseNumber'].'"';
+			else $coursePoolSQL = 'SELECT * FROM Problem WHERE poolid="'.$_GET['courseNumber'].'" AND active=1';
 			$coursePoolSQLResult = mysql_query($coursePoolSQL, $conn);
 			echo'<div class="CSSTableGenerator" >
 			<h3>Course Pool</h3>
@@ -91,7 +92,12 @@
 									echo'<tr><td>'.$row['title'].'</td>';
 									echo'<td>'.$row['methodname'].'</td>';
 									echo'<td>'.$row['resulttype'].'</td>';
-									echo'<td><a href="edit_problem.php?id='.$row['problemId'].'">Edit</a></td>';
+									if ($currentrole == 'c' or $currentrole == 'a') echo'<td><a href="edit_problem.php?id='.$row['problemId'].'">Edit</a></td>';
+									else {
+										$existsInPrivate = mysql_query('SELECT * FROM Problem WHERE poolId="private_'.$email.'" AND parentProblem="'.$row['problemId'].'"',$conn);
+										if (mysql_num_rows($existsInPrivate) > 0) echo'<td>Added to Private Pool</td>';
+										else echo'<td><a href="check_create_problem.php?action=add&id='.$row['problemId'].'">Add to Private Pool</a></td>';
+									}
 									if ($currentrole == 'c' or $currentrole == 'a') {
 										if ($row['active'] == 1) echo'<td><a href="check_create_problem.php?action=disable&id='.$row['problemId'].'&role='.$currentrole.'&poolid='.$row['poolId'].'">Remove</a></td></tr>';
 										else echo'<td><a href="check_create_problem.php?action=activate&id='.$row['problemId'].'&role='.$currentrole.'&poolid='.$row['poolId'].'">Activate</a></td></tr>';

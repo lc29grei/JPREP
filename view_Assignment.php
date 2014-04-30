@@ -74,7 +74,8 @@
 										if ($pointsEarnedSQL==1) echo'<td>'.$currentAssignmentSQLArray[$j+19].'</td>';
 										else echo'<td>0</td>';
 										echo'<td>'.$currentAssignmentSQLArray[$j+19].'</td>';
-										echo'<td><a href="problem_interface.php?problemId='.$currentAssignmentSQLArray[$j+6].'&assignmentId='.$_GET['id'].'">Complete</a></td></tr>';
+										if ($pointsEarnedSQL==1) echo'<td>Completed</td></tr>';
+										else echo'<td><a href="problem_interface.php?problemId='.$currentAssignmentSQLArray[$j+6].'&assignmentId='.$_GET['id'].'">Complete</a></td></tr>';
 									}
 						echo'</table>';
 			}

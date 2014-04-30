@@ -46,7 +46,7 @@
 		#<!-- Gradebook tab -->
 			$assignmentSQL = mysql_query('SELECT * FROM Assignment WHERE assignmentId="'.$_GET['id'].'"',$conn);
 			$assignmentSQLArray = mysql_fetch_array($assignmentSQL);
-			$studentList = mysql_query('SELECT * FROM Roster,users WHERE Roster.studentId = users.email AND sectionId="'.$_GET['num'].'"',$conn);
+			$studentList = mysql_query('SELECT * FROM Roster,users WHERE Roster.studentId = users.email AND Roster.sectionId="'.$_GET['num'].'" AND Roster.active=1',$conn);
 			$courseName = mysql_result(mysql_query('SELECT coursename FROM Section WHERE sectionId="'.$_GET['num'].'"',$conn),0);
 			echo'<div class="CSSTableGenerator" >
 			<h3>'.$courseName.'</h3>
@@ -65,21 +65,18 @@
 								echo'<tr><td><a href="./student_problems_gradebook.php?name='.$row['email'].'&id='.$_GET['id'].'&#tab4">'.$row['first'].' '.$row['last'].'</a></td>';
 								$assignmentEarnedTotal = 0;
 								$assignmentPossibleTotal = 0;
-								$allProblemsSQL = mysql_query('SELECT problemId FROM Gradebook WHERE studentId="'.$row['email'].'" AND assignmentId="'.$_GET['id'].'"',$conn);
-								$assignmentQuery = mysql_fetch_array(mysql_query('SELECT * FROM Assignment WHERE assignmentId="'.$_GET['id'].'"',$conn),0);
-								while ($rows=mysql_fetch_array($allProblemsSQL)) {
-									for($i=1;$i<=10;$i++) {
-										if ($rows['problemId'] == $assignmentQuery[$i+6]) {
-											$assignmentEarnedTotal = $assignmentEarnedTotal + $assignmentQuery[$i+19];
-										}
+								for ($i=1;$i<=10;$i++) {
+									$pointsEarnedSQL = mysql_result(mysql_query('SELECT status FROM Gradebook WHERE studentId="'.$row['email'].'" AND problemId="'.$assignmentSQLArray[$i+6].'" AND assignmentId="'.$_GET['id'].'"',$conn),0);
+									if ($pointsEarnedSQL==1) {
+										$assignmentEarnedTotal = $assignmentEarnedTotal + $assignmentSQLArray[$i+19];
 									}
 								}
-								$assignSQLArray = mysql_fetch_array(mysql_query('SELECT * FROM Assignment WHERE assignmentId="'.$_GET['id'].'"',$conn));
+								
 								for ($j=1;$j<=10;$j++) {
-									$assignmentPossibleTotal = $assignmentPossibleTotal + $assignSQLArray[$j+19];
+									$assignmentPossibleTotal = $assignmentPossibleTotal + $assignmentSQLArray[$j+19];
 								}
 								echo'<td>'.$assignmentEarnedTotal.'/'.$assignmentPossibleTotal.'</td>';
-								echo'<td></td>';
+								echo'<td>'.round(($assignmentEarnedTotal/$assignmentPossibleTotal)*100).'%</td>';
 								if ($assignmentEarnedTotal==$assignmentPossibleTotal) echo'<td>Complete</td></tr>';
 								else echo'<td>Not Complete</td></tr>';
 							}
