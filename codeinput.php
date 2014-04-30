@@ -47,7 +47,14 @@ if ($row['param5'] != null and $row['param5'] != "") {
 }
 
 // Test case work here
-$testArray = "int[] testArray = {";
+
+$typeSQL = 'SELECT resulttype FROM Problem WHERE problemId="'.$_GET['problemId'].'"';
+$typeResult = mysql_fetch_array(mysql_query($typeSQL, $conn));
+$type=$typeResult[0];
+
+
+
+$testArray = $type."[] testArray = {";
 $testCaseSQL = 'SELECT * FROM TestCase WHERE problemId="'.$_GET['problemId'].'"';
 //$testCaseSQL = 'SELECT * FROM testcase WHERE problemId="1"';
 $testCaseSQLResult = mysql_query($testCaseSQL, $conn);

@@ -67,7 +67,7 @@
 						<td class="col2"><select name="param1type" id="param1type"><option value="int">int</option>
 												 <option value="char">char</option>
 												 <option value="boolean">boolean</option>
-												 <option value="string">String</option>
+												 <option value="String">String</option>
 												 <option value="double">double</option>
 												 <option value="intArray">int[]</option>
 												 <option value="charArray">char[]</option>
@@ -77,7 +77,7 @@
 						<td class="col3"><select name="param2type" id="param2type" disabled="disabled"><option value="int">int</option>
 												 <option value="char">char</option>
 												 <option value="boolean">boolean</option>
-												 <option value="string">String</option>
+												 <option value="String">String</option>
 												 <option value="double">double</option>
 												 <option value="intArray">int[]</option>
 												 <option value="charArray">char[]</option>
@@ -87,7 +87,7 @@
 						<td class="col4"><select name="param3type" id="param3type" disabled="disabled"><option value="int">int</option>
 												 <option value="char">char</option>
 												 <option value="boolean">boolean</option>
-												 <option value="string">String</option>
+												 <option value="String">String</option>
 												 <option value="double">double</option>
 												 <option value="intArray">int[]</option>
 												 <option value="charArray">char[]</option>
@@ -97,7 +97,7 @@
 						<td class="col5"><select name="param4type" id="param4type" disabled="disabled"><option value="int">int</option>
 												 <option value="char">char</option>
 												 <option value="boolean">boolean</option>
-												 <option value="string">String</option>
+												 <option value="String">String</option>
 												 <option value="double">double</option>
 												 <option value="intArray">int[]</option>
 												 <option value="charArray">char[]</option>
@@ -107,7 +107,7 @@
 						<td class="col6"><select name="param5type" id="param5type" disabled="disabled"><option value="int">int</option>
 												 <option value="char">char</option>
 												 <option value="boolean">boolean</option>
-												 <option value="string">String</option>
+												 <option value="String">String</option>
 												 <option value="double">double</option>
 												 <option value="intArray">int[]</option>
 												 <option value="charArray">char[]</option>
@@ -117,7 +117,7 @@
 						<td class="col7"><select id="resultType" name="resultType"><option value="int">int</option>
 												 <option value="char">char</option>
 												 <option value="boolean">boolean</option>
-												 <option value="string">String</option>
+												 <option value="String">String</option>
 												 <option value="double">double</option>
 												 <option value="intArray">int[]</option>
 												 <option value="charArray">char[]</option>
