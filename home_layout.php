@@ -16,6 +16,11 @@ echo'
 				window.history.back();
 			};
 			
+			function goBackTwice() {
+				window.history.go(-2);
+				
+			};
+			
 			function changeRole(val) {
 				window.location.href="./home.php";
 			};
