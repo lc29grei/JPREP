@@ -155,6 +155,9 @@
 				} else $hidden=0;
 				
 				$runQuery = mysql_query('INSERT INTO TestCase VALUES ('.$i.',"'.$problemId.'",'.$hidden.',"'.$param1.'","'.$param2.'","'.$param3.'","'.$param4.'","'.$param5.'","'.$result.'")',$conn);
+				if(! $runQuery ) {
+	  			die('Could not update data: ' . mysql_error());
+			}
 			}
 			$i = $i+1;
 		}

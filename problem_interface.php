@@ -66,7 +66,7 @@ function displayPage()
 					<form method="post" action="./codeinput.php?problemId=' . $_GET['problemId'] . '&assignmentId='.$_GET['assignmentId'].'">
 					<textarea name="source" rows="10" cols="70" style="resize:none;">public ' . $row['resulttype'] . ' ' . $row['methodname'] . '(' . $paramString . ') {
     
-}</textarea></br><input type="submit" /><input type="button" value="Done" onClick="goBackTwice()"></form></br>';
+}</textarea></br><input type="submit" /><input type="button" value="Done" onClick="goBackTwice()"><input type="button" value="Reset" onClick="window.location.reload()"></form></br>';
 	// Do test case work here
 	$testCaseSQL = 'SELECT * FROM TestCase WHERE problemId="'.$_GET['problemId'].'"';
 
