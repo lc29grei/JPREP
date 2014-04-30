@@ -75,9 +75,12 @@
 										}
 									 echo'</select></td>
 									<td>/</td>
-									<td><select name="year" id="year"><option value="13">2013</option>
-															<option value="2014">2014</option>
+									<td><select name="year" id="year"><option value="14">2014</option>
 															<option value="2015">2015</option>
+															<option value="2016">2016</option>
+															<option value="2017">2017</option>
+															<option value="2018">2018</option>
+															<option value="2019">2019</option>
 															</select></td>
 									<td>&nbsp;</td>
 									
@@ -170,9 +173,9 @@
 							<td>&nbsp;</td>
 							<td><input type="text" name="pointValue'.$currProblemCount.'"></td>
 							<td>&nbsp;</td>
-							<td><a href="">Edit</a></td>
 							<td>&nbsp;</td>
-							<td><a href="">Remove</a></td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
 							</tr>
 							';
 							 

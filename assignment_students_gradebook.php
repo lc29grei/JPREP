@@ -6,6 +6,8 @@
 	} 
 	$currentrole=$_SESSION['currentrole'];
 	$firstname=$_SESSION['first_name'];
+	$email=$_SESSION['username'];
+	include 'dbInfo.php';
    	include 'home_layout.php';
    	headerLayout($currentrole, $firstname);
 		
@@ -40,14 +42,17 @@
 			include 'display_question_pool.php';
 			displayQuestionPool($currentrole);
 			
-	?>	
-		<!-- Gradebook tab -->
-			
-			<div class="CSSTableGenerator" >
-			<h3>Course</h3>
-			<h3 style="padding-left:150px;">Assignment Name</h3>
-			<h3 style="padding-left:150px;">Due Date: 3/10/2014 11:59 PM</h3><br>
-			<p style="font-size:12px;">Click on a student's name to view individual problem grades for that student</p>
+	
+		#<!-- Gradebook tab -->
+			$assignmentSQL = mysql_query('SELECT * FROM Assignment WHERE assignmentId="'.$_GET['id'].'"',$conn);
+			$assignmentSQLArray = mysql_fetch_array($assignmentSQL);
+			$studentList = mysql_query('SELECT * FROM Roster,users WHERE Roster.studentId = users.email AND sectionId="'.$_GET['num'].'"',$conn);
+			$courseName = mysql_result(mysql_query('SELECT coursename FROM Section WHERE sectionId="'.$_GET['num'].'"',$conn),0);
+			echo'<div class="CSSTableGenerator" >
+			<h3>'.$courseName.'</h3>
+			<h3 style="padding-left:150px;">'.$assignmentSQLArray[18].'</h3>
+			<h3 style="padding-left:150px;">Due Date: '.$assignmentSQLArray[3].'</h3><br>
+			<p style="font-size:12px;">Click on a students name to view individual problem grades for that student</p>
 			
 						<table>
 							<tr>
@@ -55,73 +60,34 @@
 								<td>Grade</td>
 								<td>Percentage</td>
 								<td>Status</td>
-							</tr>
-							<tr>
-								<td><a href="./student_problems_gradebook.php#tab4">Student 1</a></td>
-								<td>90/100</td>
-								<td>90%</td>
-								<td>Complete</td>
-							</tr>
-							<tr>
-								<td><a href="./student_problems_gradebook.php#tab4">Student 2</a></td>
-								<td>60/100</td>
-								<td>60%</td>
-								<td>In Progress</td>
-							</tr>
-							<tr>
-								<td><a href="./student_problems_gradebook.php#tab4">Student 3</a></td>
-								<td>75/100</td>
-								<td>75%</td>
-								<td>Complete</td>
-							</tr>
-							<tr>
-								<td><a href="./student_problems_gradebook.php#tab4">Student 4</a></td>
-								<td>84/100</td>
-								<td>84%</td>
-								<td>Complete</td>
-							</tr>
-							<tr>
-								<td><a href="./student_problems_gradebook.php#tab4">Student 5</a></td>
-								<td>80/100</td>
-								<td>80%</td>
-								<td>Complete</td>
-							</tr>
-							<tr>
-								<td><a href="./student_problems_gradebook.php#tab4">Student 6</a></td>
-								<td>75/100</td>
-								<td>75%</td>
-								<td>Complete</td>
-							</tr>
-							<tr>
-								<td><a href="./student_problems_gradebook.php#tab4">Student 7</a></td>
-								<td>100/100</td>
-								<td>100%</td>
-								<td>Complete</td>
-							</tr>
-							<tr>
-								<td><a href="./student_problems_gradebook.php#tab4">Student 8</a></td>
-								<td>82/100</td>
-								<td>82%</td>
-								<td>Complete</td>
-							</tr>
-							<tr>
-								<td><a href="./student_problems_gradebook.php#tab4">Student 9</a></td>
-								<td>94/100</td>
-								<td>94%</td>
-								<td>Complete</td>
-							</tr>
-							<tr>
-								<td><a href="./student_problems_gradebook.php#tab4">Student 10</a></td>
-								<td>97/100</td>
-								<td>97%</td>
-								<td>Complete</td>
-							</tr>
-						</table>
+							</tr>';
+							while ($row=mysql_fetch_array($studentList)) {
+								echo'<tr><td><a href="./student_problems_gradebook.php?name='.$row['email'].'&id='.$_GET['id'].'&#tab4">'.$row['first'].' '.$row['last'].'</a></td>';
+								$assignmentEarnedTotal = 0;
+								$assignmentPossibleTotal = 0;
+								$allProblemsSQL = mysql_query('SELECT problemId FROM Gradebook WHERE studentId="'.$row['email'].'" AND assignmentId="'.$_GET['id'].'"',$conn);
+								$assignmentQuery = mysql_fetch_array(mysql_query('SELECT * FROM Assignment WHERE assignmentId="'.$_GET['id'].'"',$conn),0);
+								while ($rows=mysql_fetch_array($allProblemsSQL)) {
+									for($i=1;$i<=10;$i++) {
+										if ($rows['problemId'] == $assignmentQuery[$i+6]) {
+											$assignmentEarnedTotal = $assignmentEarnedTotal + $assignmentQuery[$i+19];
+										}
+									}
+								}
+								$assignSQLArray = mysql_fetch_array(mysql_query('SELECT * FROM Assignment WHERE assignmentId="'.$_GET['id'].'"',$conn));
+								for ($j=1;$j<=10;$j++) {
+									$assignmentPossibleTotal = $assignmentPossibleTotal + $assignSQLArray[$j+19];
+								}
+								echo'<td>'.$assignmentEarnedTotal.'/'.$assignmentPossibleTotal.'</td>';
+								echo'<td></td>';
+								if ($assignmentEarnedTotal==$assignmentPossibleTotal) echo'<td>Complete</td></tr>';
+								else echo'<td>Not Complete</td></tr>';
+							}
+		
+						echo'</table>
 						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
-					</div>
+					</div>';
 				
-			
-	<?php	
 		#<!-- Profile tab -->
 		
 			include 'display_profile.php';

@@ -112,7 +112,7 @@ echo'
 		<p>Created by Delta Tech</p>
 		<a href="http://oraserv.cs.siena.edu/~perm_deltatech/#/home"><img src="./DeltaTech-Logo.png" width="50" height="30"/></a>
 		<br/>
-		<p>Copyright &copy; 2013 Delta Tech. All Rights Reserved</p>
+		<p>Copyright &copy; 2013-2014 Delta Tech. All Rights Reserved</p>
 	</div>
 	</body>';
 	}

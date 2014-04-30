@@ -6,7 +6,8 @@
 	} 
 	$currentrole=$_SESSION['currentrole'];
 	$firstname=$_SESSION['first_name'];
-   	
+   	$email=$_SESSiON['username'];
+   	include 'dbInfo.php';
    	include 'home_layout.php';	
    	headerLayout($currentrole, $firstname);
 		
@@ -42,75 +43,79 @@
 			displayQuestionPool($currentrole);
 				
 		#<!-- Gradebook tab -->
+		$studentName = mysql_fetch_array(mysql_query('SELECT * FROM users WHERE email="'.$_GET['name'].'"',$conn));
+		$assignmentSQL = mysql_query('SELECT * FROM Assignment WHERE assignmentId="'.$_GET['id'].'"',$conn);
+		$assignmentSQLArray = mysql_fetch_array($assignmentSQL);
 		if(isset($_GET['action']) && $_GET['action'] == 'editgradessingle'){
 			echo'
 			<div class="CSSTableGenerator" >
-			<h3>Student Name</h3>
-			<h3 style="padding-left:150px;">Assignment Name</h3>
-			<h3 style="padding-left:150px;">Overall Grade: 90/100</h3>
-			<br><br>
-			<table>
+			<h3>'.$studentName[7].' '.$studentName[8].'</h3>
+			<h3 style="padding-left:150px;">'.$assignmentSQLArray[18].'</h3>
+			<br><br>';
+			$problemCount=0;
+			if (mysql_num_rows($assignmentSQL) > 0) {
+				for($i=1;$i<=10;$i++) {
+					if($assignmentSQLArray[$i+6]!=null) $problemCount++;
+				}
+			}
+			echo'<table>
 				<tr>
 					<td>Problem Name</td>
 					<td>Points Earned</td>
 					<td>Possible Points</td>
 					<td>Status</td>
-				</tr>
-				<tr>
-					<td>Hello World</td>
-					<td><input type="text" placeholder="45"></td>
-					<td>45</td>
-					<td>Complete</td>
-				</tr>
-				<tr>
-					<td>Fun with Recursion</td>
-					<td><input type="text" placeholder="30"></td>
-					<td>40</td>
-					<td>Complete</td>
-				</tr>	
-				<tr>
-					<td>Strings</td>
-					<td><input type="text" placeholder="15"></td>
-					<td>15</td>
-					<td>Complete</td>
-				</tr>	
-			</table>						
+				</tr>';
+				for($j=1;$j<=$problemCount;$j++) {
+					$getProblemIdSQL = 'SELECT * FROM Problem WHERE problemId="'.$assignmentSQLArray[$j+6].'"';
+					$getProblemIdSQLResult = mysql_query($getProblemIdSQL, $conn);
+					$row1=mysql_fetch_array($getProblemIdSQLResult);
+										
+					echo'<tr><td>'.$row1['title'].'</td>';
+					$pointsEarnedSQL = mysql_result(mysql_query('SELECT status FROM Gradebook WHERE studentId="'.$email.'" AND problemId="'.$currentAssignmentSQLArray[$j+6].'" AND assignmentId="'.$_GET['id'].'"',$conn),0);
+					if ($pointsEarnedSQL==1) echo'<td>'.$assignmentSQLArray[$j+19].'</td>';
+					else echo'<td>0</td>';
+					echo'<td>'.$assignmentSQLArray[$j+19].'</td>';
+					if ($pointsEarnedSQL==1) echo'<td>Complete</td></tr>';
+					else echo'<td>Not Complete</td></tr>';
+				}
+					
+			echo'</table>						
 				<p class="submit" style="text-align: center"><input type="submit" value="Cancel" onClick="goBack()"><input type="submit" value="Submit" onClick="goBack()"></p>
 				
 		</div>';
 		} else {
 			echo'<div class="CSSTableGenerator" >
-			<h3>Student Name</h3>
-			<h3 style="padding-left:150px;">Assignment Name</h3>
-			<h3 style="padding-left:150px;">Overall Grade: 90/100</h3><br><br>
-			<a href="?action=editgradessingle&#tab4">Edit Grades</a><br><br>
-						<table>
+			<h3>'.$studentName[7].' '.$studentName[8].'</h3>
+			<h3 style="padding-left:150px;">'.$assignmentSQLArray[18].'</h3><br><br>';
+			$problemCount=0;
+			if (mysql_num_rows($assignmentSQL) > 0) {
+				for($i=1;$i<=10;$i++) {
+					if($assignmentSQLArray[$i+6]!=null) $problemCount++;
+				}
+			}
+						echo'<table>
 							<tr>
 								<td>Problem Name</td>
 								<td>Points Earned</td>
 								<td>Possible Points</td>
 								<td>Status</td>
-							</tr>
-							<tr>
-								<td>Hello World</td>
-								<td>45</td>
-								<td>45</td>
-								<td>Complete</td>
-							</tr>
-							<tr>
-								<td>Fun with Recursion</td>
-								<td>45</td>
-								<td>45</td>
-								<td>Complete</td>
-							</tr>
-							<tr>
-								<td>Pinball Problem</td>
-								<td>0</td>
-								<td>10</td>
-								<td>Complete</td>
-							</tr>
-						</table>
-						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
+							</tr>';
+				for($j=1;$j<=$problemCount;$j++) {
+					$getProblemIdSQL = 'SELECT * FROM Problem WHERE problemId="'.$assignmentSQLArray[$j+6].'"';
+					$getProblemIdSQLResult = mysql_query($getProblemIdSQL, $conn);
+					$row1=mysql_fetch_array($getProblemIdSQLResult);
+										
+					echo'<tr><td>'.$row1['title'].'</td>';
+					$pointsEarnedSQL = mysql_result(mysql_query('SELECT status FROM Gradebook WHERE studentId="'.$_GET['name'].'" AND problemId="'.$assignmentSQLArray[$j+6].'" AND assignmentId="'.$_GET['id'].'"',$conn),0);
+					if ($pointsEarnedSQL==1) echo'<td>'.$assignmentSQLArray[$j+19].'</td>';
+					else echo'<td>0</td>';
+					echo'<td>'.$assignmentSQLArray[$j+19].'</td>';
+					if ($pointsEarnedSQL==1) echo'<td>Complete</td></tr>';
+					else echo'<td>Not Complete</td></tr>';
+				}
+							
+				echo'</table>
+				<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
 					</div>';
 			}
 			

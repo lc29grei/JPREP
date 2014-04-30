@@ -6,7 +6,10 @@
 	} 
 	$currentrole=$_SESSION['currentrole'];
 	$firstname=$_SESSION['first_name'];
+	$email=$_SESSION['username'];
+	include 'dbInfo.php';
    include 'home_layout.php';
+   
    headerLayout($currentrole, $firstname);	
 		
 		#<!-- Courses tab -->
@@ -43,10 +46,14 @@
 	?>	
 		<!-- Gradebook tab -->
 			
-			<div class="CSSTableGenerator" >
-			<h3>Course</h3>
+<?php 			
+		$assignmentSQL = mysql_query('SELECT * FROM Assignment WHERE faculty="'.$email.'"',$conn);
+		$courseName = mysql_result(mysql_query('SELECT coursename FROM Section WHERE sectionId="'.$_GET['id'].'"',$conn),0);
+
+		echo'<div class="CSSTableGenerator" >
+			<h3>'.$courseName.'-'.$_GET['id'].'</h3>
 			<h3 style="padding-left:150px;">Semester: Spring 2014</h3>
-			<p style="font-size:12px;">Click on an assignment's name to view individual student grades for that assignment</p>
+			<p style="font-size:12px;">Click on the assignment name to view individual student grades for that assignment</p>
 						<table>
 							<tr>
 								<td>Assignment Name</td>
@@ -54,48 +61,19 @@
 								<td>Class Average</td>
 								<td>Highest Grade</td>
 								<td>Lowest Grade</td>
-							</tr>
-							<tr>
-								<td><a href="./assignment_students_gradebook.php#tab4">Assignment 1</a></td>
-								<td>3/10/2014 11:59 PM</td>
-								<td>90%</td>
-								<td>100</td>
-								<td>82</td>
-							</tr>
-							<tr>
-								<td><a href="./assignment_students_gradebook.php#tab4">Assignment 2</a></td>
-								<td>3/11/2014 11:59 PM</td>
-								<td>98%</td>
-								<td>100</td>
-								<td>92</td>
-							</tr>
-							<tr>
-								<td><a href="./assignment_students_gradebook.php#tab4">Assignment 3</a></td>
-								<td>3/12/2014 11:59 PM</td>
-								<td>75%</td>
-								<td>93</td>
-								<td>55</td>
-							</tr>
-							<tr>
-								<td><a href="./assignment_students_gradebook.php#tab4">Assignment 4</a></td>
-								<td>3/13/2014 11:59 PM</td>
-								<td>84%</td>
-								<td>87</td>
-								<td>81</td>
-							</tr>
-							<tr>
-								<td><a href="./assignment_students_gradebook.php#tab4">Assignment 5</a></td>
-								<td>3/14/2014 11:59 PM</td>
-								<td>80%</td>
-								<td>95</td>
-								<td>60</td>
-							</tr>
-						</table>
+							</tr>';
+							while ($row=mysql_fetch_array($assignmentSQL)) {
+								echo'<tr><td><a href="./assignment_students_gradebook.php?id='.$row['assignmentId'].'&num='.$row['sectionId'].'&#tab4">'.$row['assignmentTitle'].'</a></td>
+								<td>'.$row['dueDate'].'</td>
+								<td></td>
+								<td></td>
+								<td></td></tr>';
+							}		
+						echo'</table>
 						<p class="submit" style="text-align: center"><input type="submit" value="Back" onClick="goBack()"></p>
-					</div>
+					</div>';
 				
 			
-	<?php	
 		#<!-- Profile tab -->
 		
 			include 'display_profile.php';
