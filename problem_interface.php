@@ -62,7 +62,7 @@ function displayPage()
 	echo'
 				<div>
 					<h1>' . $row['title'] . '</h1>
-					<p>' . $row['starterText'] . '</p>
+					<p>' . $row['description'] . '</p>
 					<form method="post" action="./codeinput.php?problemId=' . $_GET['problemId'] . '&assignmentId='.$_GET['assignmentId'].'">
 					<textarea name="source" rows="10" cols="70" style="resize:none;">public ' . $row['resulttype'] . ' ' . $row['methodname'] . '(' . $paramString . ') {
     
