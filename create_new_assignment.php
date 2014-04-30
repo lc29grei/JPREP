@@ -186,17 +186,6 @@
 						}
 					}
 				echo'
-				
-				
-					<tr>
-						<td>&nbsp;</td><td>&nbsp;</td>
-						<td>&nbsp;</td><td>&nbsp;</td>
-						<td><b>Total Points:</b></td>
-						<td>&nbsp;</td>
-						<td style="text-align:center;">0</td>
-						<td>&nbsp;</td><td>&nbsp;</td>
-						<td>&nbsp;</td><td>&nbsp;</td>
-					</tr>
 				</tbody>
 			</table>
 			

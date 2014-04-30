@@ -18,7 +18,7 @@
 	$courseAssignmentSQLResult = mysql_query($courseAssignmentSQL, $conn);
 	$courseAssignmentSQLResult1 = mysql_query($courseAssignmentSQL, $conn);
 	
-	$courseNameSQL = 'SELECT coursename FROM Section WHERE sectionId="'.$_GET['num'].'" AND courseId="'.$_GET['courseNumber'].'"';
+	$courseNameSQL = 'SELECT coursename FROM Section WHERE sectionId="'.$_GET['num'].'"';
 	$courseNameSQLResult = mysql_query($courseNameSQL, $conn);
 	$courseNameResult = mysql_fetch_array($courseNameSQLResult);
 	
